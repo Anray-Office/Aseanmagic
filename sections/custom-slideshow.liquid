@@ -3,60 +3,38 @@
 {{ 'component-slideshow.css' | asset_url | stylesheet_tag }}
 
 <style>
-  .custom-slideshow__arrow {
-    width: 44px;
-    height: 44px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-  
-  .custom-slideshow__arrow svg {
+  .custom-slideshow-arrows .slider-button svg {
     width: 24px;
     height: 24px;
   }
   
-  .custom-slideshow__arrow--prev svg {
-    transform: scaleX(-1); /* 水平翻转SVG实现左箭头 */
+  .custom-slideshow-arrows .slider-button--prev svg {
+    transform: rotate(180deg);
   }
   
-  .custom-slideshow__background {
+  .custom-slideshow__slide {
     position: relative;
   }
   
-  .custom-slideshow__background::before {
+  .custom-slideshow__slide::before {
     content: '';
     position: absolute;
     top: 0;
     left: 0;
     right: 0;
     bottom: 0;
-    background-color: {{ section.settings.background_color }};
     z-index: -1;
   }
   
-  .slideshow__slide-link {
-    display: block;
-    height: 100%;
-    text-decoration: none;
-    color: inherit;
-  }
-  
   @media screen and (max-width: 749px) {
-    .custom-slideshow__mobile-image {
-      display: block;
-    }
-    .custom-slideshow__desktop-image {
+    .custom-slideshow .desktop-image {
       display: none;
     }
   }
   
   @media screen and (min-width: 750px) {
-    .custom-slideshow__mobile-image {
+    .custom-slideshow .mobile-image {
       display: none;
-    }
-    .custom-slideshow__desktop-image {
-      display: block;
     }
   }
 </style>
@@ -85,39 +63,276 @@
 {%- endif -%}
 
 <slideshow-component
-  class="custom-slideshow slider-mobile-gutter{% if section.settings.layout == 'grid' %} page-width{% endif %}{% if section.settings.show_text_below %} mobile-text-below{% endif %} custom-slideshow__background"
+  class="custom-slideshow slider-mobile-gutter{% if section.settings.layout == 'grid' %} page-width{% endif %}{% if section.settings.show_text_below %} mobile-text-below{% endif %}"
   role="region"
-  aria-roledescription="{{ 'sections.slideshow.carousel' | t }}"
+  aria-roledescription="轮播图"
   aria-label="{{ section.settings.accessibility_info | escape }}"
 >
-  {%- if section.settings.auto_rotate and section.blocks.size > 1 -%}
-    <div class="slideshow__controls slideshow__controls--top slider-buttons{% if section.settings.show_text_below %} slideshow__controls--border-radius-mobile{% endif %}">
+  <div
+    class="custom-slideshow-arrows slideshow__controls slideshow__controls--top slider-buttons{% if section.settings.show_text_below %} slideshow__controls--border-radius-mobile{% endif %}"
+  >
+    <button
+      type="button"
+      class="slider-button slider-button--prev"
+      name="previous"
+      aria-label="上一张幻灯片"
+      aria-controls="Slider-{{ section.id }}"
+    >
+      <span class="svg-wrapper">
+        <svg class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" width="256" height="256"><path d="M352 256l231.19 256L352 768h152.82L736 512 504.78 256z" fill="#C32F26"></path><path d="M512 0C229.23 0 0 229.23 0 512s229.23 512 512 512 512-229.23 512-512S794.77 0 512 0z m0 928C282.62 928 96 741.38 96 512S282.62 96 512 96s416 186.62 416 416-186.62 416-416 416z" fill="#C32F26"></path></svg>
+      </span>
+    </button>
+
+    <div class="slider-counter slider-counter--{{ section.settings.slider_visual }}{% if section.settings.slider_visual == 'counter' or section.settings.slider_visual == 'numbers' %} caption{% endif %}">
+      {%- if section.settings.slider_visual == 'counter' -%}
+        <span class="slider-counter--current">1</span>
+        <span aria-hidden="true"> / </span>
+        <span class="visually-hidden">共</span>
+        <span class="slider-counter--total">{{ section.blocks.size }}</span>
+      {%- else -%}
+        <div class="slideshow__control-wrapper">
+          {%- for block in section.blocks -%}
+            <button
+              class="slider-counter__link slider-counter__link--{{ section.settings.slider_visual }} link"
+              aria-label="加载幻灯片 {{ forloop.index }} / {{ forloop.length }}"
+              aria-controls="Slider-{{ section.id }}"
+            >
+              {%- if section.settings.slider_visual == 'numbers' -%}
+                {{ forloop.index -}}
+              {%- else -%}
+                <span class="dot"></span>
+              {%- endif -%}
+            </button>
+          {%- endfor -%}
+        </div>
+      {%- endif -%}
+    </div>
+
+    <button
+      type="button"
+      class="slider-button slider-button--next"
+      name="next"
+      aria-label="下一张幻灯片"
+      aria-controls="Slider-{{ section.id }}"
+    >
+      <span class="svg-wrapper">
+        <svg class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" width="256" height="256"><path d="M352 256l231.19 256L352 768h152.82L736 512 504.78 256z" fill="#C32F26"></path><path d="M512 0C229.23 0 0 229.23 0 512s229.23 512 512 512 512-229.23 512-512S794.77 0 512 0z m0 928C282.62 928 96 741.38 96 512S282.62 96 512 96s416 186.62 416 416-186.62 416-416 416z" fill="#C32F26"></path></svg>
+      </span>
+    </button>
+
+    {%- if section.settings.auto_rotate -%}
       <button
         type="button"
-        class="slider-button slider-button--prev custom-slideshow__arrow custom-slideshow__arrow--prev"
-        name="previous"
-        aria-label="{{ 'sections.slideshow.previous_slideshow' | t }}"
-        aria-controls="Slider-{{ section.id }}"
+        class="slideshow__autoplay slider-button{% if section.settings.auto_rotate == false %} slideshow__autoplay--paused{% endif %}"
+        aria-label="暂停幻灯片"
       >
-        <span class="custom-svg-wrapper">
-          <svg t="1755497175798" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="12339" width="256" height="256">
-            <path d="M352 256l231.19 256L352 768h152.82L736 512 504.78 256z" fill="{{ section.settings.arrow_color }}" p-id="12340"></path>
-            <path d="M512 0C229.23 0 0 229.23 0 512s229.23 512 512 512 512-229.23 512-512S794.77 0 512 0z m0 928C282.62 928 96 741.38 96 512S282.62 96 512 96s416 186.62 416 416-186.62 416-416 416z" fill="{{ section.settings.arrow_color }}" p-id="12341"></path>
-          </svg>
+        <span class="svg-wrapper">
+          {{- 'icon-pause.svg' | inline_asset_content -}}
+        </span>
+        <span class="svg-wrapper">
+          {{- 'icon-play.svg' | inline_asset_content -}}
         </span>
       </button>
+    {%- endif -%}
+  </div>
+
+  <div
+    class="slideshow banner banner--{{ section.settings.slide_height }} grid grid--1-col slider slider--everywhere{% if section.blocks.first.settings.desktop_image == blank and section.blocks.first.settings.mobile_image == blank %} slideshow--placeholder{% endif %}{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--fade-in{% endif %}"
+    id="Slider-{{ section.id }}"
+    aria-live="polite"
+    aria-atomic="true"
+    data-autoplay="{{ section.settings.auto_rotate }}"
+    data-speed="{{ section.settings.change_slides_speed }}"
+    data-loop="{{ section.settings.enable_loop }}"
+  >
+    {%- for block in section.blocks -%}
+      <style>
+        #Slide-{{ section.id }}-{{ forloop.index }}::before {
+          background-color: {{ block.settings.background_color }};
+          opacity: {{ block.settings.background_opacity | divided_by: 100.0 }};
+        }
+      </style>
+      <div
+        class="custom-slideshow__slide slideshow__slide grid__item grid--1-col slider__slide"
+        id="Slide-{{ section.id }}-{{ forloop.index }}"
+        {{ block.shopify_attributes }}
+        role="group"
+        aria-roledescription="幻灯片"
+        aria-label="{{ forloop.index }} / {{ forloop.length }}"
+        tabindex="-1"
+      >
+        <div class="slideshow__media banner__media media">
+          {%- if block.settings.desktop_image -%}
+            {%- liquid
+              assign desktop_height = block.settings.desktop_image.width | divided_by: block.settings.desktop_image.aspect_ratio | round
+              assign mobile_height = block.settings.mobile_image.width | divided_by: block.settings.mobile_image.aspect_ratio | round
+              assign sizes = '100vw'
+              assign widths = '375, 550, 750, 1100, 1500, 1780, 2000, 3000, 3840'
+              assign fetch_priority = 'auto'
+              if forloop.index == 1
+                assign fetch_priority = 'high'
+              endif
+            -%}
+            
+            <!-- 桌面端图片 -->
+            <div class="desktop-image">
+              {%- if forloop.first %}
+                {{
+                  block.settings.desktop_image
+                  | image_url: width: 3840
+                  | image_tag: 
+                    height: desktop_height, 
+                    sizes: sizes, 
+                    widths: widths, 
+                    fetchpriority: fetch_priority,
+                    class: "desktop-slide-image"
+                }}
+              {%- else -%}
+                {{
+                  block.settings.desktop_image
+                  | image_url: width: 3840
+                  | image_tag: 
+                    loading: 'lazy', 
+                    height: desktop_height, 
+                    sizes: sizes, 
+                    widths: widths,
+                    class: "desktop-slide-image"
+                }}
+              {%- endif -%}
+            </div>
+            
+            <!-- 移动端图片 -->
+            <div class="mobile-image">
+              {%- if block.settings.mobile_image -%}
+                {%- if forloop.first %}
+                  {{
+                    block.settings.mobile_image
+                    | image_url: width: 1100
+                    | image_tag: 
+                      height: mobile_height, 
+                      sizes: sizes, 
+                      widths: "375, 550, 750, 1100", 
+                      fetchpriority: fetch_priority,
+                      class: "mobile-slide-image"
+                  }}
+                {%- else -%}
+                  {{
+                    block.settings.mobile_image
+                    | image_url: width: 1100
+                    | image_tag: 
+                      loading: 'lazy', 
+                      height: mobile_height, 
+                      sizes: sizes, 
+                      widths: "375, 550, 750, 1100",
+                      class: "mobile-slide-image"
+                  }}
+                {%- endif -%}
+              {%- else -%}
+                {%- if forloop.first %}
+                  {{
+                    block.settings.desktop_image
+                    | image_url: width: 1100
+                    | image_tag: 
+                      height: desktop_height, 
+                      sizes: sizes, 
+                      widths: "375, 550, 750, 1100", 
+                      fetchpriority: fetch_priority,
+                      class: "mobile-slide-image"
+                  }}
+                {%- else -%}
+                  {{
+                    block.settings.desktop_image
+                    | image_url: width: 1100
+                    | image_tag: 
+                      loading: 'lazy', 
+                      height: desktop_height, 
+                      sizes: sizes, 
+                      widths: "375, 550, 750, 1100",
+                      class: "mobile-slide-image"
+                  }}
+                {%- endif -%}
+              {%- endif -%}
+            </div>
+            
+          {%- else -%}
+            {%- assign placeholder_slide = forloop.index | modulo: 2 -%}
+            <div class="desktop-image">
+              {%- if placeholder_slide == 1 -%}
+                {{ 'hero-apparel-2' | placeholder_svg_tag: 'placeholder-svg' }}
+              {%- else -%}
+                {{ 'hero-apparel-1' | placeholder_svg_tag: 'placeholder-svg' }}
+              {%- endif -%}
+            </div>
+            <div class="mobile-image">
+              {%- if placeholder_slide == 1 -%}
+                {{ 'hero-apparel-2' | placeholder_svg_tag: 'placeholder-svg' }}
+              {%- else -%}
+                {{ 'hero-apparel-1' | placeholder_svg_tag: 'placeholder-svg' }}
+              {%- endif -%}
+            </div>
+          {%- endif -%}
+        </div>
+        
+        {%- if block.settings.show_text_box -%}
+        <div class="slideshow__text-wrapper banner__content banner__content--{{ block.settings.box_align }} page-width{% if settings.animations_reveal_on_scroll and forloop.index == 1 %} scroll-trigger animate--slide-in{% endif %}">
+          <div class="slideshow__text banner__box content-container content-container--full-width-mobile gradient slideshow__text--{{ block.settings.text_alignment }} slideshow__text-mobile--{{ block.settings.text_alignment_mobile }}">
+            {%- if block.settings.heading != blank -%}
+              <h2 class="banner__heading inline-richtext {{ block.settings.heading_size }}">
+                {{ block.settings.heading }}
+              </h2>
+            {%- endif -%}
+            {%- if block.settings.subheading != blank -%}
+              <div class="banner__text rte">
+                <p>{{ block.settings.subheading }}</p>
+              </div>
+            {%- endif -%}
+            {%- if block.settings.button_label != blank -%}
+              <div class="banner__buttons">
+                <a
+                  {% if block.settings.link %}
+                    href="{{ block.settings.link }}"
+                  {% else %}
+                    role="link" aria-disabled="true"
+                  {% endif %}
+                  class="button {% if block.settings.button_style_secondary %}button--secondary{% else %}button--primary{% endif %}"
+                >
+                  {{- block.settings.button_label | escape -}}
+                </a>
+              </div>
+            {%- endif -%}
+          </div>
+        </div>
+        {%- endif -%}
+      </div>
+    {%- endfor -%}
+  </div>
+
+  {%- if section.blocks.size > 1 -%}
+    <div class="custom-slideshow-arrows slideshow__controls slider-buttons{% if section.settings.show_text_below %} slideshow__controls--border-radius-mobile{% endif %}">
+      <button
+        type="button"
+        class="slider-button slider-button--prev"
+        name="previous"
+        aria-label="上一张幻灯片"
+        aria-controls="Slider-{{ section.id }}"
+      >
+        <span class="svg-wrapper">
+          <svg class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" width="256" height="256"><path d="M352 256l231.19 256L352 768h152.82L736 512 504.78 256z" fill="#C32F26"></path><path d="M512 0C229.23 0 0 229.23 0 512s229.23 512 512 512 512-229.23 512-512S794.77 0 512 0z m0 928C282.62 928 96 741.38 96 512S282.62 96 512 96s416 186.62 416 416-186.62 416-416 416z" fill="#C32F26"></path></svg>
+        </span>
+      </button>
+      
       <div class="slider-counter slider-counter--{{ section.settings.slider_visual }}{% if section.settings.slider_visual == 'counter' or section.settings.slider_visual == 'numbers' %} caption{% endif %}">
         {%- if section.settings.slider_visual == 'counter' -%}
           <span class="slider-counter--current">1</span>
           <span aria-hidden="true"> / </span>
-          <span class="visually-hidden">{{ 'general.slider.of' | t }}</span>
+          <span class="visually-hidden">共</span>
           <span class="slider-counter--total">{{ section.blocks.size }}</span>
         {%- else -%}
           <div class="slideshow__control-wrapper">
             {%- for block in section.blocks -%}
               <button
                 class="slider-counter__link slider-counter__link--{{ section.settings.slider_visual }} link"
-                aria-label="{{ 'sections.slideshow.load_slide' | t }} {{ forloop.index }} {{ 'general.slider.of' | t }} {{ forloop.length }}"
+                aria-label="加载幻灯片 {{ forloop.index }} / {{ forloop.length }}"
                 aria-controls="Slider-{{ section.id }}"
               >
                 {%- if section.settings.slider_visual == 'numbers' -%}
@@ -130,18 +345,16 @@
           </div>
         {%- endif -%}
       </div>
+      
       <button
         type="button"
-        class="slider-button slider-button--next custom-slideshow__arrow custom-slideshow__arrow--next"
+        class="slider-button slider-button--next"
         name="next"
-        aria-label="{{ 'sections.slideshow.next_slideshow' | t }}"
+        aria-label="下一张幻灯片"
         aria-controls="Slider-{{ section.id }}"
       >
-        <span class="custom-svg-wrapper">
-          <svg t="1755497175798" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="12339" width="256" height="256">
-            <path d="M352 256l231.19 256L352 768h152.82L736 512 504.78 256z" fill="{{ section.settings.arrow_color }}" p-id="12340"></path>
-            <path d="M512 0C229.23 0 0 229.23 0 512s229.23 512 512 512 512-229.23 512-512S794.77 0 512 0z m0 928C282.62 928 96 741.38 96 512S282.62 96 512 96s416 186.62 416 416-186.62 416-416 416z" fill="{{ section.settings.arrow_color }}" p-id="12341"></path>
-          </svg>
+        <span class="svg-wrapper">
+          <svg class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" width="256" height="256"><path d="M352 256l231.19 256L352 768h152.82L736 512 504.78 256z" fill="#C32F26"></path><path d="M512 0C229.23 0 0 229.23 0 512s229.23 512 512 512 512-229.23 512-512S794.77 0 512 0z m0 928C282.62 928 96 741.38 96 512S282.62 96 512 96s416 186.62 416 416-186.62 416-416 416z" fill="#C32F26"></path></svg>
         </span>
       </button>
 
@@ -149,7 +362,7 @@
         <button
           type="button"
           class="slideshow__autoplay slider-button{% if section.settings.auto_rotate == false %} slideshow__autoplay--paused{% endif %}"
-          aria-label="{{ 'sections.slideshow.pause_slideshow' | t }}"
+          aria-label="暂停幻灯片"
         >
           <span class="svg-wrapper">
             {{- 'icon-pause.svg' | inline_asset_content -}}
@@ -161,147 +374,6 @@
       {%- endif -%}
     </div>
   {%- endif -%}
-
-  <div
-    class="slideshow banner banner--{{ section.settings.slide_height }} grid grid--1-col slider slider--everywhere{% if section.settings.show_text_below %} banner--mobile-bottom{% endif %}{% if section.blocks.first.settings.desktop_image == blank %} slideshow--placeholder{% endif %}{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--fade-in{% endif %}"
-    id="Slider-{{ section.id }}"
-    aria-live="polite"
-    aria-atomic="true"
-    data-autoplay="{{ section.settings.auto_rotate }}"
-    data-speed="{{ section.settings.change_slides_speed }}"
-    data-loop="{{ section.settings.enable_loop }}"
-  >
-    {%- for block in section.blocks -%}
-      <div
-        class="slideshow__slide grid__item grid--1-col slider__slide"
-        id="Slide-{{ section.id }}-{{ forloop.index }}"
-        {{ block.shopify_attributes }}
-        role="group"
-        aria-roledescription="{{ 'sections.slideshow.slide' | t }}"
-        aria-label="{{ forloop.index }} {{ 'general.slider.of' | t }} {{ forloop.length }}"
-        tabindex="-1"
-      >
-        {% if block.settings.slide_link != blank %}
-          <a href="{{ block.settings.slide_link }}" class="slideshow__slide-link">
-        {% endif %}
-        <div class="slideshow__media banner__media media">
-          {%- if block.settings.desktop_image -%}
-            <div class="custom-slideshow__desktop-image">
-              {%- assign loading_attribute = 'lazy' -%}
-              {%- if forloop.first -%}
-                {%- assign loading_attribute = 'eager' -%}
-              {%- endif -%}
-              {{
-                block.settings.desktop_image
-                | image_url: width: 3840
-                | image_tag: loading: loading_attribute, class: 'desktop-image'
-              }}
-            </div>
-            <div class="custom-slideshow__mobile-image">
-              {{
-                block.settings.mobile_image | default: block.settings.desktop_image
-                | image_url: width: 1100
-                | image_tag: loading: loading_attribute, class: 'mobile-image'
-              }}
-            </div>
-          {%- else -%}
-            {{ 'lifestyle-1' | placeholder_svg_tag: 'placeholder-svg' }}
-          {%- endif -%}
-        </div>
-        {% if block.settings.slide_link != blank %}
-          </a>
-        {% endif %}
-        
-        {%- if block.settings.show_text -%}
-          <div class="slideshow__text-wrapper banner__content banner__content--{{ block.settings.box_align }} page-width{% if block.settings.show_text_box == false %} banner--desktop-transparent{% endif %}">
-            <div class="slideshow__text banner__box content-container content-container--full-width-mobile color-{{ block.settings.color_scheme }} gradient slideshow__text--{{ block.settings.text_alignment }} slideshow__text-mobile--{{ block.settings.text_alignment_mobile }}">
-              {%- if block.settings.heading != blank -%}
-                <h2 class="banner__heading inline-richtext {{ block.settings.heading_size }}">
-                  {{ block.settings.heading }}
-                </h2>
-              {%- endif -%}
-              {%- if block.settings.subheading != blank -%}
-                <div class="banner__text rte">
-                  <p>{{ block.settings.subheading }}</p>
-                </div>
-              {%- endif -%}
-              {%- if block.settings.button_label != blank -%}
-                <div class="banner__buttons">
-                  <a
-                    {% if block.settings.link %}
-                      href="{{ block.settings.link }}"
-                    {% else %}
-                      role="link" aria-disabled="true"
-                    {% endif %}
-                    class="button {% if block.settings.button_style_secondary %}button--secondary{% else %}button--primary{% endif %}"
-                  >
-                    {{- block.settings.button_label | escape -}}
-                  </a>
-                </div>
-              {%- endif -%}
-            </div>
-          </div>
-        {%- endif -%}
-      </div>
-    {%- endfor -%}
-  </div>
-
-  {%- if section.blocks.size > 1 and section.settings.auto_rotate == false -%}
-    <div class="slideshow__controls slider-buttons{% if section.settings.show_text_below %} slideshow__controls--border-radius-mobile{% endif %}">
-      <button
-        type="button"
-        class="slider-button slider-button--prev custom-slideshow__arrow custom-slideshow__arrow--prev"
-        name="previous"
-        aria-label="{{ 'sections.slideshow.previous_slideshow' | t }}"
-        aria-controls="Slider-{{ section.id }}"
-      >
-        <span class="custom-svg-wrapper">
-          <svg t="1755497175798" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="12339" width="256" height="256">
-            <path d="M352 256l231.19 256L352 768h152.82L736 512 504.78 256z" fill="{{ section.settings.arrow_color }}" p-id="12340"></path>
-            <path d="M512 0C229.23 0 0 229.23 0 512s229.23 512 512 512 512-229.23 512-512S794.77 0 512 0z m0 928C282.62 928 96 741.38 96 512S282.62 96 512 96s416 186.62 416 416-186.62 416-416 416z" fill="{{ section.settings.arrow_color }}" p-id="12341"></path>
-          </svg>
-        </span>
-      </button>
-      <div class="slider-counter slider-counter--{{ section.settings.slider_visual }}{% if section.settings.slider_visual == 'counter' or section.settings.slider_visual == 'numbers' %} caption{% endif %}">
-        {%- if section.settings.slider_visual == 'counter' -%}
-          <span class="slider-counter--current">1</span>
-          <span aria-hidden="true"> / </span>
-          <span class="visually-hidden">{{ 'general.slider.of' | t }}</span>
-          <span class="slider-counter--total">{{ section.blocks.size }}</span>
-        {%- else -%}
-          <div class="slideshow__control-wrapper">
-            {%- for block in section.blocks -%}
-              <button
-                class="slider-counter__link slider-counter__link--{{ section.settings.slider_visual }} link"
-                aria-label="{{ 'sections.slideshow.load_slide' | t }} {{ forloop.index }} {{ 'general.slider.of' | t }} {{ forloop.length }}"
-                aria-controls="Slider-{{ section.id }}"
-              >
-                {%- if section.settings.slider_visual == 'numbers' -%}
-                  {{ forloop.index -}}
-                {%- else -%}
-                  <span class="dot"></span>
-                {%- endif -%}
-              </button>
-            {%- endfor -%}
-          </div>
-        {%- endif -%}
-      </div>
-      <button
-        type="button"
-        class="slider-button slider-button--next custom-slideshow__arrow custom-slideshow__arrow--next"
-        name="next"
-        aria-label="{{ 'sections.slideshow.next_slideshow' | t }}"
-        aria-controls="Slider-{{ section.id }}"
-      >
-        <span class="custom-svg-wrapper">
-          <svg t="1755497175798" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="12339" width="256" height="256">
-            <path d="M352 256l231.19 256L352 768h152.82L736 512 504.78 256z" fill="{{ section.settings.arrow_color }}" p-id="12340"></path>
-            <path d="M512 0C229.23 0 0 229.23 0 512s229.23 512 512 512 512-229.23 512-512S794.77 0 512 0z m0 928C282.62 928 96 741.38 96 512S282.62 96 512 96s416 186.62 416 416-186.62 416-416 416z" fill="{{ section.settings.arrow_color }}" p-id="12341"></path>
-          </svg>
-        </span>
-      </button>
-    </div>
-  {%- endif -%}
 </slideshow-component>
 
 {%- if request.design_mode -%}
@@ -310,7 +382,7 @@
 
 {% schema %}
 {
-  "name": "custom-slideshow",
+  "name": "自定义轮播图",
   "tag": "section",
   "class": "section",
   "disabled_on": {
@@ -323,11 +395,11 @@
       "options": [
         {
           "value": "full_bleed",
-          "label": "全出血"
+          "label": "全屏宽度"
         },
         {
           "value": "grid",
-          "label": "网格"
+          "label": "网格内显示"
         }
       ],
       "default": "full_bleed",
@@ -339,7 +411,7 @@
       "options": [
         {
           "value": "adapt_image",
-          "label": "适应图片"
+          "label": "适应图片高度"
         },
         {
           "value": "small",
@@ -375,7 +447,7 @@
         }
       ],
       "default": "counter",
-      "label": "滑块可视化"
+      "label": "导航类型"
     },
     {
       "type": "checkbox",
@@ -387,41 +459,38 @@
       "type": "range",
       "id": "change_slides_speed",
       "min": 3,
-      "max": 9,
+      "max": 10,
       "step": 1,
-      "unit": "秒",
-      "label": "幻灯片自动切换速度",
+      "unit": "s",
+      "label": "轮播间隔时间",
       "default": 5
     },
     {
       "type": "checkbox",
       "id": "enable_loop",
-      "label": "启用无限循环",
+      "label": "启用无限循环轮播",
       "default": true
     },
     {
-      "type": "color",
-      "id": "arrow_color",
-      "label": "箭头颜色",
-      "default": "#C32F26"
-    },
-    {
-      "type": "color",
-      "id": "background_color",
-      "label": "背景颜色",
-      "default": "#FFFFFF"
+      "type": "header",
+      "content": "移动端设置"
     },
     {
       "type": "checkbox",
       "id": "show_text_below",
-      "label": "在移动端下方显示文本",
+      "label": "在移动设备上在图片下方显示内容",
       "default": true
+    },
+    {
+      "type": "header",
+      "content": "无障碍设置"
     },
     {
       "type": "text",
       "id": "accessibility_info",
-      "label": "无障碍描述",
-      "default": "轮播图"
+      "label": "轮播图描述",
+      "info": "用于屏幕阅读器",
+      "default": "自定义轮播图"
     }
   ],
   "blocks": [
@@ -438,25 +507,98 @@
         {
           "type": "image_picker",
           "id": "mobile_image",
-          "label": "移动端图片"
+          "label": "移动端图片（可选）"
         },
         {
-          "type": "url",
-          "id": "slide_link",
-          "label": "幻灯片链接",
-          "info": "设置链接使整个幻灯片可点击，不设置则不可点击"
+          "type": "color",
+          "id": "background_color",
+          "label": "背景颜色",
+          "default": "#f3f3f3"
         },
         {
-          "type": "checkbox",
-          "id": "show_text",
-          "label": "显示文本",
-          "default": false
+          "type": "range",
+          "id": "background_opacity",
+          "min": 0,
+          "max": 100,
+          "step": 10,
+          "unit": "%",
+          "label": "背景透明度",
+          "default": 50
+        },
+        {
+          "type": "header",
+          "content": "文本设置"
         },
         {
           "type": "checkbox",
           "id": "show_text_box",
           "label": "显示文本框",
-          "default": true
+          "default": false
+        },
+        {
+          "type": "inline_richtext",
+          "id": "heading",
+          "default": "轮播标题",
+          "label": "标题"
+        },
+        {
+          "type": "select",
+          "id": "heading_size",
+          "options": [
+            {
+              "value": "h2",
+              "label": "小"
+            },
+            {
+              "value": "h1",
+              "label": "中"
+            },
+            {
+              "value": "h0",
+              "label": "大"
+            },
+            {
+              "value": "hxl",
+              "label": "特大"
+            },
+            {
+              "value": "hxxl",
+              "label": "超大"
+            }
+          ],
+          "default": "h1",
+          "label": "标题大小"
+        },
+        {
+          "type": "inline_richtext",
+          "id": "subheading",
+          "default": "轮播副标题",
+          "label": "副标题"
+        },
+        {
+          "type": "header",
+          "content": "按钮设置"
+        },        
+        {
+          "type": "text",
+          "id": "button_label",
+          "default": "按钮文字",
+          "label": "按钮文字"
+        },
+        {
+          "type": "url",
+          "id": "link",
+          "label": "链接地址"
+        },
+        {
+          "type": "checkbox",
+          "id": "button_style_secondary",
+          "label": "使用次要按钮样式",
+          "default": false
+        },
+        {
+          "type": "header",
+          "content": "布局设置"
         },
         {
           "type": "select",
@@ -468,7 +610,7 @@
             },
             {
               "value": "top-center",
-              "label": "顶部居中"
+              "label": "上中"
             },
             {
               "value": "top-right",
@@ -492,7 +634,7 @@
             },
             {
               "value": "bottom-center",
-              "label": "底部居中"
+              "label": "下中"
             },
             {
               "value": "bottom-right",
@@ -500,7 +642,7 @@
             }
           ],
           "default": "middle-center",
-          "label": "文本框位置"
+          "label": "内容对齐位置"
         },
         {
           "type": "select",
@@ -512,7 +654,7 @@
             },
             {
               "value": "center",
-              "label": "居中"
+              "label": "居中对齐"
             },
             {
               "value": "right",
@@ -532,7 +674,7 @@
             },
             {
               "value": "center",
-              "label": "居中"
+              "label": "居中对齐"
             },
             {
               "value": "right",
@@ -541,76 +683,13 @@
           ],
           "default": "center",
           "label": "移动端文本对齐"
-        },
-        {
-          "type": "inline_richtext",
-          "id": "heading",
-          "default": "图片幻灯片",
-          "label": "标题"
-        },
-        {
-          "type": "select",
-          "id": "heading_size",
-          "options": [
-            {
-              "value": "h2",
-              "label": "h2"
-            },
-            {
-              "value": "h1",
-              "label": "h1"
-            },
-            {
-              "value": "h0",
-              "label": "h0"
-            },
-            {
-              "value": "hxl",
-              "label": "特大"
-            },
-            {
-              "value": "hxxl",
-              "label": "超大"
-            }
-          ],
-          "default": "h1",
-          "label": "标题大小"
-        },
-        {
-          "type": "inline_richtext",
-          "id": "subheading",
-          "default": "使用幻灯片展示文本和图片",
-          "label": "副标题"
-        },
-        {
-          "type": "text",
-          "id": "button_label",
-          "default": "按钮标签",
-          "label": "按钮文本"
-        },
-        {
-          "type": "url",
-          "id": "link",
-          "label": "链接"
-        },
-        {
-          "type": "checkbox",
-          "id": "button_style_secondary",
-          "label": "使用次要按钮样式",
-          "default": false
-        },
-        {
-          "type": "color_scheme",
-          "id": "color_scheme",
-          "label": "颜色方案",
-          "default": "scheme-1"
         }
       ]
     }
   ],
   "presets": [
     {
-      "name": "custom-slideshow",
+      "name": "自定义轮播图",
       "blocks": [
         {
           "type": "slide"
