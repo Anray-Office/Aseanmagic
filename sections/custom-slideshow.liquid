@@ -187,17 +187,21 @@
         <div class="slideshow__media banner__media media">
           {%- if block.settings.desktop_image -%}
             <div class="custom-slideshow__desktop-image">
+              {%- assign loading_attribute = 'lazy' -%}
+              {%- if forloop.first -%}
+                {%- assign loading_attribute = 'eager' -%}
+              {%- endif -%}
               {{
                 block.settings.desktop_image
                 | image_url: width: 3840
-                | image_tag: loading: forloop.first ? 'eager' : 'lazy', class: 'desktop-image'
+                | image_tag: loading: loading_attribute, class: 'desktop-image'
               }}
             </div>
             <div class="custom-slideshow__mobile-image">
               {{
                 block.settings.mobile_image | default: block.settings.desktop_image
                 | image_url: width: 1100
-                | image_tag: loading: forloop.first ? 'eager' : 'lazy', class: 'mobile-image'
+                | image_tag: loading: loading_attribute, class: 'mobile-image'
               }}
             </div>
           {%- else -%}
