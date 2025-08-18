@@ -59,31 +59,69 @@
         "slide_Ny7M8d": {
           "type": "slide",
           "settings": {
+            "image": "shopify://shop_images/aseanmagic-pc-slide1.jpg",
             "image_overlay_opacity": 0,
-            "heading": "Image slide",
+            "heading": "",
             "heading_size": "h1",
-            "subheading": "Tell your brand's story through images",
-            "button_label": "Button label",
+            "subheading": "",
+            "button_label": "",
             "link": "",
             "button_style_secondary": false,
-            "show_text_box": true,
+            "show_text_box": false,
             "box_align": "middle-center",
             "text_alignment": "center",
             "text_alignment_mobile": "center",
             "color_scheme": ""
           }
         },
-        "slide_EzCTfE": {
+        "slide_fV67LA": {
           "type": "slide",
           "settings": {
+            "image": "shopify://shop_images/aseanmagic-pc-slide3.jpg",
             "image_overlay_opacity": 0,
-            "heading": "Image slide",
+            "heading": "",
             "heading_size": "h1",
-            "subheading": "Tell your brand's story through images",
-            "button_label": "Button label",
+            "subheading": "",
+            "button_label": "",
             "link": "",
             "button_style_secondary": false,
-            "show_text_box": true,
+            "show_text_box": false,
+            "box_align": "middle-center",
+            "text_alignment": "center",
+            "text_alignment_mobile": "center",
+            "color_scheme": ""
+          }
+        },
+        "slide_zxyMqH": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify://shop_images/aseanmagic-pc-slide2.jpg",
+            "image_overlay_opacity": 0,
+            "heading": "",
+            "heading_size": "h1",
+            "subheading": "",
+            "button_label": "",
+            "link": "",
+            "button_style_secondary": false,
+            "show_text_box": false,
+            "box_align": "middle-center",
+            "text_alignment": "center",
+            "text_alignment_mobile": "center",
+            "color_scheme": ""
+          }
+        },
+        "slide_4XMHEr": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify://shop_images/aseanmagic-pc-slide4.jpg",
+            "image_overlay_opacity": 0,
+            "heading": "",
+            "heading_size": "h1",
+            "subheading": "",
+            "button_label": "",
+            "link": "",
+            "button_style_secondary": false,
+            "show_text_box": false,
             "box_align": "middle-center",
             "text_alignment": "center",
             "text_alignment_mobile": "center",
@@ -93,7 +131,9 @@
       },
       "block_order": [
         "slide_Ny7M8d",
-        "slide_EzCTfE"
+        "slide_fV67LA",
+        "slide_zxyMqH",
+        "slide_4XMHEr"
       ],
       "name": "t:sections.slideshow.presets.name",
       "settings": {
