@@ -56,10 +56,30 @@
     "aseanmagic_slideshow_wHHgaM": {
       "type": "Aseanmagic-slideshow",
       "blocks": {
-        "slide_rXeJMR": {
+        "slide_RVDx8H": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify://shop_images/aseanmagic-pc-slide1.jpg",
+            "mobile_image": "shopify://shop_images/aseanmagic-moble-slide1.jpg",
+            "image_overlay_opacity": 0,
+            "heading": "",
+            "heading_size": "h1",
+            "subheading": "",
+            "button_label": "",
+            "link": "",
+            "button_style_secondary": false,
+            "show_text_box": false,
+            "box_align": "middle-center",
+            "text_alignment": "center",
+            "text_alignment_mobile": "center",
+            "color_scheme": "scheme-1"
+          }
+        },
+        "slide_q96Q96": {
           "type": "slide",
           "settings": {
             "image": "shopify://shop_images/aseanmagic-pc-slide4.jpg",
+            "mobile_image": "shopify://shop_images/aseanmagic-moble-slide2.jpg",
             "image_overlay_opacity": 0,
             "heading": "",
             "heading_size": "h1",
@@ -74,28 +94,11 @@
             "color_scheme": "scheme-1"
           }
         },
-        "slide_dLcRgH": {
+        "slide_VFq6JL": {
           "type": "slide",
           "settings": {
             "image": "shopify://shop_images/aseanmagic-pc-slide2.jpg",
-            "image_overlay_opacity": 0,
-            "heading": "",
-            "heading_size": "h1",
-            "subheading": "",
-            "button_label": "",
-            "link": "",
-            "button_style_secondary": false,
-            "show_text_box": false,
-            "box_align": "middle-center",
-            "text_alignment": "center",
-            "text_alignment_mobile": "center",
-            "color_scheme": "scheme-1"
-          }
-        },
-        "slide_MJ8Umy": {
-          "type": "slide",
-          "settings": {
-            "image": "shopify://shop_images/aseanmagic-pc-slide3.jpg",
+            "mobile_image": "shopify://shop_images/aseanmagic-moble-slide1.jpg",
             "image_overlay_opacity": 0,
             "heading": "",
             "heading_size": "h1",
@@ -112,9 +115,9 @@
         }
       },
       "block_order": [
-        "slide_rXeJMR",
-        "slide_dLcRgH",
-        "slide_MJ8Umy"
+        "slide_RVDx8H",
+        "slide_q96Q96",
+        "slide_VFq6JL"
       ],
       "name": "custom-slideshow",
       "settings": {
