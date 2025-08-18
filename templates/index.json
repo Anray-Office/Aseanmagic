@@ -53,10 +53,10 @@
         "padding_bottom": 52
       }
     },
-    "slideshow_wWyYKm": {
-      "type": "slideshow",
+    "aseanmagic_slideshow_wHHgaM": {
+      "type": "Aseanmagic-slideshow",
       "blocks": {
-        "slide_9c8fBj": {
+        "slide_rXeJMR": {
           "type": "slide",
           "settings": {
             "image_overlay_opacity": 0,
@@ -70,10 +70,10 @@
             "box_align": "middle-center",
             "text_alignment": "center",
             "text_alignment_mobile": "center",
-            "color_scheme": ""
+            "color_scheme": "scheme-1"
           }
         },
-        "slide_HDBP8c": {
+        "slide_dLcRgH": {
           "type": "slide",
           "settings": {
             "image_overlay_opacity": 0,
@@ -87,10 +87,10 @@
             "box_align": "middle-center",
             "text_alignment": "center",
             "text_alignment_mobile": "center",
-            "color_scheme": ""
+            "color_scheme": "scheme-1"
           }
         },
-        "slide_bBD9CU": {
+        "slide_MJ8Umy": {
           "type": "slide",
           "settings": {
             "image_overlay_opacity": 0,
@@ -104,16 +104,16 @@
             "box_align": "middle-center",
             "text_alignment": "center",
             "text_alignment_mobile": "center",
-            "color_scheme": ""
+            "color_scheme": "scheme-1"
           }
         }
       },
       "block_order": [
-        "slide_9c8fBj",
-        "slide_HDBP8c",
-        "slide_bBD9CU"
+        "slide_rXeJMR",
+        "slide_dLcRgH",
+        "slide_MJ8Umy"
       ],
-      "name": "t:sections.slideshow.presets.name",
+      "name": "custom-slideshow",
       "settings": {
         "layout": "full_bleed",
         "slide_height": "medium",
@@ -129,6 +129,6 @@
   },
   "order": [
     "rich_text_3hbyjV",
-    "slideshow_wWyYKm"
+    "aseanmagic_slideshow_wHHgaM"
   ]
 }
