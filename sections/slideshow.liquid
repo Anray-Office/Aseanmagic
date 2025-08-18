@@ -104,6 +104,7 @@
     aria-atomic="true"
     data-autoplay="{{ section.settings.auto_rotate }}"
     data-speed="{{ section.settings.change_slides_speed }}"
+    data-loop="{{ section.settings.enable_loop }}"
   >
     {%- for block in section.blocks -%}
       <style>
@@ -345,6 +346,12 @@
       "unit": "s",
       "label": "t:sections.slideshow.settings.change_slides_speed.label",
       "default": 5
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_loop",
+      "label": "启用无限循环",
+      "default": true
     },
     {
       "type": "select",

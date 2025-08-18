@@ -787,8 +787,10 @@ class SliderComponent extends HTMLElement {
       );
     }
 
+    // 当启用无限循环时，不禁用导航按钮
     if (this.enableSliderLooping) return;
 
+    // 当不启用无限循环时，第一页禁用上一页按钮，最后一页禁用下一页按钮
     if (this.isSlideVisible(this.sliderItemsToShow[0]) && this.slider.scrollLeft === 0) {
       this.prevButton.setAttribute('disabled', 'disabled');
     } else {
@@ -831,6 +833,10 @@ class SlideshowComponent extends SliderComponent {
     super();
     this.sliderControlWrapper = this.querySelector('.slider-buttons');
     this.enableSliderLooping = true;
+    
+    // 读取data-loop属性值，默认为true支持无限循环
+    const loopAttribute = this.slider.dataset.loop;
+    this.enableSliderLooping = loopAttribute === undefined ? true : loopAttribute === 'true';
 
     if (!this.sliderControlWrapper) return;
 
