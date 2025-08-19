@@ -1,0 +1,403 @@
+{{ 'section-rich-text.css' | asset_url | stylesheet_tag }}
+
+{%- style -%}
+  .section-{{ section.id }}-padding {
+    padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
+    padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
+  }
+
+  @media screen and (min-width: 750px) {
+    .section-{{ section.id }}-padding {
+      padding-top: {{ section.settings.padding_top }}px;
+      padding-bottom: {{ section.settings.padding_bottom }}px;
+    }
+  }
+
+  .particle-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 30px;
+  }
+
+  .particle-item {
+    display: flex;
+    flex-direction: column;
+    background-color: #f8f8f8;
+    border-radius: 0;
+    overflow: hidden;
+    height: 100%;
+  }
+
+  .particle-item__content {
+    padding: 20px;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .particle-item__image {
+    width: 100%;
+    display: block;
+    overflow: hidden;
+  }
+
+  .particle-item__image img {
+    width: 100%;
+    height: auto;
+    display: block;
+    transition: transform 0.5s ease;
+  }
+
+  .particle-item:hover .particle-item__image img {
+    transform: scale(1.05);
+  }
+
+  .particle-item__title {
+    margin-top: 20px;
+    margin-bottom: 10px;
+    position: relative;
+  }
+
+  .particle-item__title::before {
+    content: " ";
+    border-bottom: 4px dotted #000000;
+    position: absolute;
+    top: -20px;
+    left: 5px;
+    width: 250px;
+  }
+
+  .particle-item__text {
+    margin-bottom: 20px;
+    flex-grow: 1;
+  }
+
+  .particle-layout--vertical .particle-item {
+    width: 100%;
+  }
+
+  .particle-layout--horizontal .particle-item {
+    width: calc(50% - 15px);
+  }
+
+  @media screen and (max-width: 749px) {
+    .particle-layout--horizontal .particle-item {
+      width: 100%;
+    }
+
+    .particle-item__title::before {
+      left: -15px;
+    }
+  }
+
+  /* 自定义按钮样式 */
+  .custom-btn {
+    cursor: pointer;
+    color: #000000;
+    background-color: transparent;
+    display: inline-block;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 45px;
+    max-width: 160px;
+    position: relative;
+    text-decoration: none;
+    text-transform: uppercase;
+    width: 100%;
+    text-align: center;
+    transition-property: all;
+    transition-duration: .25s;
+    transition-timing-function: ease;
+  }
+
+  .custom-btn:hover {
+    text-decoration: none;
+    color: #000000;
+    background-color: transparent;
+  }
+
+  .custom-btn svg {
+    height: 45px;
+    left: 0;
+    position: absolute;
+    top: 0;
+    width: 100%;
+    transition-property: all;
+    transition-duration: .25s;
+    transition-timing-function: ease;
+  }
+
+  .custom-btn rect {
+    fill: none;
+    stroke: #000000;
+    stroke-width: 2;
+    stroke-dasharray: 422, 0;
+    transition: all 0.35s linear;
+  }
+
+  .custom-btn:hover {
+    font-weight: 900;
+    letter-spacing: 1px;
+  }
+
+  .custom-btn:hover rect {
+    stroke: #000000;
+    stroke-width: 5;
+    stroke-dasharray: 15, 310;
+    stroke-dashoffset: 48;
+    transition: all 1.35s cubic-bezier(0.19, 1, 0.22, 1);
+  }
+
+  .custom-btn {
+    padding: 0;
+  }
+{%- endstyle -%}
+
+<div class="isolate{% unless section.settings.full_width %} page-width{% endunless %}">
+  <div class="content-container color-{{ section.settings.color_scheme }} gradient{% if section.settings.full_width %} content-container--full-width{% endif %} section-{{ section.id }}-padding">
+    <div class="particle-container particle-layout--{{ section.settings.layout_style }}">
+      {%- for block in section.blocks -%}
+        <div class="particle-item" {{ block.shopify_attributes }}>
+          <div class="particle-item__image">
+            {%- if block.settings.image != blank -%}
+              {{ block.settings.image | image_url: width: 1000 | image_tag: loading: 'lazy', alt: block.settings.title }}
+            {%- else -%}
+              {{ 'image' | placeholder_svg_tag: 'placeholder-svg' }}
+            {%- endif -%}
+          </div>
+          <div class="particle-item__content">
+            <h2 class="particle-item__title h1">
+              {{ block.settings.title }}
+            </h2>
+            <div class="particle-item__text rte">
+              {{ block.settings.description }}
+            </div>
+            {%- if block.settings.button_label != blank -%}
+              {%- if block.settings.use_custom_button -%}
+                <style>
+                  #custom-btn-{{ block.id }} {
+                    color: {{ block.settings.custom_text_color }};
+                    background-color: {{ block.settings.custom_bg_color }};
+                  }
+                  #custom-btn-{{ block.id }}:hover {
+                    color: {{ block.settings.custom_hover_text_color }};
+                    background-color: {{ block.settings.custom_hover_bg_color }};
+                  }
+                  #custom-btn-{{ block.id }} rect {
+                    stroke: {{ block.settings.custom_border_color }};
+                    stroke-width: {{ block.settings.custom_border_width }}px;
+                  }
+                  #custom-btn-{{ block.id }}:hover rect {
+                    stroke: {{ block.settings.custom_hover_border_color }};
+                  }
+                </style>
+
+                <a
+                  {% if block.settings.button_link == blank %}
+                    role="link" aria-disabled="true"
+                  {% else %}
+                    href="{{ block.settings.button_link }}"
+                  {% endif %}
+                  id="custom-btn-{{ block.id }}"
+                  class="custom-btn"
+                >
+                  <svg>
+                    <rect x="0" y="0" fill="none" width="100%" height="100%"/>
+                  </svg>
+                  {{ block.settings.button_label | escape }}
+                </a>
+              {%- else -%}
+                <a
+                  {% if block.settings.button_link == blank %}
+                    role="link" aria-disabled="true"
+                  {% else %}
+                    href="{{ block.settings.button_link }}"
+                  {% endif %}
+                  class="button{% if block.settings.button_style_secondary %} button--secondary{% else %} button--primary{% endif %}"
+                >
+                  {{ block.settings.button_label | escape }}
+                </a>
+              {%- endif -%}
+            {%- endif -%}
+          </div>
+        </div>
+      {%- endfor -%}
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "自定义粒子图片",
+  "tag": "section",
+  "class": "section",
+  "disabled_on": {
+    "groups": ["header", "footer"]
+  },
+  "settings": [
+    {
+      "type": "select",
+      "id": "layout_style",
+      "options": [
+        {
+          "value": "vertical",
+          "label": "纵向排列"
+        },
+        {
+          "value": "horizontal",
+          "label": "横向排列"
+        }
+      ],
+      "default": "horizontal",
+      "label": "排列方式"
+    },
+    {
+      "type": "checkbox",
+      "id": "full_width",
+      "default": true,
+      "label": "全宽显示"
+    },
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "配色方案",
+      "default": "scheme-1"
+    },
+    {
+      "type": "header",
+      "content": "内边距设置"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "顶部内边距",
+      "default": 40
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "底部内边距",
+      "default": 52
+    }
+  ],
+  "blocks": [
+    {
+      "type": "item",
+      "name": "展示项",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "图片"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "default": "标题文本",
+          "label": "标题"
+        },
+        {
+          "type": "richtext",
+          "id": "description",
+          "default": "<p>描述文本内容，可以添加多行文本</p>",
+          "label": "描述"
+        },
+        {
+          "type": "text",
+          "id": "button_label",
+          "default": "查看更多",
+          "label": "按钮文本"
+        },
+        {
+          "type": "url",
+          "id": "button_link",
+          "label": "按钮链接"
+        },
+        {
+          "type": "checkbox",
+          "id": "button_style_secondary",
+          "default": false,
+          "label": "使用次要按钮样式"
+        },
+        {
+          "type": "header",
+          "content": "自定义按钮设置"
+        },
+        {
+          "type": "checkbox",
+          "id": "use_custom_button",
+          "default": true,
+          "label": "使用动画边框按钮"
+        },
+        {
+          "type": "color",
+          "id": "custom_text_color",
+          "label": "按钮文本颜色",
+          "default": "#000000"
+        },
+        {
+          "type": "color",
+          "id": "custom_bg_color",
+          "label": "按钮背景颜色",
+          "default": "transparent"
+        },
+        {
+          "type": "color",
+          "id": "custom_border_color",
+          "label": "按钮边框颜色",
+          "default": "#000000"
+        },
+        {
+          "type": "range",
+          "id": "custom_border_width",
+          "min": 1,
+          "max": 10,
+          "step": 1,
+          "unit": "px",
+          "label": "按钮边框宽度",
+          "default": 2
+        },
+        {
+          "type": "color",
+          "id": "custom_hover_text_color",
+          "label": "鼠标悬停时文本颜色",
+          "default": "#000000"
+        },
+        {
+          "type": "color",
+          "id": "custom_hover_bg_color",
+          "label": "鼠标悬停时背景颜色",
+          "default": "transparent"
+        },
+        {
+          "type": "color",
+          "id": "custom_hover_border_color",
+          "label": "鼠标悬停时边框颜色",
+          "default": "#000000"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "自定义粒子图片",
+      "blocks": [
+        {
+          "type": "item"
+        },
+        {
+          "type": "item"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}
