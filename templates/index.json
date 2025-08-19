@@ -193,24 +193,43 @@
         "padding_bottom": 36
       }
     },
-    "aseanmagic_rich_text_FqhmGr": {
+    "aseanmagic_rich_text_nGFYyH": {
       "type": "Aseanmagic-rich-text",
       "blocks": {
-        "heading_9LQCck": {
+        "heading_e84MDj": {
           "type": "heading",
           "settings": {
             "heading": "Talk about your brand",
             "heading_size": "h1"
           }
+        },
+        "text_bFcrdB": {
+          "type": "text",
+          "settings": {
+            "text": "<p>Share information about your brand with your customers. Describe a product, make announcements, or welcome customers to your store.</p>"
+          }
+        },
+        "button_xgGA7A": {
+          "type": "button",
+          "settings": {
+            "button_label": "Button label",
+            "button_link": "",
+            "button_style_secondary": false,
+            "button_label_2": "",
+            "button_link_2": "",
+            "button_style_secondary_2": false
+          }
         }
       },
       "block_order": [
-        "heading_9LQCck"
+        "heading_e84MDj",
+        "text_bFcrdB",
+        "button_xgGA7A"
       ],
       "name": "custom-rich-text",
       "settings": {
-        "desktop_content_position": "left",
-        "content_alignment": "left",
+        "desktop_content_position": "center",
+        "content_alignment": "center",
         "color_scheme": "",
         "full_width": true,
         "padding_top": 40,
@@ -222,6 +241,6 @@
     "rich_text_3hbyjV",
     "aseanmagic_slideshow_wHHgaM",
     "aseanmagic_image_text_3WAfWq",
-    "aseanmagic_rich_text_FqhmGr"
+    "aseanmagic_rich_text_nGFYyH"
   ]
 }
