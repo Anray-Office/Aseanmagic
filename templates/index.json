@@ -153,7 +153,7 @@
         "button_rER6Pt": {
           "type": "button",
           "settings": {
-            "button_label": "Button label",
+            "button_label": "了解更多",
             "button_link": "",
             "button_style_secondary": false,
             "use_custom_button": true
