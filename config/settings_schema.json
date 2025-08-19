@@ -81,6 +81,18 @@
             "id": "shadow",
             "label": "t:settings_schema.colors.settings.shadow.label",
             "default": "#121212"
+          },
+          {
+            "type": "color",
+            "id": "button_hover",
+            "label": "t:settings_schema.colors.settings.button_hover.label",
+            "default": "#363636"
+          },
+          {
+            "type": "color",
+            "id": "button_label_hover",
+            "label": "t:settings_schema.colors.settings.button_label_hover.label",
+            "default": "#FFFFFF"
           }
         ],
         "role": {
@@ -94,6 +106,8 @@
           "primary_button": "button",
           "on_primary_button": "button_label",
           "primary_button_border": "button",
+          "primary_button_hover": "button_hover",
+          "on_primary_button_hover": "button_label_hover",
           "secondary_button": "background",
           "on_secondary_button": "secondary_button_label",
           "secondary_button_border": "secondary_button_label"

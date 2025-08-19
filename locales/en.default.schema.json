@@ -135,6 +135,12 @@
         },
         "shadow": {
           "label": "Shadow"
+        },
+        "button_hover": {
+          "label": "Button hover background"
+        },
+        "button_label_hover": {
+          "label": "Button hover text"
         }
       }
     },

@@ -24,6 +24,12 @@
         },
         "shadow": {
           "label": "阴影"
+        },
+        "button_hover": {
+          "label": "按钮悬停背景色"
+        },
+        "button_label_hover": {
+          "label": "按钮悬停文字颜色"
         }
       }
     },
