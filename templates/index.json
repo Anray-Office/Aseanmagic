@@ -133,24 +133,24 @@
         "accessibility_info": "Slideshow about our brand"
       }
     },
-    "image_with_text_hTzygP": {
-      "type": "image-with-text",
+    "aseanmagic_image_text_3WAfWq": {
+      "type": "Aseanmagic-image-text",
       "blocks": {
-        "heading_bJbkGh": {
+        "heading_TYJXKc": {
           "type": "heading",
           "settings": {
             "heading": "Image with text",
             "heading_size": "h1"
           }
         },
-        "text_ehXRUU": {
+        "text_3jJt4T": {
           "type": "text",
           "settings": {
             "text": "<p>Pair text with an image to focus on your chosen product, collection, or blog post. Add details on availability, style, or even provide a review.</p>",
             "text_style": "body"
           }
         },
-        "button_e7jEBQ": {
+        "button_87kYez": {
           "type": "button",
           "settings": {
             "button_label": "Button label",
@@ -160,11 +160,11 @@
         }
       },
       "block_order": [
-        "heading_bJbkGh",
-        "text_ehXRUU",
-        "button_e7jEBQ"
+        "heading_TYJXKc",
+        "text_3jJt4T",
+        "button_87kYez"
       ],
-      "name": "t:sections.image-with-text.presets.name",
+      "name": "custom-image-text",
       "settings": {
         "height": "adapt",
         "desktop_image_width": "medium",
@@ -184,6 +184,6 @@
   "order": [
     "rich_text_3hbyjV",
     "aseanmagic_slideshow_wHHgaM",
-    "image_with_text_hTzygP"
+    "aseanmagic_image_text_3WAfWq"
   ]
 }
