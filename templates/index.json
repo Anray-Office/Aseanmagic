@@ -150,26 +150,20 @@
             "text_style": "body"
           }
         },
-        "button_87kYez": {
+        "button_rER6Pt": {
           "type": "button",
           "settings": {
-            "button_label": "了解更多",
-            "button_link": "/",
+            "button_label": "Button label",
+            "button_link": "",
             "button_style_secondary": false,
-            "use_custom_button": true,
-            "custom_button_bg_color": "#c32f26",
-            "custom_button_text_color": "#c32f26",
-            "custom_button_hover_bg_color": "#c32f26",
-            "custom_button_hover_text_color": "#c32f26",
-            "custom_button_border_color": "#c32f26",
-            "custom_button_border_width": 2
+            "use_custom_button": true
           }
         }
       },
       "block_order": [
         "heading_TYJXKc",
         "text_3jJt4T",
-        "button_87kYez"
+        "button_rER6Pt"
       ],
       "name": "custom-image-text",
       "settings": {
