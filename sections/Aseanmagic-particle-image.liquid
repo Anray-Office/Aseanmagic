@@ -28,51 +28,49 @@
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
-    transition: transform 0.5s ease;
     position: relative;
   }
 
-  .particle-item:hover {
-    transform: scale(1.02);
+  .particle-spacer {
+    height: 30px;
   }
 
   .particle-item__content {
-    padding: 20px;
+    padding: 0 20px;
     flex-grow: 1;
     display: flex;
     flex-direction: column;
-    background-color: rgba(248, 248, 248, 0.95);
+    background-color: transparent;
     height: 100%;
+    justify-content: center;
+  }
+
+  .particle-item__logo-container {
+    margin-bottom: 15px;
   }
 
   .particle-item__logo {
-    max-width: 250px;
-    margin-bottom: 20px;
+    max-width: 100%;
+    margin-bottom: 5px;
   }
 
   .particle-item__logo img {
     max-width: 100%;
     height: auto;
+    display: block;
   }
 
   .particle-item__title {
-    margin-top: 10px;
+    margin-top: 5px;
     margin-bottom: 10px;
     position: relative;
-  }
-
-  .particle-item__title::before {
-    content: " ";
-    border-bottom: 4px dotted #000000;
-    position: absolute;
-    top: -20px;
-    left: 5px;
-    width: 250px;
+    font-weight: bold;
   }
 
   .particle-item__text {
     margin-bottom: 20px;
-    flex-grow: 1;
+    min-height: fit-content;
+    height: auto;
   }
 
   .particle-layout--vertical .particle-item {
@@ -157,6 +155,37 @@
   .custom-btn {
     padding: 0;
   }
+  
+  /* elementor 按钮样式 */
+  .elementor-button-wrapper {
+    margin-top: 10px;
+    display: inline-block;
+  }
+  
+  .elementor-button {
+    cursor: pointer;
+    display: inline-block;
+    background-color: #C02026;
+    color: #ffffff;
+    padding: 10px 30px;
+    border-radius: 0;
+    font-size: 16px;
+    font-weight: 500;
+    text-decoration: none;
+    text-transform: none;
+    text-align: center;
+    transition: all 0.3s ease;
+    box-shadow: 2px 2px 5px rgba(0,0,0,0.2);
+    position: relative;
+    line-height: 1.5;
+    border: none;
+  }
+  
+  .elementor-button:hover {
+    background-color: #A01B20;
+    color: #ffffff;
+    text-decoration: none;
+  }
 {%- endstyle -%}
 
 <div class="isolate{% unless section.settings.full_width %} page-width{% endunless %}">
@@ -164,19 +193,23 @@
     <div class="particle-container particle-layout--{{ section.settings.layout_style }}">
       {%- for block in section.blocks -%}
         <div class="particle-item" style="background-image: url({{ block.settings.image | image_url: width: 1500 }});" {{ block.shopify_attributes }}>
+          <div class="particle-spacer"></div>
           <div class="particle-item__content">
-            {%- if block.settings.logo != blank -%}
-              <div class="particle-item__logo">
-                {{ block.settings.logo | image_url: width: 300 | image_tag: loading: 'lazy', alt: block.settings.title }}
+            <div class="particle-item__logo-container">
+              {%- if block.settings.logo != blank -%}
+                <div class="particle-item__logo">
+                  {{ block.settings.logo | image_url: width: 800 | image_tag: loading: 'lazy', alt: block.settings.title }}
+                </div>
+              {%- endif -%}
+              <div class="particle-item__title">
+                {{ block.settings.title }}
               </div>
-            {%- endif -%}
-            <h2 class="particle-item__title h1">
-              {{ block.settings.title }}
-            </h2>
+            </div>
             <div class="particle-item__text rte">
               {{ block.settings.description }}
             </div>
             {%- if block.settings.button_label != blank -%}
+              <div class="elementor-button-wrapper">
               {%- if block.settings.use_custom_button -%}
                 <style>
                   #custom-btn-{{ block.id }} {
@@ -216,14 +249,17 @@
                     role="link" aria-disabled="true"
                   {% else %}
                     href="{{ block.settings.button_link }}"
+                    {%- if block.settings.open_in_new_tab -%}target="_blank"{%- endif -%}
                   {% endif %}
-                  class="button{% if block.settings.button_style_secondary %} button--secondary{% else %} button--primary{% endif %}"
+                  class="elementor-button"
                 >
-                  {{ block.settings.button_label | escape }}
+                  <span class="elementor-button-text">{{ block.settings.button_label | escape }}</span>
                 </a>
               {%- endif -%}
+              </div>
             {%- endif -%}
           </div>
+          <div class="particle-spacer"></div>
         </div>
       {%- endfor -%}
     </div>
@@ -330,12 +366,12 @@
           "id": "button_link",
           "label": "按钮链接"
         },
-        {
-          "type": "checkbox",
-          "id": "button_style_secondary",
-          "default": false,
-          "label": "使用次要按钮样式"
-        },
+                  {
+            "type": "checkbox",
+            "id": "open_in_new_tab",
+            "default": true,
+            "label": "在新标签页中打开链接"
+          },
         {
           "type": "header",
           "content": "自定义按钮设置"
