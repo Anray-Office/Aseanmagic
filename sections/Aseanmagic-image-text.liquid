@@ -43,22 +43,45 @@
     width: 250px;
   }
   
-  #ImageWithText--{{ section.id }} .button.custom-button {
-    transition: background-color 0.3s, color 0.3s;
+  /* 自定义按钮样式 */
+  .custom-btn {
+    display: inline-block;
+    position: relative;
+    background-color: transparent;
+    color: #000000;
+    font-weight: 700;
+    text-transform: uppercase;
+    overflow: hidden;
+    margin: 10px 0;
+    padding: 12px 30px;
+    border-width: 2px;
+    border-style: solid;
+    border-color: #000000;
+    letter-spacing: 2px;
+    transition: all 0.3s ease;
+    z-index: 1;
+    text-decoration: none;
   }
   
-  {% for block in section.blocks %}
-    {% if block.type == 'button' and block.settings.custom_button_style %}
-      #ImageWithText--{{ section.id }} .button[{{ block.shopify_attributes }}]:hover {
-        {% if block.settings.button_hover_bg != blank %}
-          background-color: {{ block.settings.button_hover_bg }};
-        {% endif %}
-        {% if block.settings.button_hover_text != blank %}
-          color: {{ block.settings.button_hover_text }};
-        {% endif %}
-      }
-    {% endif %}
-  {% endfor %}
+  .custom-btn:before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 0;
+    height: 100%;
+    background-color: #000000;
+    z-index: -1;
+    transition: all 0.3s ease;
+  }
+  
+  .custom-btn:hover {
+    color: #ffffff;
+  }
+  
+  .custom-btn:hover:before {
+    width: 100%;
+  }
 {%- endstyle -%}
 
 {%- liquid
@@ -217,19 +240,31 @@
                   </div>
                 {%- when 'button' -%}
                   {%- if block.settings.button_label != blank -%}
-                    <a
-                      {% if block.settings.button_link == blank %}
-                        role="link" aria-disabled="true"
-                      {% else %}
-                        href="{{ block.settings.button_link }}"
-                      {% endif %}
-                      class="button{% if block.settings.button_style_secondary %} button--secondary{% else %} button--primary{% endif %}{% if block.settings.custom_button_style %} custom-button{% endif %}"
-                      style="{% if block.settings.button_border_radius != blank %}border-radius: {{ block.settings.button_border_radius }}px;{% endif %}"
-                      {{ block.shopify_attributes }}
-                      {% if block.settings.button_hover_bg != blank or block.settings.button_hover_text != blank %}data-hover-bg="{{ block.settings.button_hover_bg }}" data-hover-text="{{ block.settings.button_hover_text }}"{% endif %}
-                    >
-                      {{ block.settings.button_label | escape }}
-                    </a>
+                    {%- if block.settings.use_custom_button -%}
+                      <a
+                        {% if block.settings.button_link == blank %}
+                          role="link" aria-disabled="true"
+                        {% else %}
+                          href="{{ block.settings.button_link }}"
+                        {% endif %}
+                        class="custom-btn"
+                        {{ block.shopify_attributes }}
+                      >
+                        {{ block.settings.button_label | escape }}
+                      </a>
+                    {%- else -%}
+                      <a
+                        {% if block.settings.button_link == blank %}
+                          role="link" aria-disabled="true"
+                        {% else %}
+                          href="{{ block.settings.button_link }}"
+                        {% endif %}
+                        class="button{% if block.settings.button_style_secondary %} button--secondary{% else %} button--primary{% endif %}"
+                        {{ block.shopify_attributes }}
+                      >
+                        {{ block.settings.button_label | escape }}
+                      </a>
+                    {%- endif -%}
                   {%- endif -%}
               {%- endcase -%}
             {%- endfor -%}
@@ -502,32 +537,6 @@
       "unit": "px",
       "label": "t:sections.all.padding.padding_bottom",
       "default": 36
-    },
-    {
-      "type": "header",
-      "content": "按钮样式设置"
-    },
-    {
-      "type": "range",
-      "id": "button_border_radius",
-      "min": 0,
-      "max": 40,
-      "step": 1,
-      "unit": "px",
-      "label": "按钮圆角大小",
-      "default": 0
-    },
-    {
-      "type": "color",
-      "id": "button_hover_bg_color",
-      "label": "按钮悬停背景色",
-      "default": "#000000"
-    },
-    {
-      "type": "color",
-      "id": "button_hover_text_color",
-      "label": "按钮悬停文字颜色",
-      "default": "#ffffff"
     }
   ],
   "blocks": [
@@ -674,30 +683,54 @@
           "label": "t:sections.image-with-text.blocks.button.settings.outline_button.label"
         },
         {
+          "type": "header",
+          "content": "自定义按钮设置"
+        },
+        {
           "type": "checkbox",
-          "id": "custom_button_style",
-          "default": true,
-          "label": "启用自定义按钮样式"
+          "id": "use_custom_button",
+          "default": false,
+          "label": "使用自定义按钮"
+        },
+        {
+          "type": "color",
+          "id": "custom_button_bg_color",
+          "label": "按钮背景颜色",
+          "default": "#000000"
+        },
+        {
+          "type": "color",
+          "id": "custom_button_text_color",
+          "label": "按钮文本颜色",
+          "default": "#ffffff"
+        },
+        {
+          "type": "color",
+          "id": "custom_button_hover_bg_color",
+          "label": "按钮悬停背景颜色",
+          "default": "#ffffff"
+        },
+        {
+          "type": "color",
+          "id": "custom_button_hover_text_color",
+          "label": "按钮悬停文本颜色",
+          "default": "#000000"
+        },
+        {
+          "type": "color",
+          "id": "custom_button_border_color",
+          "label": "按钮边框颜色",
+          "default": "#000000"
         },
         {
           "type": "range",
-          "id": "button_border_radius",
+          "id": "custom_button_border_width",
           "min": 0,
-          "max": 40,
+          "max": 10,
           "step": 1,
           "unit": "px",
-          "label": "按钮圆角大小",
-          "default": 0
-        },
-        {
-          "type": "color",
-          "id": "button_hover_bg",
-          "label": "按钮悬停背景色"
-        },
-        {
-          "type": "color",
-          "id": "button_hover_text",
-          "label": "按钮悬停文字颜色"
+          "label": "按钮边框宽度",
+          "default": 2
         }
       ]
     }
