@@ -58,6 +58,9 @@
       text-transform: uppercase;
       width: 100%;
       text-align: center;
+      transition-property: all;
+      transition-duration: .25s;
+      transition-timing-function: ease;
    }
 
    .custom-btn:hover {
@@ -72,6 +75,9 @@
       position: absolute;
       top: 0;
       width: 100%;
+      transition-property: all;
+      transition-duration: .25s;
+      transition-timing-function: ease;
    }
 
    .custom-btn rect {
@@ -94,7 +100,7 @@
       stroke-dashoffset: 48;
       transition: all 1.35s cubic-bezier(0.19, 1, 0.22, 1);
    }
-   
+
    .custom-btn {
       padding: 0;
    }
@@ -274,7 +280,7 @@
                           stroke: {{ block.settings.custom_hover_border_color }};
                         }
                       </style>
-                      
+
                       <a
                         {% if block.settings.button_link == blank %}
                           role="link" aria-disabled="true"
