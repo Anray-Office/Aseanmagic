@@ -42,6 +42,23 @@
     left: 5px;
     width: 250px;
   }
+  
+  #ImageWithText--{{ section.id }} .button.custom-button {
+    transition: background-color 0.3s, color 0.3s;
+  }
+  
+  {% for block in section.blocks %}
+    {% if block.type == 'button' and block.settings.custom_button_style %}
+      #ImageWithText--{{ section.id }} .button[{{ block.shopify_attributes }}]:hover {
+        {% if block.settings.button_hover_bg != blank %}
+          background-color: {{ block.settings.button_hover_bg }};
+        {% endif %}
+        {% if block.settings.button_hover_text != blank %}
+          color: {{ block.settings.button_hover_text }};
+        {% endif %}
+      }
+    {% endif %}
+  {% endfor %}
 {%- endstyle -%}
 
 {%- liquid
@@ -206,8 +223,10 @@
                       {% else %}
                         href="{{ block.settings.button_link }}"
                       {% endif %}
-                      class="button{% if block.settings.button_style_secondary %} button--secondary{% else %} button--primary{% endif %}"
+                      class="button{% if block.settings.button_style_secondary %} button--secondary{% else %} button--primary{% endif %}{% if block.settings.custom_button_style %} custom-button{% endif %}"
+                      style="{% if block.settings.button_border_radius != blank %}border-radius: {{ block.settings.button_border_radius }}px;{% endif %}"
                       {{ block.shopify_attributes }}
+                      {% if block.settings.button_hover_bg != blank or block.settings.button_hover_text != blank %}data-hover-bg="{{ block.settings.button_hover_bg }}" data-hover-text="{{ block.settings.button_hover_text }}"{% endif %}
                     >
                       {{ block.settings.button_label | escape }}
                     </a>
@@ -483,6 +502,32 @@
       "unit": "px",
       "label": "t:sections.all.padding.padding_bottom",
       "default": 36
+    },
+    {
+      "type": "header",
+      "content": "按钮样式设置"
+    },
+    {
+      "type": "range",
+      "id": "button_border_radius",
+      "min": 0,
+      "max": 40,
+      "step": 1,
+      "unit": "px",
+      "label": "按钮圆角大小",
+      "default": 0
+    },
+    {
+      "type": "color",
+      "id": "button_hover_bg_color",
+      "label": "按钮悬停背景色",
+      "default": "#000000"
+    },
+    {
+      "type": "color",
+      "id": "button_hover_text_color",
+      "label": "按钮悬停文字颜色",
+      "default": "#ffffff"
     }
   ],
   "blocks": [
@@ -627,6 +672,32 @@
           "id": "button_style_secondary",
           "default": false,
           "label": "t:sections.image-with-text.blocks.button.settings.outline_button.label"
+        },
+        {
+          "type": "checkbox",
+          "id": "custom_button_style",
+          "default": true,
+          "label": "启用自定义按钮样式"
+        },
+        {
+          "type": "range",
+          "id": "button_border_radius",
+          "min": 0,
+          "max": 40,
+          "step": 1,
+          "unit": "px",
+          "label": "按钮圆角大小",
+          "default": 0
+        },
+        {
+          "type": "color",
+          "id": "button_hover_bg",
+          "label": "按钮悬停背景色"
+        },
+        {
+          "type": "color",
+          "id": "button_hover_text",
+          "label": "按钮悬停文字颜色"
         }
       ]
     }
