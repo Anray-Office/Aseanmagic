@@ -13,6 +13,22 @@
       padding-bottom: {{ section.settings.padding_bottom }}px;
     }
   }
+
+  .image-with-text__media .deferred-media,
+  .image-with-text__media .js-youtube,
+  .image-with-text__media .js-vimeo {
+    width: 100%;
+    height: 100%;
+    border: none;
+    position: absolute;
+    top: 0;
+    left: 0;
+  }
+
+  .image-with-text__media--video {
+    overflow: hidden;
+    position: relative;
+  }
 {%- endstyle -%}
 
 {%- liquid
@@ -23,7 +39,7 @@
   if section.settings.color_scheme == section.settings.section_color_scheme and section.settings.content_layout == 'no-overlap'
     assign remove_color_classes = true
   endif
-  
+
   assign video_id = section.settings.video.id | default: section.settings.video_url.id
   assign video_alt = section.settings.video.alt | default: section.settings.description
   assign alt = 'sections.video.load_video' | t: description: video_alt | escape
@@ -43,19 +59,15 @@
       <div class="image-with-text__grid grid grid--gapless grid--1-col grid--{% if section.settings.desktop_image_width == 'medium' %}2-col-tablet{% else %}3-col-tablet{% endif %}{% if section.settings.layout == 'text_first' %} image-with-text__grid--reverse{% endif %}">
         <div class="image-with-text__media-item image-with-text__media-item--{{ section.settings.desktop_image_width }} image-with-text__media-item--{{ section.settings.desktop_content_position }} grid__item">
           <div
-            class="image-with-text__media image-with-text__media--{{ section.settings.height }} global-media-settings{% unless remove_color_classes %} gradient color-{{ section.settings.color_scheme }}{% else %} background-transparent{% endunless %}{% if section.settings.image != blank or section.settings.video != blank or section.settings.video_url != blank %} media{% else %} image-with-text__media--placeholder placeholder{% endif %}{% if section.settings.image_behavior != 'none' and section.settings.media_type == 'image' %} animate--{{ section.settings.image_behavior }}{% endif %}"
-            {% if section.settings.height == 'adapt' %}
-              {% if section.settings.image != blank and section.settings.media_type == 'image' %}
-                style="padding-bottom: {{ 1 | divided_by: section.settings.image.aspect_ratio | times: 100 }}%;"
-              {% elsif poster != blank and section.settings.media_type != 'image' %}
-                style="padding-bottom: {{ 1 | divided_by: poster.aspect_ratio | times: 100 }}%;"
-              {% endif %}
-            {% endif %}
+            class="image-with-text__media image-with-text__media--{{ section.settings.height }} global-media-settings{% unless remove_color_classes %} gradient color-{{ section.settings.color_scheme }}{% else %} background-transparent{% endunless %}{% if section.settings.image != blank or section.settings.video != blank or section.settings.video_url != blank %} media{% else %} image-with-text__media--placeholder placeholder{% endif %}{% if section.settings.image_behavior != 'none' and section.settings.media_type == 'image' %} animate--{{ section.settings.image_behavior }}{% endif %}{% if section.settings.media_type == 'video' or section.settings.media_type == 'external_video' %} image-with-text__media--video{% endif %}"
+            style="{% if section.settings.height == 'adapt' %}{% if section.settings.image != blank and section.settings.media_type == 'image' %}padding-bottom: {{ 1 | divided_by: section.settings.image.aspect_ratio | times: 100 }}%;{% elsif poster != blank and section.settings.media_type != 'image' %}padding-bottom: {{ 1 | divided_by: poster.aspect_ratio | times: 100 }}%;{% endif %}{% endif %}{% if section.settings.media_type == 'video' or section.settings.media_type == 'external_video' %}border: none; overflow: hidden;{% endif %}"
           >
             {% case section.settings.media_type %}
               {% when 'image' %}
                 {%- if section.settings.image != blank -%}
-                  {%- if section.settings.image_behavior == 'ambient' or section.settings.image_behavior == 'zoom-in' -%}
+                  {%- if section.settings.image_behavior == 'ambient'
+                    or section.settings.image_behavior == 'zoom-in'
+                  -%}
                     {%- assign widths = '198, 432, 642, 900, 1284, 1800' -%}
                     {%- capture sizes -%}
                   (min-width: {{ settings.page_width }}px) {{ settings.page_width | minus: 100 | divided_by: 1.6667 }}px,
@@ -76,12 +88,14 @@
                 {%- else -%}
                   {{ 'detailed-apparel-1' | placeholder_svg_tag: 'placeholder-svg' }}
                 {%- endif -%}
-              {% when 'video' or 'external_video' %}
+              {% when 'video', 'external_video' %}
                 <deferred-media
                   class="deferred-media gradient global-media-settings{% if fix_ratio %} media-fit-cover{% endif %}{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}"
                   data-media-id="{{ video_id }}"
                   {% if poster != null %}
-                    style="--ratio-percent: {{ 1 | divided_by: poster.aspect_ratio | times: 100 }}%;"
+                    style="--ratio-percent: {{ 1 | divided_by: poster.aspect_ratio | times: 100 }}%; width: 100%; height: 100%;"
+                  {% else %}
+                    style="width: 100%; height: 100%;"
                   {% endif %}
                 >
                   <button
@@ -91,11 +105,7 @@
                     aria-label="{{ alt }}"
                   >
                     {%- if poster != null -%}
-                      {{
-                        poster
-                        | image_url: width: 1500
-                        | image_tag: sizes: sizes, widths: widths, alt: alt
-                      }}
+                      {{ poster | image_url: width: 1500 | image_tag: sizes: sizes, widths: widths, alt: alt }}
                     {%- else -%}
                       {{ 'detailed-apparel-1' | placeholder_svg_tag: 'placeholder-svg placeholder' }}
                     {%- endif -%}
@@ -120,6 +130,8 @@
                           allow="autoplay; encrypted-media"
                           allowfullscreen
                           title="{{ section.settings.description | escape }}"
+                          style="width: 100%; height: 100%; border: none;"
+                          frameborder="0"
                         ></iframe>
                       {%- else -%}
                         <iframe
@@ -128,6 +140,8 @@
                           allow="autoplay; encrypted-media"
                           allowfullscreen
                           title="{{ section.settings.description | escape }}"
+                          style="width: 100%; height: 100%; border: none;"
+                          frameborder="0"
                         ></iframe>
                       {%- endif -%}
                     {%- else -%}
@@ -340,7 +354,7 @@
     {
       "type": "header",
       "content": "t:sections.image-with-text.settings.header.content"
-    }, 
+    },
     {
       "type": "select",
       "id": "content_layout",
@@ -356,7 +370,7 @@
       ],
       "default": "no-overlap",
       "label": "t:sections.image-with-text.settings.content_layout.label"
-    },       
+    },
     {
       "type": "select",
       "id": "desktop_content_position",
@@ -420,7 +434,7 @@
     {
       "type": "header",
       "content": "t:sections.image-with-text.settings.header_colors.content"
-    },        
+    },
     {
       "type": "color_scheme",
       "id": "section_color_scheme",
