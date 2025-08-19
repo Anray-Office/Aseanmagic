@@ -150,7 +150,8 @@
           "button": "#c32f26",
           "button_label": "#ffffff",
           "secondary_button_label": "#121212",
-          "shadow": "#121212"
+          "shadow": "#121212",
+          "hover_button_background": "#000"
         }
       },
       "scheme-2": {
@@ -161,7 +162,8 @@
           "button": "#121212",
           "button_label": "#f3f3f3",
           "secondary_button_label": "#121212",
-          "shadow": "#121212"
+          "shadow": "#121212",
+          "hover_button_background": "#000"
         }
       },
       "scheme-3": {
@@ -172,7 +174,8 @@
           "button": "#ffffff",
           "button_label": "#000000",
           "secondary_button_label": "#ffffff",
-          "shadow": "#121212"
+          "shadow": "#121212",
+          "hover_button_background": "#000"
         }
       },
       "scheme-4": {
@@ -183,7 +186,8 @@
           "button": "#ffffff",
           "button_label": "#121212",
           "secondary_button_label": "#ffffff",
-          "shadow": "#121212"
+          "shadow": "#121212",
+          "hover_button_background": "#000"
         }
       },
       "scheme-5": {
@@ -194,7 +198,8 @@
           "button": "#ffffff",
           "button_label": "#334fb4",
           "secondary_button_label": "#ffffff",
-          "shadow": "#121212"
+          "shadow": "#121212",
+          "hover_button_background": "#000"
         }
       },
       "scheme-7e4daf68-d6f9-47b4-bacb-e55777008789": {
@@ -205,7 +210,20 @@
           "button": "#c32f26",
           "button_label": "#ffffff",
           "secondary_button_label": "#121212",
-          "shadow": "#121212"
+          "shadow": "#121212",
+          "hover_button_background": "#000"
+        }
+      },
+      "scheme-1cf94937-524d-47d5-a9e8-6772cbe4c4a4": {
+        "settings": {
+          "background": "#ffffff",
+          "background_gradient": "",
+          "text": "#121212",
+          "button": "#c32f26",
+          "button_label": "#ffffff",
+          "secondary_button_label": "#121212",
+          "shadow": "#121212",
+          "hover_button_background": "#000"
         }
       }
     }
