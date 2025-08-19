@@ -74,50 +74,6 @@
     display: block;
   }
 
-  /* 添加小屏幕下的特殊样式 */
-  @media screen and (max-width: 749.99px) {
-    .slide-backgrounds {
-      right: 0;
-      bottom: 0;
-      margin: auto;
-    }
-
-    /* 在移动端显示移动端图片，隐藏PC端图片 */
-    .mobile-only-image {
-      display: block;
-      height: 100%;
-    }
-
-    .desktop-only-image {
-      display: none;
-    }
-
-    .banner__media .slide-backgrounds img {
-      height: 100%;
-      max-height:none;
-      object-fit: cover;
-      display: block;
-    }
-
-    /* 确保媒体元素在小屏幕上可见 */
-    .slideshow__media {
-      position: relative !important;
-      /* height: 300px !important; */
-    }
-
-    /* 添加特定类的样式 */
-    .slideshow-image {
-      max-height: 100% !important;
-      width: 100% !important;
-      object-fit: contain !important;
-    }
-
-    /* 确保幻灯片容器在小屏幕上可见 */
-    .slideshow {
-      min-height: 666px !important;
-    }
-  }
-
   slideshow-component .slideshow__controls {
     position: absolute;
     width: 100%;
@@ -127,7 +83,7 @@
     right: 0;
     left: 0;
     margin: auto;
-    height:fit-content;
+    height: fit-content;
     height: -webkit-fit-content;
     padding: 0 5rem;
   }
@@ -150,6 +106,54 @@
   .slideshow__controls .slider-button .icon {
     width: 6rem;
     height: 6rem;
+  }
+
+  /* 添加小屏幕下的特殊样式 */
+  @media screen and (max-width: 749.99px) {
+    slideshow-component .slideshow__controls {
+      display: none;
+    }
+    
+    .slide-backgrounds {
+      right: 0;
+      bottom: 0;
+      margin: auto;
+    }
+
+    /* 在移动端显示移动端图片，隐藏PC端图片 */
+    .mobile-only-image {
+      display: block;
+      height: 100%;
+    }
+
+    .desktop-only-image {
+      display: none;
+    }
+
+    .banner__media .slide-backgrounds img {
+      height: 100%;
+      max-height: none;
+      object-fit: cover;
+      display: block;
+    }
+
+    /* 确保媒体元素在小屏幕上可见 */
+    .slideshow__media {
+      position: relative !important;
+      /* height: 300px !important; */
+    }
+
+    /* 添加特定类的样式 */
+    .slideshow-image {
+      max-height: 100% !important;
+      width: 100% !important;
+      object-fit: contain !important;
+    }
+
+    /* 确保幻灯片容器在小屏幕上可见 */
+    .slideshow {
+      min-height: 666px !important;
+    }
   }
 {%- endstyle -%}
 
