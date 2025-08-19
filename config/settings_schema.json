@@ -85,13 +85,13 @@
           {
             "type": "color",
             "id": "button_hover",
-            "label": "t:settings_schema.colors.settings.button_hover.label",
+            "label": "按钮悬停背景色",
             "default": "#363636"
           },
           {
             "type": "color",
             "id": "button_label_hover",
-            "label": "t:settings_schema.colors.settings.button_label_hover.label",
+            "label": "按钮悬停文字颜色",
             "default": "#FFFFFF"
           }
         ],
