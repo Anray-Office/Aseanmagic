@@ -68,7 +68,7 @@
             "type": "color",
             "id": "button_label",
             "label": "t:settings_schema.colors.settings.button_label.label",
-            "default": "#FFFFFF" 
+            "default": "#FFFFFF"
           },
           {
             "type": "color",
@@ -83,16 +83,10 @@
             "default": "#121212"
           },
           {
-            "type": "color",
-            "id": "button_hover",
-            "label": "按钮悬停背景色",
-            "default": "#363636"
-          },
-          {
-            "type": "color",
-            "id": "button_label_hover",
-            "label": "按钮悬停文字颜色",
-            "default": "#FFFFFF"
+           "type":"color",
+           "id":"hover_button_background",
+           "label":"按钮鼠标悬浮色",
+           "default":"#000",
           }
         ],
         "role": {
@@ -106,11 +100,9 @@
           "primary_button": "button",
           "on_primary_button": "button_label",
           "primary_button_border": "button",
-          "primary_button_hover": "button_hover",
-          "on_primary_button_hover": "button_label_hover",
           "secondary_button": "background",
           "on_secondary_button": "secondary_button_label",
-          "secondary_button_border": "secondary_button_label"
+          "secondary_button_border": "secondary_button_label",
         }
       }
     ]
