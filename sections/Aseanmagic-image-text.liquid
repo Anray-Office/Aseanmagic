@@ -94,6 +94,10 @@
       stroke-dashoffset: 48;
       transition: all 1.35s cubic-bezier(0.19, 1, 0.22, 1);
    }
+   
+   .custom-btn {
+      padding: 0;
+   }
 {%- endstyle -%}
 
 {%- liquid
@@ -253,27 +257,21 @@
                 {%- when 'button' -%}
                   {%- if block.settings.button_label != blank -%}
                     {%- if block.settings.use_custom_button -%}
-                      {% assign text_color = block.settings.custom_text_color | default: '#000000' %}
-                      {% assign bg_color = block.settings.custom_bg_color | default: 'transparent' %}
-                      {% assign border_color = block.settings.custom_border_color | default: '#000000' %}
-                      {% assign hover_text_color = block.settings.custom_hover_text_color | default: '#000000' %}
-                      {% assign hover_bg_color = block.settings.custom_hover_bg_color | default: 'transparent' %}
-                      {% assign hover_border_color = block.settings.custom_hover_border_color | default: '#000000' %}
-                      
                       <style>
                         #custom-btn-{{ block.id }} {
-                          color: {{ text_color }};
-                          background-color: {{ bg_color }};
+                          color: {{ block.settings.custom_text_color }};
+                          background-color: {{ block.settings.custom_bg_color }};
                         }
                         #custom-btn-{{ block.id }}:hover {
-                          color: {{ hover_text_color }};
-                          background-color: {{ hover_bg_color }};
+                          color: {{ block.settings.custom_hover_text_color }};
+                          background-color: {{ block.settings.custom_hover_bg_color }};
                         }
                         #custom-btn-{{ block.id }} rect {
-                          stroke: {{ border_color }};
+                          stroke: {{ block.settings.custom_border_color }};
+                          stroke-width: {{ block.settings.custom_border_width }}px;
                         }
                         #custom-btn-{{ block.id }}:hover rect {
-                          stroke: {{ hover_border_color }};
+                          stroke: {{ block.settings.custom_hover_border_color }};
                         }
                       </style>
                       
@@ -751,16 +749,26 @@
           "default": "#000000"
         },
         {
+          "type": "range",
+          "id": "custom_border_width",
+          "min": 1,
+          "max": 10,
+          "step": 1,
+          "unit": "px",
+          "label": "按钮边框宽度",
+          "default": 2
+        },
+        {
           "type": "color",
           "id": "custom_hover_text_color",
           "label": "鼠标悬停时文本颜色",
-          "default": "#000000"
+          "default": "#ffffff"
         },
         {
           "type": "color",
           "id": "custom_hover_bg_color",
           "label": "鼠标悬停时背景颜色",
-          "default": "transparent"
+          "default": "#000000"
         },
         {
           "type": "color",
