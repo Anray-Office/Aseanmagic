@@ -29,6 +29,19 @@
     overflow: hidden;
     position: relative;
   }
+
+  .image-with-text__heading {
+    position: relative;
+  }
+
+  .image-with-text__heading::before {
+    content: " ";
+    border-bottom: 4px dotted #000000;
+    position: absolute;
+    top: -20px;
+    left: 5px;
+    width: 250px;
+  }
 {%- endstyle -%}
 
 {%- liquid
