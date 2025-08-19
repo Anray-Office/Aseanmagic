@@ -12,6 +12,25 @@
       padding-bottom: {{ section.settings.padding_bottom }}px;
     }
   }
+
+  .rich-text__heading{
+    position: relative;
+  }
+
+  .rich-text__heading::before {
+    content: " ";
+    width: 250px;
+    border-bottom: 4px dotted #000000;
+    position: absolute;
+    top: -20px;
+    left: 5px;
+  }
+
+  @media screen and (max-width: 750px) {
+    .rich-text__text::before {
+      /* left:-45px; */
+    }
+  }
 {%- endstyle -%}
 
 <div class="isolate{% unless section.settings.full_width %} page-width{% endunless %}">
@@ -290,9 +309,9 @@
       "limit": 2,
       "settings": [
         {
-         "type": "header",
-         "content": "t:sections.rich-text.blocks.buttons.settings.header_button1.content"
-        },        
+          "type": "header",
+          "content": "t:sections.rich-text.blocks.buttons.settings.header_button1.content"
+        },
         {
           "type": "text",
           "id": "button_label",
@@ -312,9 +331,9 @@
           "label": "t:sections.rich-text.blocks.buttons.settings.button_style_secondary_1.label"
         },
         {
-         "type": "header",
-         "content": "t:sections.rich-text.blocks.buttons.settings.header_button2.content"
-        },          
+          "type": "header",
+          "content": "t:sections.rich-text.blocks.buttons.settings.header_button2.content"
+        },
         {
           "type": "text",
           "id": "button_label_2",

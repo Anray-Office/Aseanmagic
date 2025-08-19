@@ -2,118 +2,124 @@
 {{ 'component-deferred-media.css' | asset_url | stylesheet_tag }}
 
 {%- style -%}
-  .section-{{ section.id }}-padding {
-    padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
-    padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
-  }
-
-  @media screen and (min-width: 750px) {
     .section-{{ section.id }}-padding {
-      padding-top: {{ section.settings.padding_top }}px;
-      padding-bottom: {{ section.settings.padding_bottom }}px;
+      padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
+      padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
     }
-  }
 
-  .image-with-text__media .deferred-media,
-  .image-with-text__media .js-youtube,
-  .image-with-text__media .js-vimeo {
-    width: 100%;
-    height: 100%;
-    border: none;
-    position: absolute;
-    top: 0;
-    left: 0;
-  }
-
-  .image-with-text__media--video {
-    overflow: hidden;
-    position: relative;
-  }
-
-  .image-with-text__heading {
-    position: relative;
-  }
-
-  .image-with-text__heading::before {
-    content: " ";
-    border-bottom: 4px dotted #000000;
-    position: absolute;
-    top: -20px;
-    left: 5px;
-    width: 250px;
-  }
-
-  @media screen and (max-width: 750px) {
-    .image-with-text__heading::before {
-      left:-45px;
+    @media screen and (min-width: 750px) {
+      .section-{{ section.id }}-padding {
+        padding-top: {{ section.settings.padding_top }}px;
+        padding-bottom: {{ section.settings.padding_bottom }}px;
+      }
     }
-  }
 
-     /* 自定义按钮样式 */
-   .custom-btn {
-      cursor: pointer;
-      color: #000000;
-      background-color: transparent;
-      display: inline-block;
-      font-size: 16px;
-      font-weight: 400;
-      line-height: 45px;
-      max-width: 160px;
-      position: relative;
-      text-decoration: none;
-      text-transform: uppercase;
+    .image-with-text__media .deferred-media,
+    .image-with-text__media .js-youtube,
+    .image-with-text__media .js-vimeo {
       width: 100%;
-      text-align: center;
-      transition-property: all;
-      transition-duration: .25s;
-      transition-timing-function: ease;
-   }
-
-   .custom-btn:hover {
-      text-decoration: none;
-      color: #000000;
-      background-color: transparent;
-   }
-
-   .custom-btn svg {
-      height: 45px;
-      left: 0;
+      height: 100%;
+      border: none;
       position: absolute;
       top: 0;
-      width: 100%;
-      transition-property: all;
-      transition-duration: .25s;
-      transition-timing-function: ease;
-   }
+      left: 0;
+    }
 
-   .custom-btn rect {
-      fill: none;
-      stroke: #000000;
-      stroke-width: 2;
-      stroke-dasharray: 422, 0;
-      transition: all 0.35s linear;
-   }
+    .image-with-text__media--video {
+      overflow: hidden;
+      position: relative;
+    }
 
-   .custom-btn:hover {
-      font-weight: 900;
-      letter-spacing: 1px;
-   }
+    .image-with-text__heading {
+      position: relative;
+    }
 
-   .custom-btn:hover rect {
-      stroke: #000000;
-      stroke-width: 5;
-      stroke-dasharray: 15, 310;
-      stroke-dashoffset: 48;
-      transition: all 1.35s cubic-bezier(0.19, 1, 0.22, 1);
-   }
+    .image-with-text__heading::before {
+      content: " ";
+      border-bottom: 4px dotted #000000;
+      position: absolute;
+      top: -20px;
+      left: 5px;
+      width: 250px;
+    }
 
-   .custom-btn {
-      padding: 0;
-   }
+    @media screen and (max-width: 750px) {
+      .image-with-text__heading::before {
+        left:-45px;
+      }
+    }
 
-   .page-width div.image-with-text__content {
-      padding-left:0 !important;
-   }
+       /* 自定义按钮样式 */
+     .custom-btn {
+        cursor: pointer;
+        color: #000000;
+        background-color: transparent;
+        display: inline-block;
+        font-size: 16px;
+        font-weight: 400;
+        line-height: 45px;
+        max-width: 160px;
+        position: relative;
+        text-decoration: none;
+        text-transform: uppercase;
+        width: 100%;
+        text-align: center;
+        transition-property: all;
+        transition-duration: .25s;
+        transition-timing-function: ease;
+     }
+
+     .custom-btn:hover {
+        text-decoration: none;
+        color: #000000;
+        background-color: transparent;
+     }
+
+     .custom-btn svg {
+        height: 45px;
+        left: 0;
+        position: absolute;
+        top: 0;
+        width: 100%;
+        transition-property: all;
+        transition-duration: .25s;
+        transition-timing-function: ease;
+     }
+
+     .custom-btn rect {
+        fill: none;
+        stroke: #000000;
+        stroke-width: 2;
+        stroke-dasharray: 422, 0;
+        transition: all 0.35s linear;
+     }
+
+     .custom-btn:hover {
+        font-weight: 900;
+        letter-spacing: 1px;
+     }
+
+     .custom-btn:hover rect {
+        stroke: #000000;
+        stroke-width: 5;
+        stroke-dasharray: 15, 310;
+        stroke-dashoffset: 48;
+        transition: all 1.35s cubic-bezier(0.19, 1, 0.22, 1);
+     }
+
+     .custom-btn {
+        padding: 0;
+     }
+
+      .image-with-text__content {
+        padding-left:0 !important;
+     }
+
+     .page-widths {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 1.5rem;
+     }
 {%- endstyle -%}
 
 {%- liquid
@@ -139,7 +145,7 @@
 -%}
 
 <div class="section-{{ section.id }}-padding gradient color-{{ section.settings.section_color_scheme }}">
-  <div class="page-width">
+  <div class="page-widths">
     <div class="image-with-text image-with-text--{{ section.settings.content_layout }} isolate{% if settings.text_boxes_border_thickness > 0 and settings.text_boxes_border_opacity > 0 and settings.media_border_thickness > 0 and settings.media_border_opacity > 0 %} collapse-borders{% endif %}{% unless section.settings.color_scheme == section.settings.section_color_scheme and settings.media_border_thickness > 0 and settings.text_boxes_shadow_opacity == 0 and settings.text_boxes_border_thickness == 0 or settings.text_boxes_border_opacity == 0 %} collapse-corners{% endunless %}{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}">
       <div class="image-with-text__grid grid grid--gapless grid--1-col grid--{% if section.settings.desktop_image_width == 'medium' %}2-col-tablet{% else %}3-col-tablet{% endif %}{% if section.settings.layout == 'text_first' %} image-with-text__grid--reverse{% endif %}">
         <div class="image-with-text__media-item image-with-text__media-item--{{ section.settings.desktop_image_width }} image-with-text__media-item--{{ section.settings.desktop_content_position }} grid__item">
