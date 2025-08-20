@@ -67,23 +67,27 @@
 
   .particle-item__text {
     margin-bottom: 25px;
-    min-height: fit-content;
-    height: auto;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
   }
 
   .particle-layout--vertical .particle-item {
     width: 100%;
-    min-height: 400px;
+    height: 400px;
   }
 
   .particle-layout--horizontal .particle-item {
     width: calc(50% - 15px);
-    min-height: 300px;
+    height: 350px;
   }
 
   @media screen and (max-width: 749px) {
     .particle-layout--horizontal .particle-item {
       width: 100%;
+      height: auto;
       min-height: 350px;
     }
 
