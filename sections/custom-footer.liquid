@@ -176,11 +176,20 @@
       <!-- 上部分 - Logo -->
       <div class="footer-logo-wrapper">
         {%- if section.settings.footer_logo != blank -%}
+          {%- capture logo_margin_style -%}
+            {%- if section.settings.logo_alignment == "left" -%}
+              margin: 0 auto 0 0;
+            {%- elsif section.settings.logo_alignment == "right" -%}
+              margin: 0 0 0 auto;
+            {%- else -%}
+              margin: 0 auto;
+            {%- endif -%}
+          {%- endcapture -%}
           {{ section.settings.footer_logo | image_url: width: 300 | image_tag: 
             alt: section.settings.footer_logo.alt | default: shop.name,
             loading: 'lazy',
             class: 'footer-logo',
-            style: 'margin: {% if section.settings.logo_alignment == "left" %}0 auto 0 0{% elsif section.settings.logo_alignment == "right" %}0 0 0 auto{% else %}0 auto{% endif %};'
+            style: logo_margin_style
           }}
         {%- else -%}
           <div class="footer-logo-text" style="text-align: {{ section.settings.logo_alignment }};">{{ shop.name }}</div>
