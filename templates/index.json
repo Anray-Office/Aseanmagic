@@ -448,7 +448,7 @@
         "value_font_weight": 700,
         "suffix_font_size": 18,
         "suffix_font_weight": 400,
-        "suffix_align": "baseline",
+        "suffix_align": "middle",
         "padding_top": 40,
         "padding_bottom": 40
       }
