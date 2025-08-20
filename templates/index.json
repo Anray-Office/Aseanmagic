@@ -389,10 +389,10 @@
         "padding_bottom": 52
       }
     },
-    "aseanmagic_stats_counter_HDFnad": {
+    "aseanmagic_stats_counter_ijNYF4": {
       "type": "Aseanmagic-stats-counter",
       "blocks": {
-        "stat_item_gDcTyU": {
+        "stat_item_8kQXrq": {
           "type": "stat_item",
           "settings": {
             "title": "2025年",
@@ -400,7 +400,7 @@
             "suffix": "届"
           }
         },
-        "stat_item_dnFHVR": {
+        "stat_item_ef7eGJ": {
           "type": "stat_item",
           "settings": {
             "title": "预计参展商",
@@ -408,7 +408,7 @@
             "suffix": "+"
           }
         },
-        "stat_item_3MYbYn": {
+        "stat_item_V6eGRg": {
           "type": "stat_item",
           "settings": {
             "title": "预计入场人士",
@@ -416,7 +416,7 @@
             "suffix": "+"
           }
         },
-        "stat_item_9adfcm": {
+        "stat_item_BdJUGC": {
           "type": "stat_item",
           "settings": {
             "title": "国家及团体展馆",
@@ -426,29 +426,29 @@
         }
       },
       "block_order": [
-        "stat_item_gDcTyU",
-        "stat_item_dnFHVR",
-        "stat_item_3MYbYn",
-        "stat_item_9adfcm"
+        "stat_item_8kQXrq",
+        "stat_item_ef7eGJ",
+        "stat_item_V6eGRg",
+        "stat_item_BdJUGC"
       ],
-      "name": "custom-stats-counter",
+      "name": "统计计数器",
       "settings": {
-        "color_scheme": "",
+        "color_scheme": "scheme-5",
         "full_width": false,
         "horizontal_alignment": "flex-start",
         "desktop_text_alignment": "left",
         "mobile_text_alignment": "left",
         "title_font_size": 25,
-        "title_font_weight": 600,
-        "title_color": "#000000",
+        "title_font_weight": 700,
+        "title_color": "#121212",
         "divider_width": 80,
         "divider_thickness": 1,
         "divider_color": "#c32f26",
-        "value_font_size": 44,
+        "value_font_size": 36,
         "value_font_weight": 700,
-        "suffix_font_size": 20,
-        "suffix_font_weight": 600,
-        "suffix_align": "middle",
+        "suffix_font_size": 18,
+        "suffix_font_weight": 400,
+        "suffix_align": "baseline",
         "padding_top": 40,
         "padding_bottom": 40
       }
@@ -461,6 +461,6 @@
     "aseanmagic_rich_text_nGFYyH",
     "aseanmagic_particle_image_zf8dGd",
     "aseanmagic_particle_image_ihjBRD",
-    "aseanmagic_stats_counter_HDFnad"
+    "aseanmagic_stats_counter_ijNYF4"
   ]
 }
