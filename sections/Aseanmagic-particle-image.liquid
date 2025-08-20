@@ -11,9 +11,17 @@
       padding-top: {{ section.settings.padding_top }}px;
       padding-bottom: {{ section.settings.padding_bottom }}px;
     }
-    
-    .particle-item__title {
-      font-size: var(--title-size-desktop, 28px);
+  }
+  
+  /* 移动端标题字体大小 */
+  .particle-item {
+    --title-font-size: var(--title-mobile-size, 22px);
+  }
+  
+  /* PC端标题字体大小 */
+  @media screen and (min-width: 750px) {
+    .particle-item {
+      --title-font-size: var(--title-desktop-size, 28px);
     }
   }
 
@@ -79,7 +87,14 @@
     overflow: hidden;
     text-overflow: ellipsis;
     width: 100%;
-    font-size: var(--title-size-mobile, 22px);
+  }
+  
+  .particle-item__title h1, .particle-item__title h2, .particle-item__title h3,
+  .particle-item__title h4, .particle-item__title h5, .particle-item__title h6,
+  .particle-item__title p {
+    margin: 0;
+    font-size: var(--title-font-size);
+    font-weight: inherit;
   }
 
   .particle-item__text {
@@ -214,8 +229,8 @@
           id="block-{{ block.id }}"
           class="particle-item{% if block.type == 'text_item' %} particle-text-item{% endif %}"
           style="{% if block.type == 'item' %}background-image: url({% if block.settings.image != blank %}{{ block.settings.image | image_url: width: 1500 }}{% else %}{{ 'lifestyle-2' | placeholder_svg_tag: 'placeholder-svg' | escape }}{% endif %});{% else %}background-color: {{ block.settings.bg_color }};{% endif %}
-                 --title-size-desktop: {{ block.settings.title_size_desktop | default: 28 }}px;
-                 --title-size-mobile: {{ block.settings.title_size_mobile | default: 22 }}px;"
+                 --title-desktop-size: {{ block.settings.title_size_desktop | default: 28 }}px;
+                 --title-mobile-size: {{ block.settings.title_size_mobile | default: 22 }}px;"
           {{ block.shopify_attributes }}
         >
           <div class="particle-item__content">
@@ -233,12 +248,16 @@
                 {%- endif -%}
               </div>
               <div class="particle-item__title">
-                {{ block.settings.title }}
+                <{{ block.settings.title_tag | default: 'h3' }}>
+                  {{ block.settings.title }}
+                </{{ block.settings.title_tag | default: 'h3' }}>
               </div>
             </div>
             {% else %}
             <div class="particle-item__title">
-              {{ block.settings.title }}
+              <{{ block.settings.title_tag | default: 'h3' }}>
+                {{ block.settings.title }}
+              </{{ block.settings.title_tag | default: 'h3' }}>
             </div>
             {% endif %}
             <div class="particle-item__text rte">
@@ -385,6 +404,21 @@
           "label": "标题"
         },
         {
+          "type": "select",
+          "id": "title_tag",
+          "options": [
+            { "value": "h1", "label": "H1" },
+            { "value": "h2", "label": "H2" },
+            { "value": "h3", "label": "H3" },
+            { "value": "h4", "label": "H4" },
+            { "value": "h5", "label": "H5" },
+            { "value": "h6", "label": "H6" },
+            { "value": "p", "label": "p" }
+          ],
+          "default": "h3",
+          "label": "标题标签"
+        },
+        {
           "type": "range",
           "id": "title_size_desktop",
           "min": 16,
@@ -500,6 +534,21 @@
           "id": "title",
           "default": "标题文本",
           "label": "标题"
+        },
+        {
+          "type": "select",
+          "id": "title_tag",
+          "options": [
+            { "value": "h1", "label": "H1" },
+            { "value": "h2", "label": "H2" },
+            { "value": "h3", "label": "H3" },
+            { "value": "h4", "label": "H4" },
+            { "value": "h5", "label": "H5" },
+            { "value": "h6", "label": "H6" },
+            { "value": "p", "label": "p" }
+          ],
+          "default": "h3",
+          "label": "标题标签"
         },
         {
           "type": "range",
