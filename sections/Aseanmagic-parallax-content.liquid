@@ -12,7 +12,7 @@
       padding-bottom: {{ section.settings.padding_bottom }}px;
     }
   }
-  
+
   .parallax-content {
     background-image: url('{{ section.settings.background_image | image_url: width: 3000 }}');
     background-position: center center;
@@ -54,7 +54,7 @@
   .parallax-content__logo-item a:hover img {
     transform: scale(1.05);
   }
-  
+
   /* 自定义按钮样式 */
   .custom-btn {
     cursor: pointer;
@@ -129,8 +129,9 @@
     }
   }
 
-  .rich-text__buttons{
-    width:auto;
+  .rich-text__buttons,
+  .rich-text__heading{
+    width:fit-content;
   }
 {%- endstyle -%}
 
@@ -138,9 +139,11 @@
   <div class="parallax-content content-container color-{{ section.settings.color_scheme }} gradient{% if section.settings.full_width %} content-container--full-width{% endif %} section-{{ section.id }}-padding">
     <div class="rich-text__wrapper rich-text__wrapper--{{ section.settings.desktop_content_position }}{% if section.settings.full_width %} page-width{% endif %}">
       <div class="parallax-content__blocks {{ section.settings.content_alignment }}">
-        
         <!-- 上部 - 标题部分 -->
-        <div class="parallax-content__title" style="text-align: {{ section.settings.heading_alignment | default: section.settings.content_alignment }};">
+        <div
+          class="parallax-content__title"
+          style="text-align: {{ section.settings.heading_alignment | default: section.settings.content_alignment }};"
+        >
           <{{ section.settings.heading_tag }}
             class="rich-text__heading rte inline-richtext {{ section.settings.heading_size }}{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}"
             {% if settings.animations_reveal_on_scroll %}
@@ -152,14 +155,17 @@
         </div>
 
         <!-- 中部 - Logo部分 -->
-        <div class="parallax-content__logos" style="justify-content: {% if section.settings.logos_alignment == 'left' %}flex-start{% elsif section.settings.logos_alignment == 'right' %}flex-end{% else %}center{% endif %};">
+        <div
+          class="parallax-content__logos"
+          style="justify-content: {% if section.settings.logos_alignment == 'left' %}flex-start{% elsif section.settings.logos_alignment == 'right' %}flex-end{% else %}center{% endif %};"
+        >
           {%- for block in section.blocks -%}
             {%- if block.type == 'logo' -%}
               <div class="parallax-content__logo-item" {{ block.shopify_attributes }}>
                 <a href="{{ block.settings.logo_link | default: 'javascript:;' }}">
                   {%- if block.settings.logo_image != blank -%}
-                    <img 
-                      src="{{ block.settings.logo_image | image_url: width: 300 }}" 
+                    <img
+                      src="{{ block.settings.logo_image | image_url: width: 300 }}"
                       alt="{{ block.settings.logo_image.alt | default: block.settings.logo_alt_text | default: shop.name }}"
                       loading="lazy"
                       width="{{ block.settings.logo_image.width }}"
@@ -175,7 +181,10 @@
         </div>
 
         <!-- 下部 - 按钮部分 -->
-        <div class="parallax-content__button" style="text-align: {{ section.settings.buttons_alignment | default: section.settings.content_alignment }};">
+        <div
+          class="parallax-content__button"
+          style="text-align: {{ section.settings.buttons_alignment | default: section.settings.content_alignment }};"
+        >
           <div
             class="rich-text__buttons{% if section.settings.button_label != blank and section.settings.button_label_2 != blank %} rich-text__buttons--multiple{% endif %}{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}"
             {% if settings.animations_reveal_on_scroll %}
@@ -278,7 +287,6 @@
             {%- endif -%}
           </div>
         </div>
-
       </div>
     </div>
   </div>
@@ -611,7 +619,6 @@
       "label": "鼠标悬停时边框颜色",
       "default": "#000000"
     }
-  
   ],
   "blocks": [
     {
