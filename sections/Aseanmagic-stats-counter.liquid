@@ -69,6 +69,11 @@
     font-weight: {{ section.settings.suffix_font_weight }};
     vertical-align: {{ section.settings.suffix_align }};
   }
+
+  .stats-counter__value, .stats-counter__suffix {
+    line-height:1;
+    display: inline-block;
+  }
 {%- endstyle -%}
 
 <div class="isolate{% unless section.settings.full_width %} page-width{% endunless %}">
@@ -273,11 +278,11 @@
           "label": "顶部对齐"
         },
         {
-          "value": "middle",
+          "value": "super",
           "label": "中部对齐"
         },
         {
-          "value": "bottom",
+          "value": "middle",
           "label": "底部对齐"
         }
       ],
