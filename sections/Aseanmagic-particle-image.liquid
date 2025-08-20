@@ -41,7 +41,7 @@
   
   .particle-text-item {
     justify-content: center;
-    height: 300px !important;
+    min-height: 300px !important;
   }
 
   .particle-item__content {
@@ -98,14 +98,13 @@
 
   .particle-layout--horizontal .particle-item {
     width: calc(50% - 15px);
-    height: 350px;
+    min-height: 350px;
   }
 
   @media screen and (max-width: 749px) {
     .particle-layout--horizontal .particle-item {
       width: 100%;
       height: auto;
-      min-height: 350px;
     }
 
     .particle-item__title::before {
