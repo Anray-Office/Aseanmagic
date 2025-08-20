@@ -259,11 +259,49 @@
             "custom_hover_bg_color": "rgba(0,0,0,0)",
             "custom_hover_border_color": "#000000"
           }
+        },
+        "item_izQkrX": {
+          "type": "item",
+          "settings": {
+            "title": "标题文本",
+            "description": "<p>描述文本内容，可以添加多行文本</p>",
+            "button_label": "查看更多",
+            "button_link": "",
+            "open_in_new_tab": true,
+            "use_custom_button": true,
+            "custom_text_color": "#000000",
+            "custom_bg_color": "rgba(0,0,0,0)",
+            "custom_border_color": "#000000",
+            "custom_border_width": 2,
+            "custom_hover_text_color": "#000000",
+            "custom_hover_bg_color": "rgba(0,0,0,0)",
+            "custom_hover_border_color": "#000000"
+          }
+        },
+        "item_WEaUYR": {
+          "type": "item",
+          "settings": {
+            "title": "标题文本",
+            "description": "<p>描述文本内容，可以添加多行文本</p>",
+            "button_label": "查看更多",
+            "button_link": "",
+            "open_in_new_tab": true,
+            "use_custom_button": true,
+            "custom_text_color": "#000000",
+            "custom_bg_color": "rgba(0,0,0,0)",
+            "custom_border_color": "#000000",
+            "custom_border_width": 2,
+            "custom_hover_text_color": "#000000",
+            "custom_hover_bg_color": "rgba(0,0,0,0)",
+            "custom_hover_border_color": "#000000"
+          }
         }
       },
       "block_order": [
         "item_7aq8yF",
-        "item_8ffWxC"
+        "item_8ffWxC",
+        "item_izQkrX",
+        "item_WEaUYR"
       ],
       "name": "custom-particle-image",
       "settings": {
