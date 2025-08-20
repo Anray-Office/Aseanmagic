@@ -32,13 +32,8 @@
     background-color: #F8EAE0; /* 默认背景颜色，与图片中肤色调一致 */
   }
 
-
-  .particle-spacer {
-    height: 30px;
-  }
-
   .particle-item__content {
-    padding:3rem 2rem;
+    padding:3.5rem 2rem;
     flex-grow: 1;
     display: flex;
     flex-direction: column;
@@ -200,7 +195,6 @@
           style="background-image: url({% if block.settings.image != blank %}{{ block.settings.image | image_url: width: 1500 }}{% else %}{{ 'lifestyle-2' | placeholder_svg_tag: 'placeholder-svg' | escape }}{% endif %});"
           {{ block.shopify_attributes }}
         >
-          <div class="particle-spacer"></div>
           <div class="particle-item__content">
             <div class="particle-item__logo-container">
               <div class="particle-item__logo">
@@ -272,7 +266,6 @@
               </div>
             {%- endif -%}
           </div>
-          <div class="particle-spacer"></div>
         </div>
       {%- endfor -%}
     </div>
