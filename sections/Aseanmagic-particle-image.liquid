@@ -11,6 +11,12 @@
       padding-top: {{ section.settings.padding_top }}px;
       padding-bottom: {{ section.settings.padding_bottom }}px;
     }
+    
+    {% for block in section.blocks %}
+    #block-{{ block.id }} .particle-item__title {
+      font-size: {{ block.settings.title_size_desktop }}px;
+    }
+    {% endfor %}
   }
 
   .particle-container {
@@ -207,6 +213,7 @@
     <div class="particle-container particle-layout--{{ section.settings.layout_style }}">
       {%- for block in section.blocks -%}
         <div
+          id="block-{{ block.id }}"
           class="particle-item{% if block.type == 'text_item' %} particle-text-item{% endif %}"
           style="{% if block.type == 'item' %}background-image: url({% if block.settings.image != blank %}{{ block.settings.image | image_url: width: 1500 }}{% else %}{{ 'lifestyle-2' | placeholder_svg_tag: 'placeholder-svg' | escape }}{% endif %});{% else %}background-color: {{ block.settings.bg_color }};{% endif %}"
           {{ block.shopify_attributes }}
@@ -225,12 +232,12 @@
                   {{ 'icon-logo.svg' | asset_url | img_tag: loading: 'lazy', alt: block.settings.title }}
                 {%- endif -%}
               </div>
-              <div class="particle-item__title">
+              <div class="particle-item__title" style="font-size: {{ block.settings.title_size_mobile }}px;">
                 {{ block.settings.title }}
               </div>
             </div>
             {% else %}
-            <div class="particle-item__title">
+            <div class="particle-item__title" style="font-size: {{ block.settings.title_size_mobile }}px;">
               {{ block.settings.title }}
             </div>
             {% endif %}
@@ -378,6 +385,26 @@
           "label": "标题"
         },
         {
+          "type": "range",
+          "id": "title_size_desktop",
+          "min": 16,
+          "max": 60,
+          "step": 1,
+          "unit": "px",
+          "label": "PC端标题字体大小",
+          "default": 28
+        },
+        {
+          "type": "range",
+          "id": "title_size_mobile",
+          "min": 14,
+          "max": 48,
+          "step": 1,
+          "unit": "px",
+          "label": "移动端标题字体大小",
+          "default": 22
+        },
+        {
           "type": "richtext",
           "id": "description",
           "default": "<p>描述文本内容，可以添加多行文本</p>",
@@ -473,6 +500,26 @@
           "id": "title",
           "default": "标题文本",
           "label": "标题"
+        },
+        {
+          "type": "range",
+          "id": "title_size_desktop",
+          "min": 16,
+          "max": 60,
+          "step": 1,
+          "unit": "px",
+          "label": "PC端标题字体大小",
+          "default": 28
+        },
+        {
+          "type": "range",
+          "id": "title_size_mobile",
+          "min": 14,
+          "max": 48,
+          "step": 1,
+          "unit": "px",
+          "label": "移动端标题字体大小",
+          "default": 22
         },
         {
           "type": "richtext",
