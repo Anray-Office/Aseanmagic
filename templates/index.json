@@ -263,6 +263,8 @@
         "item_izQkrX": {
           "type": "item",
           "settings": {
+            "image": "shopify://shop_images/DM_20250819055048_009.jpg",
+            "logo": "shopify://shop_images/DM_20250819055048_006.png",
             "title": "标题文本",
             "description": "<p>描述文本内容，可以添加多行文本</p>",
             "button_label": "查看更多",
@@ -281,6 +283,8 @@
         "item_WEaUYR": {
           "type": "item",
           "settings": {
+            "image": "shopify://shop_images/DM_20250819055048_010.jpg",
+            "logo": "shopify://shop_images/DM_20250819055048_003.png",
             "title": "标题文本",
             "description": "<p>描述文本内容，可以添加多行文本</p>",
             "button_label": "查看更多",
