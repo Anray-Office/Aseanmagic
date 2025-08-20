@@ -62,12 +62,14 @@
   .stats-counter__value {
     font-size: {{ section.settings.value_font_size }}px;
     font-weight: {{ section.settings.value_font_weight }};
+    color: {{ section.settings.value_color }};
   }
 
   .stats-counter__suffix {
     font-size: {{ section.settings.suffix_font_size }}px;
     font-weight: {{ section.settings.suffix_font_weight }};
     vertical-align: {{ section.settings.suffix_align }};
+    color: {{ section.settings.suffix_color }};
   }
 
   .stats-counter__value, .stats-counter__suffix {
@@ -288,6 +290,18 @@
       ],
       "default": "baseline",
       "label": "后缀对齐方式"
+    },
+    {
+      "type": "color",
+      "id": "value_color",
+      "label": "数值颜色",
+      "default": "#000000"
+    },
+    {
+      "type": "color",
+      "id": "suffix_color",
+      "label": "后缀颜色",
+      "default": "#000000"
     },
     {
       "type": "header",
