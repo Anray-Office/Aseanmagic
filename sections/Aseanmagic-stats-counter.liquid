@@ -76,6 +76,19 @@
     line-height:1;
     display: inline-block;
   }
+  
+  .stats-counter__content {
+    position: relative;
+  }
+  
+  .stats-counter__value {
+    min-width: 2ch;
+    text-align: right;
+  }
+  
+  .stats-counter__suffix {
+    position: relative;
+  }
 {%- endstyle -%}
 
 <div class="isolate{% unless section.settings.full_width %} page-width{% endunless %}">
@@ -87,7 +100,7 @@
             <div class="stats-counter__title">{{ block.settings.title }}</div>
             <div class="stats-counter__divider"></div>
             <div class="stats-counter__content">
-              <span class="stats-counter__value">{{ block.settings.value }}</span>
+              <span class="stats-counter__value" data-value="{{ block.settings.value }}">0</span>
               <span class="stats-counter__suffix">{{ block.settings.suffix }}</span>
             </div>
           </div>
@@ -96,6 +109,71 @@
     </div>
   </div>
 </div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const options = {
+      root: null,
+      rootMargin: '0px',
+      threshold: 0.1
+    };
+    
+    // 预处理：获取最终宽度
+    document.querySelectorAll('.stats-counter__value').forEach(counter => {
+      const finalValue = counter.getAttribute('data-value');
+      
+      // 临时设置最终值来获取最终宽度
+      counter.textContent = finalValue;
+      const width = counter.offsetWidth;
+      
+      // 重置回0但保持宽度
+      counter.textContent = '0';
+      counter.style.minWidth = width + 'px';
+      counter.style.textAlign = 'right';
+    });
+    
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const counterItems = entry.target.querySelectorAll('.stats-counter__value');
+          
+          counterItems.forEach(counter => {
+            const target = parseFloat(counter.getAttribute('data-value').replace(/,/g, ''));
+            const duration = {{ section.settings.animation_duration | default: 2000 }};
+            const step = target / (duration / 16);
+            
+            let current = 0;
+            const format = counter.getAttribute('data-value').includes(',') ? true : false;
+            
+            const updateCounter = () => {
+              current += step;
+              
+              if (current < target) {
+                if (format) {
+                  counter.textContent = Math.floor(current).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+                } else {
+                  counter.textContent = Math.floor(current);
+                }
+                requestAnimationFrame(updateCounter);
+              } else {
+                counter.textContent = counter.getAttribute('data-value');
+              }
+            };
+            
+            updateCounter();
+          });
+          
+          observer.unobserve(entry.target);
+        }
+      });
+    }, options);
+    
+    const counterSections = document.querySelectorAll('.stats-counter__container');
+    counterSections.forEach(section => {
+      observer.observe(section);
+    });
+  });
+</script>
 
 {% schema %}
 {
@@ -137,10 +215,14 @@
         {
           "value": "flex-end",
           "label": "居右"
+        },
+        {
+          "value": "space-between",
+          "label": "两端对齐"
         }
       ],
-      "default": "center",
-      "label": "水平对齐方式"
+      "default": "space-between",
+      "label": "两端对齐"
     },
     {
       "type": "header",
@@ -248,6 +330,16 @@
     {
       "type": "header",
       "content": "数值设置"
+    },
+    {
+      "type": "range",
+      "id": "animation_duration",
+      "min": 500,
+      "max": 5000,
+      "step": 100,
+      "unit": "ms",
+      "label": "数字动画时长",
+      "default": 2000
     },
     {
       "type": "range",
