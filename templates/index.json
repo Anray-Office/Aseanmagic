@@ -288,7 +288,7 @@
             "title": "标题文本",
             "description": "<p>描述文本内容，可以添加多行文本</p>",
             "button_label": "查看更多",
-            "button_link": "",
+            "button_link": "/",
             "open_in_new_tab": true,
             "use_custom_button": true,
             "custom_text_color": "#ffffff",
