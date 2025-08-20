@@ -435,6 +435,9 @@
       "settings": {
         "color_scheme": "",
         "full_width": false,
+        "horizontal_alignment": "flex-start",
+        "desktop_text_alignment": "left",
+        "mobile_text_alignment": "left",
         "title_font_size": 36,
         "title_font_weight": 800,
         "title_color": "#000000",
