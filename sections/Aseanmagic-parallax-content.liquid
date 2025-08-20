@@ -1,5 +1,5 @@
-{{ 'section-rich-text.css' | asset_url | stylesheet_tag }}
 {{ 'aseanmagic-common.css' | asset_url | stylesheet_tag }}
+{{ 'section-rich-text.css' | asset_url | stylesheet_tag }}
 
 {%- style -%}
   .section-{{ section.id }}-padding {
@@ -120,70 +120,67 @@
             style="text-align: {{ section.settings.buttons_alignment | default: section.settings.content_alignment }};"
           >
             {%- if section.settings.button_label != blank -%}
-              <div class="elementor-button-wrapper">
-                {%- if section.settings.use_custom_button -%}
-                  <style>
-                    #custom-btn-{{ section.id }} {
-                      color: {{ section.settings.custom_text_color }};
-                      background-color: {{ section.settings.custom_bg_color }};
-                    }
-                    #custom-btn-{{ section.id }}:hover {
-                      color: {{ section.settings.custom_hover_text_color }};
-                      background-color: {{ section.settings.custom_hover_bg_color }};
-                    }
-                    #custom-btn-{{ section.id }} rect {
-                      stroke: {{ section.settings.custom_border_color }};
-                      stroke-width: {{ section.settings.custom_border_width }}px;
-                    }
-                    #custom-btn-{{ section.id }}:hover rect {
-                      stroke: {{ section.settings.custom_hover_border_color }};
-                    }
-                  </style>
+              {%- if section.settings.use_custom_button -%}
+                <style>
+                  #custom-btn-{{ section.id }} {
+                    color: {{ section.settings.custom_text_color }};
+                    background-color: {{ section.settings.custom_bg_color }};
+                  }
+                  #custom-btn-{{ section.id }}:hover {
+                    color: {{ section.settings.custom_hover_text_color }};
+                    background-color: {{ section.settings.custom_hover_bg_color }};
+                  }
+                  #custom-btn-{{ section.id }} rect {
+                    stroke: {{ section.settings.custom_border_color }};
+                    stroke-width: {{ section.settings.custom_border_width }}px;
+                  }
+                  #custom-btn-{{ section.id }}:hover rect {
+                    stroke: {{ section.settings.custom_hover_border_color }};
+                  }
+                </style>
 
-                  <a
-                    {% if section.settings.button_link == blank %}
-                      role="link" aria-disabled="true"
-                    {% else %}
-                      href="{{ section.settings.button_link }}"
-                      {%- if section.settings.open_in_new_tab -%}target="_blank"{%- endif -%}
-                    {% endif %}
-                    id="custom-btn-{{ section.id }}"
-                    class="custom-btn"
-                  >
-                    <svg>
-                      <rect x="0" y="0" fill="none" width="100%" height="100%"/>
-                    </svg>
-                    {{ section.settings.button_label | escape }}
-                  </a>
-                {%- else -%}
-                  <style>
-                    #elementor-btn-{{ section.id }} {
-                      background-color: {{ section.settings.elementor_bg_color }};
-                      color: {{ section.settings.elementor_text_color }};
-                    }
-                    #elementor-btn-{{ section.id }}:hover {
-                      background-color: {{ section.settings.elementor_hover_bg_color }};
-                      color: {{ section.settings.elementor_hover_text_color }};
-                    }
-                  </style>
-                  <a
-                    {% if section.settings.button_link == blank %}
-                      role="link" aria-disabled="true"
-                    {% else %}
-                      href="{{ section.settings.button_link }}"
-                      {%- if section.settings.open_in_new_tab -%}target="_blank"{%- endif -%}
-                    {% endif %}
-                    id="elementor-btn-{{ section.id }}"
-                    class="elementor-button"
-                  >
-                    <span class="elementor-button-text">{{ section.settings.button_label | escape }}</span>
-                  </a>
-                {%- endif -%}
-              </div>
+                <a
+                  {% if section.settings.button_link == blank %}
+                    role="link" aria-disabled="true"
+                  {% else %}
+                    href="{{ section.settings.button_link }}"
+                    {%- if section.settings.open_in_new_tab -%}target="_blank"{%- endif -%}
+                  {% endif %}
+                  id="custom-btn-{{ section.id }}"
+                  class="custom-btn"
+                >
+                  <svg>
+                    <rect x="0" y="0" fill="none" width="100%" height="100%"/>
+                  </svg>
+                  {{ section.settings.button_label | escape }}
+                </a>
+              {%- else -%}
+                <style>
+                  #elementor-btn-{{ section.id }} {
+                    background-color: {{ section.settings.elementor_bg_color }};
+                    color: {{ section.settings.elementor_text_color }};
+                  }
+                  #elementor-btn-{{ section.id }}:hover {
+                    background-color: {{ section.settings.elementor_hover_bg_color }};
+                    color: {{ section.settings.elementor_hover_text_color }};
+                  }
+                </style>
+                <a
+                  {% if section.settings.button_link == blank %}
+                    role="link" aria-disabled="true"
+                  {% else %}
+                    href="{{ section.settings.button_link }}"
+                    {%- if section.settings.open_in_new_tab -%}target="_blank"{%- endif -%}
+                  {% endif %}
+                  id="elementor-btn-{{ section.id }}"
+                  class="elementor-button"
+                >
+                  <span class="elementor-button-text">{{ section.settings.button_label | escape }}</span>
+                </a>
+              {%- endif -%}
             {%- endif -%}
 
             {%- if section.settings.button_label_2 != blank -%}
-              <div class="elementor-button-wrapper">
                 {%- if section.settings.use_custom_button -%}
                   <style>
                     #custom-btn-{{ section.id }}-2 {
@@ -242,7 +239,6 @@
                     <span class="elementor-button-text">{{ section.settings.button_label_2 | escape }}</span>
                   </a>
                 {%- endif -%}
-              </div>
             {%- endif -%}
           </div>
       </div>

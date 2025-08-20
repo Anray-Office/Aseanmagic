@@ -69,12 +69,6 @@
   transition: all 1.35s cubic-bezier(0.19, 1, 0.22, 1);
 }
 
-/* elementor 按钮样式 */
-.elementor-button-wrapper {
-  margin-top: 5px;
-  display: inline-block;
-}
-
 .elementor-button {
   cursor: pointer;
   display: inline-block;
