@@ -16,13 +16,11 @@
 .stats-counter__item {
   display: flex;
   flex-direction: column;
-  align-items: center;
   padding: 20px 10px;
 }
 
 .stats-counter__title {
   margin-bottom: 10px;
-  text-align: center;
 }
 
 .stats-counter__divider {
@@ -31,7 +29,6 @@
 
 .stats-counter__content {
   margin-top: 10px;
-  text-align: center;
 }
 
 @media screen and (max-width: 749px) {
@@ -64,7 +61,7 @@
   }
   
   .stats-counter__item {
-    flex: 1 1 calc(50% - 20px);
-    max-width: calc(50% - 20px);
+    flex: 1 1 calc(25% - 20px);
+    max-width: calc(25% - 20px);
   }
 }
