@@ -34,11 +34,7 @@
   
   .particle-item .placeholder-svg {
     width: 100%;
-    height: 100%;
-    position: absolute;
-    top: 0;
-    left: 0;
-    opacity: 0.3;
+    height: 6rem;
   }
 
   .particle-spacer {
@@ -210,7 +206,7 @@
                 {%- if block.settings.logo != blank -%}
                   {{ block.settings.logo | image_url: width: 800 | image_tag: loading: 'lazy', alt: block.settings.title }}
                 {%- else -%}
-                  {{ 'logo' | placeholder_svg_tag: 'placeholder-svg' }}
+                  {{ 'icon-logo.svg' | asset_url | img_tag: loading: 'lazy', alt: block.settings.title }}
                 {%- endif -%}
               </div>
               <div class="particle-item__title">
