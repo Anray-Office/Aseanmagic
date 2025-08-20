@@ -119,6 +119,7 @@
         "slide_q96Q96",
         "slide_VFq6JL"
       ],
+      "disabled": true,
       "name": "custom-slideshow",
       "settings": {
         "layout": "full_bleed",
@@ -554,7 +555,11 @@
         "custom_border_width": 2,
         "custom_hover_text_color": "#ffffff",
         "custom_hover_bg_color": "rgba(0,0,0,0)",
-        "custom_hover_border_color": "#c32f26"
+        "custom_hover_border_color": "#c32f26",
+        "elementor_bg_color": "#c02026",
+        "elementor_text_color": "#ffffff",
+        "elementor_hover_bg_color": "#a01b20",
+        "elementor_hover_text_color": "#ffffff"
       }
     }
   },

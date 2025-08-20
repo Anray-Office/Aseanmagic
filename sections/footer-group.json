@@ -11,6 +11,110 @@
   "name": "t:sections.footer.name",
   "type": "footer",
   "sections": {
+    "custom_footer_Rtyc4r": {
+      "type": "custom-footer",
+      "blocks": {
+        "link_list_mRKmXU": {
+          "type": "link_list",
+          "settings": {
+            "heading": "参展",
+            "menu": "footer"
+          }
+        },
+        "link_list_eFPCBG": {
+          "type": "link_list",
+          "settings": {
+            "heading": "参观",
+            "menu": "footer"
+          }
+        },
+        "link_list_NweDJM": {
+          "type": "link_list",
+          "settings": {
+            "heading": "特备节目",
+            "menu": "footer"
+          }
+        },
+        "link_list_KMg9n7": {
+          "type": "link_list",
+          "settings": {
+            "heading": "我们",
+            "menu": "footer"
+          }
+        },
+        "social_icon_TjneVd": {
+          "type": "social_icon",
+          "settings": {
+            "enabled": true,
+            "platform": "facebook",
+            "link": ""
+          }
+        },
+        "social_icon_ii77U7": {
+          "type": "social_icon",
+          "settings": {
+            "enabled": true,
+            "platform": "instagram",
+            "link": ""
+          }
+        },
+        "social_icon_CUC3tx": {
+          "type": "social_icon",
+          "settings": {
+            "enabled": true,
+            "platform": "instagram",
+            "link": ""
+          }
+        },
+        "social_icon_czFUDx": {
+          "type": "social_icon",
+          "settings": {
+            "enabled": true,
+            "platform": "custom",
+            "custom_icon": "shopify://shop_images/CA-wechat_follow_150px.png",
+            "link": ""
+          }
+        }
+      },
+      "block_order": [
+        "link_list_mRKmXU",
+        "link_list_eFPCBG",
+        "link_list_NweDJM",
+        "link_list_KMg9n7",
+        "social_icon_TjneVd",
+        "social_icon_ii77U7",
+        "social_icon_CUC3tx",
+        "social_icon_czFUDx"
+      ],
+      "name": "custom-footer",
+      "settings": {
+        "full_width": true,
+        "color_scheme": "",
+        "background_color": "#000000",
+        "footer_logo": "shopify://shop_images/logo_cosmoprof-asia-w.png",
+        "logo_alignment": "center",
+        "heading_font_size": 18,
+        "heading_font_weight": 700,
+        "heading_color": "#ffffff",
+        "link_font_size": 14,
+        "link_font_weight": 400,
+        "link_color": "#cccccc",
+        "link_hover_color": "#ffffff",
+        "social_heading": "关注我们",
+        "show_social_icons": true,
+        "show_newsletter": true,
+        "newsletter_heading": "立即订阅展会通讯",
+        "newsletter_description": "",
+        "newsletter_placeholder": "电邮",
+        "newsletter_button_text": "订阅",
+        "form_border_color": "#cccccc",
+        "button_background": "#C02026",
+        "button_text_color": "#ffffff",
+        "button_background_hover": "#A01B20",
+        "padding_top": 40,
+        "padding_bottom": 40
+      }
+    },
     "footer": {
       "type": "footer",
       "blocks": {
@@ -75,6 +179,7 @@
     }
   },
   "order": [
+    "custom_footer_Rtyc4r",
     "footer"
   ]
 }
