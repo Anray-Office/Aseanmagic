@@ -547,18 +547,14 @@
         "button_style_secondary_2": false,
         "buttons_alignment": "left",
         "open_in_new_tab": false,
-        "use_custom_button": false,
+        "use_custom_button": true,
         "custom_text_color": "#ffffff",
         "custom_bg_color": "#c32f26",
         "custom_border_color": "#c32f26",
         "custom_border_width": 2,
         "custom_hover_text_color": "#ffffff",
         "custom_hover_bg_color": "rgba(0,0,0,0)",
-        "custom_hover_border_color": "#c32f26",
-        "elementor_bg_color": "#c02026",
-        "elementor_text_color": "#ffffff",
-        "elementor_hover_bg_color": "#a01b20",
-        "elementor_hover_text_color": "#ffffff"
+        "custom_hover_border_color": "#c32f26"
       }
     }
   },
