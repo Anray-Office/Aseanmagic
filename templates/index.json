@@ -388,70 +388,6 @@
         "padding_top": 40,
         "padding_bottom": 52
       }
-    },
-    "aseanmagic_stats_counter_ijNYF4": {
-      "type": "Aseanmagic-stats-counter",
-      "blocks": {
-        "stat_item_8kQXrq": {
-          "type": "stat_item",
-          "settings": {
-            "title": "2025年",
-            "value": "28",
-            "suffix": "届"
-          }
-        },
-        "stat_item_ef7eGJ": {
-          "type": "stat_item",
-          "settings": {
-            "title": "预计参展商",
-            "value": "2,800",
-            "suffix": "+"
-          }
-        },
-        "stat_item_V6eGRg": {
-          "type": "stat_item",
-          "settings": {
-            "title": "预计入场人士",
-            "value": "70,000",
-            "suffix": "+"
-          }
-        },
-        "stat_item_BdJUGC": {
-          "type": "stat_item",
-          "settings": {
-            "title": "国家及团体展馆",
-            "value": "18",
-            "suffix": "+"
-          }
-        }
-      },
-      "block_order": [
-        "stat_item_8kQXrq",
-        "stat_item_ef7eGJ",
-        "stat_item_V6eGRg",
-        "stat_item_BdJUGC"
-      ],
-      "name": "统计计数器",
-      "settings": {
-        "color_scheme": "scheme-5",
-        "full_width": false,
-        "horizontal_alignment": "flex-start",
-        "desktop_text_alignment": "left",
-        "mobile_text_alignment": "left",
-        "title_font_size": 25,
-        "title_font_weight": 700,
-        "title_color": "#121212",
-        "divider_width": 80,
-        "divider_thickness": 1,
-        "divider_color": "#c32f26",
-        "value_font_size": 36,
-        "value_font_weight": 700,
-        "suffix_font_size": 18,
-        "suffix_font_weight": 400,
-        "suffix_align": "baseline",
-        "padding_top": 40,
-        "padding_bottom": 40
-      }
     }
   },
   "order": [
@@ -460,7 +396,6 @@
     "aseanmagic_image_text_3WAfWq",
     "aseanmagic_rich_text_nGFYyH",
     "aseanmagic_particle_image_zf8dGd",
-    "aseanmagic_particle_image_ihjBRD",
-    "aseanmagic_stats_counter_ijNYF4"
+    "aseanmagic_particle_image_ihjBRD"
   ]
 }
