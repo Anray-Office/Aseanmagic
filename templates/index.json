@@ -388,6 +388,67 @@
         "padding_top": 40,
         "padding_bottom": 52
       }
+    },
+    "aseanmagic_stats_counter_HDFnad": {
+      "type": "Aseanmagic-stats-counter",
+      "blocks": {
+        "stat_item_gDcTyU": {
+          "type": "stat_item",
+          "settings": {
+            "title": "2025年",
+            "value": "28",
+            "suffix": "届"
+          }
+        },
+        "stat_item_dnFHVR": {
+          "type": "stat_item",
+          "settings": {
+            "title": "预计参展商",
+            "value": "2,800",
+            "suffix": "+"
+          }
+        },
+        "stat_item_3MYbYn": {
+          "type": "stat_item",
+          "settings": {
+            "title": "预计入场人士",
+            "value": "70,000",
+            "suffix": "+"
+          }
+        },
+        "stat_item_9adfcm": {
+          "type": "stat_item",
+          "settings": {
+            "title": "国家及团体展馆",
+            "value": "18",
+            "suffix": "+"
+          }
+        }
+      },
+      "block_order": [
+        "stat_item_gDcTyU",
+        "stat_item_dnFHVR",
+        "stat_item_3MYbYn",
+        "stat_item_9adfcm"
+      ],
+      "name": "custom-stats-counter",
+      "settings": {
+        "color_scheme": "",
+        "full_width": false,
+        "title_font_size": 36,
+        "title_font_weight": 800,
+        "title_color": "#000000",
+        "divider_width": 80,
+        "divider_thickness": 6,
+        "divider_color": "#c32f26",
+        "value_font_size": 36,
+        "value_font_weight": 700,
+        "suffix_font_size": 18,
+        "suffix_font_weight": 400,
+        "suffix_align": "baseline",
+        "padding_top": 40,
+        "padding_bottom": 40
+      }
     }
   },
   "order": [
@@ -396,6 +457,7 @@
     "aseanmagic_image_text_3WAfWq",
     "aseanmagic_rich_text_nGFYyH",
     "aseanmagic_particle_image_zf8dGd",
-    "aseanmagic_particle_image_ihjBRD"
+    "aseanmagic_particle_image_ihjBRD",
+    "aseanmagic_stats_counter_HDFnad"
   ]
 }
