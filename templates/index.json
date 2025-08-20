@@ -439,7 +439,7 @@
         "title_font_weight": 800,
         "title_color": "#000000",
         "divider_width": 80,
-        "divider_thickness": 6,
+        "divider_thickness": 1,
         "divider_color": "#c32f26",
         "value_font_size": 36,
         "value_font_weight": 700,
