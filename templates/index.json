@@ -226,6 +226,8 @@
             "image": "shopify://shop_images/DM_20250819055048_007.jpg",
             "logo": "shopify://shop_images/DM_20250819055048_002.png",
             "title": "标题文本",
+            "title_size_desktop": 28,
+            "title_size_mobile": 22,
             "description": "<p>描述文本内容，可以添加多行文本</p>",
             "button_label": "查看更多",
             "button_link": "",
@@ -246,6 +248,8 @@
             "image": "shopify://shop_images/DM_20250819055048_007.jpg",
             "logo": "shopify://shop_images/DM_20250819055048_002.png",
             "title": "标题文本",
+            "title_size_desktop": 28,
+            "title_size_mobile": 22,
             "description": "<p>描述文本内容，可以添加多行文本</p>",
             "button_label": "查看更多",
             "button_link": "",
@@ -266,6 +270,8 @@
             "image": "shopify://shop_images/DM_20250819055048_007.jpg",
             "logo": "shopify://shop_images/DM_20250819055048_002.png",
             "title": "标题文本",
+            "title_size_desktop": 28,
+            "title_size_mobile": 22,
             "description": "<p>描述文本内容，可以添加多行文本</p>",
             "button_label": "查看更多",
             "button_link": "",
@@ -286,6 +292,8 @@
             "image": "shopify://shop_images/DM_20250819055048_007.jpg",
             "logo": "shopify://shop_images/DM_20250819055048_002.png",
             "title": "标题文本",
+            "title_size_desktop": 28,
+            "title_size_mobile": 22,
             "description": "<p>描述文本内容，可以添加多行文本</p>",
             "button_label": "查看更多",
             "button_link": "/",
@@ -305,6 +313,8 @@
           "settings": {
             "bg_color": "#e0f8ed",
             "title": "标题文本",
+            "title_size_desktop": 28,
+            "title_size_mobile": 22,
             "description": "<p>描述文本内容，可以添加多行文本</p>",
             "button_label": "查看更多",
             "button_link": "",
@@ -324,6 +334,28 @@
           "settings": {
             "bg_color": "#f8eae0",
             "title": "标题文本",
+            "title_size_desktop": 28,
+            "title_size_mobile": 22,
+            "description": "<p>描述文本内容，可以添加多行文本</p>",
+            "button_label": "查看更多",
+            "button_link": "",
+            "open_in_new_tab": true,
+            "use_custom_button": true,
+            "custom_text_color": "#000000",
+            "custom_bg_color": "rgba(0,0,0,0)",
+            "custom_border_color": "#000000",
+            "custom_border_width": 2,
+            "custom_hover_text_color": "#000000",
+            "custom_hover_bg_color": "rgba(0,0,0,0)",
+            "custom_hover_border_color": "#000000"
+          }
+        },
+        "item_mgdxKy": {
+          "type": "item",
+          "settings": {
+            "title": "标题文本",
+            "title_size_desktop": 50,
+            "title_size_mobile": 22,
             "description": "<p>描述文本内容，可以添加多行文本</p>",
             "button_label": "查看更多",
             "button_link": "",
@@ -345,7 +377,8 @@
         "item_kFNXKC",
         "item_ArbgLt",
         "text_item_ywWkWz",
-        "text_item_9AXf9x"
+        "text_item_9AXf9x",
+        "item_mgdxKy"
       ],
       "name": "custom-particle-image",
       "settings": {
