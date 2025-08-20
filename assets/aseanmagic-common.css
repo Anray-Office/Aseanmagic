@@ -1,0 +1,124 @@
+/* Aseanmagic组件公共样式 */
+
+/* 区域内边距设置 */
+.section-padding {
+  padding-top: var(--padding-top-mobile, 30px);
+  padding-bottom: var(--padding-bottom-mobile, 40px);
+}
+
+@media screen and (min-width: 750px) {
+  .section-padding {
+    padding-top: var(--padding-top, 40px);
+    padding-bottom: var(--padding-bottom, 52px);
+  }
+}
+
+/* 自定义按钮样式 */
+.custom-btn {
+  cursor: pointer;
+  color: #000000;
+  background-color: transparent;
+  display: inline-block;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 45px;
+  max-width: 160px;
+  position: relative;
+  text-decoration: none;
+  text-transform: uppercase;
+  width: 100%;
+  text-align: center;
+  transition-property: all;
+  transition-duration: .25s;
+  transition-timing-function: ease;
+  padding: 0;
+}
+
+.custom-btn:hover {
+  text-decoration: none;
+  color: #000000;
+  background-color: transparent;
+  font-weight: 900;
+  letter-spacing: 1px;
+}
+
+.custom-btn svg {
+  height: 45px;
+  left: 0;
+  position: absolute;
+  top: 0;
+  width: 100%;
+  transition-property: all;
+  transition-duration: .25s;
+  transition-timing-function: ease;
+}
+
+.custom-btn rect {
+  fill: none;
+  stroke: #000000;
+  stroke-width: 2;
+  stroke-dasharray: 422, 0;
+  transition: all 0.35s linear;
+}
+
+.custom-btn:hover rect {
+  stroke: #000000;
+  stroke-width: 5;
+  stroke-dasharray: 15, 310;
+  stroke-dashoffset: 48;
+  transition: all 1.35s cubic-bezier(0.19, 1, 0.22, 1);
+}
+
+/* elementor 按钮样式 */
+.elementor-button-wrapper {
+  margin-top: 5px;
+  display: inline-block;
+}
+
+.elementor-button {
+  cursor: pointer;
+  display: inline-block;
+  background-color: #C02026;
+  color: #ffffff;
+  padding: 10px 30px;
+  border-radius: 0;
+  font-size: 16px;
+  font-weight: 500;
+  text-decoration: none;
+  text-transform: none;
+  text-align: center;
+  transition: all 0.3s ease;
+  box-shadow: 2px 2px 5px rgba(0,0,0,0.2);
+  position: relative;
+  line-height: 1.5;
+  border: none;
+}
+
+.elementor-button:hover {
+  background-color: #A01B20;
+  color: #ffffff;
+  text-decoration: none;
+}
+
+/* 通用标题样式 */
+.rich-text__heading,
+.image-with-text__heading {
+  position: relative;
+}
+
+.rich-text__heading::before,
+.image-with-text__heading::before {
+  content: " ";
+  width: 250px;
+  border-bottom: 4px dotted #000000;
+  position: absolute;
+  top: -20px;
+  left: 5px;
+}
+
+@media screen and (max-width: 750px) {
+  .rich-text__heading::before,
+  .image-with-text__heading::before {
+    left: -45px;
+  }
+}

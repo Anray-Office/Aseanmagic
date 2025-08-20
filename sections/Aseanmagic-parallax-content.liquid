@@ -1,16 +1,12 @@
 {{ 'section-rich-text.css' | asset_url | stylesheet_tag }}
+{{ 'aseanmagic-common.css' | asset_url | stylesheet_tag }}
 
 {%- style -%}
   .section-{{ section.id }}-padding {
-    padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
-    padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
-  }
-
-  @media screen and (min-width: 750px) {
-    .section-{{ section.id }}-padding {
-      padding-top: {{ section.settings.padding_top }}px;
-      padding-bottom: {{ section.settings.padding_bottom }}px;
-    }
+    --padding-top-mobile: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
+    --padding-bottom-mobile: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
+    --padding-top: {{ section.settings.padding_top }}px;
+    --padding-bottom: {{ section.settings.padding_bottom }}px;
   }
 
   .parallax-content {
@@ -55,74 +51,6 @@
     transform: scale(1.05);
   }
 
-  /* 自定义按钮样式 */
-  .custom-btn {
-    cursor: pointer;
-    color: #000000;
-    background-color: transparent;
-    display: inline-block;
-    font-size: 16px;
-    font-weight: 400;
-    line-height: 45px;
-    max-width: 160px;
-    position: relative;
-    text-decoration: none;
-    text-transform: uppercase;
-    width: 100%;
-    text-align: center;
-    transition-property: all;
-    transition-duration: .25s;
-    transition-timing-function: ease;
-  }
-
-  .custom-btn:hover {
-    text-decoration: none;
-    color: #000000;
-    background-color: transparent;
-  }
-
-  .custom-btn svg {
-    height: 45px;
-    left: 0;
-    position: absolute;
-    top: 0;
-    width: 100%;
-    transition-property: all;
-    transition-duration: .25s;
-    transition-timing-function: ease;
-  }
-
-  .custom-btn rect {
-    fill: none;
-    stroke: #000000;
-    stroke-width: 2;
-    stroke-dasharray: 422, 0;
-    transition: all 0.35s linear;
-  }
-
-  .custom-btn:hover {
-    font-weight: 900;
-    letter-spacing: 1px;
-  }
-
-  .custom-btn:hover rect {
-    stroke: #000000;
-    stroke-width: 5;
-    stroke-dasharray: 15, 310;
-    stroke-dashoffset: 48;
-    transition: all 1.35s cubic-bezier(0.19, 1, 0.22, 1);
-  }
-
-  .custom-btn {
-    padding: 0;
-  }
-  
-  /* 按钮容器样式 */
-  .button-wrapper {
-    margin-top: 5px;
-    display: inline-block;
-  }
-
   @media screen and (max-width: 749px) {
     .parallax-content__logo-item {
       width: 33.333%;
@@ -139,19 +67,10 @@
   .rich-text__heading{
     width:fit-content;
   }
-  
-  .rich-text__buttons {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    width: 100%;
-    margin: auto;
-    gap: 1rem;
-  }
 {%- endstyle -%}
 
 <div class="isolate{% unless section.settings.full_width %} page-width{% endunless %}">
-  <div class="parallax-content content-container color-{{ section.settings.color_scheme }} gradient{% if section.settings.full_width %} content-container--full-width{% endif %} section-{{ section.id }}-padding">
+  <div class="parallax-content content-container color-{{ section.settings.color_scheme }} gradient{% if section.settings.full_width %} content-container--full-width{% endif %} section-{{ section.id }}-padding section-padding">
     <div class="rich-text__wrapper rich-text__wrapper--{{ section.settings.desktop_content_position }}{% if section.settings.full_width %} page-width{% endif %}">
       <div class="parallax-content__blocks {{ section.settings.content_alignment }}">
         <!-- 上部 - 标题部分 -->
@@ -201,7 +120,7 @@
             style="text-align: {{ section.settings.buttons_alignment | default: section.settings.content_alignment }};"
           >
             {%- if section.settings.button_label != blank -%}
-              <div class="button-wrapper">
+              <div class="elementor-button-wrapper">
                 {%- if section.settings.use_custom_button -%}
                   <style>
                     #custom-btn-{{ section.id }} {
@@ -237,6 +156,16 @@
                     {{ section.settings.button_label | escape }}
                   </a>
                 {%- else -%}
+                  <style>
+                    #elementor-btn-{{ section.id }} {
+                      background-color: {{ section.settings.elementor_bg_color }};
+                      color: {{ section.settings.elementor_text_color }};
+                    }
+                    #elementor-btn-{{ section.id }}:hover {
+                      background-color: {{ section.settings.elementor_hover_bg_color }};
+                      color: {{ section.settings.elementor_hover_text_color }};
+                    }
+                  </style>
                   <a
                     {% if section.settings.button_link == blank %}
                       role="link" aria-disabled="true"
@@ -244,16 +173,17 @@
                       href="{{ section.settings.button_link }}"
                       {%- if section.settings.open_in_new_tab -%}target="_blank"{%- endif -%}
                     {% endif %}
-                    class="button{% if section.settings.button_style_secondary %} button--secondary{% else %} button--primary{% endif %}"
+                    id="elementor-btn-{{ section.id }}"
+                    class="elementor-button"
                   >
-                    {{ section.settings.button_label | escape }}
+                    <span class="elementor-button-text">{{ section.settings.button_label | escape }}</span>
                   </a>
                 {%- endif -%}
               </div>
             {%- endif -%}
 
             {%- if section.settings.button_label_2 != blank -%}
-              <div class="button-wrapper">
+              <div class="elementor-button-wrapper">
                 {%- if section.settings.use_custom_button -%}
                   <style>
                     #custom-btn-{{ section.id }}-2 {
@@ -289,6 +219,16 @@
                     {{ section.settings.button_label_2 | escape }}
                   </a>
                 {%- else -%}
+                  <style>
+                    #elementor-btn-{{ section.id }}-2 {
+                      background-color: {{ section.settings.elementor_bg_color }};
+                      color: {{ section.settings.elementor_text_color }};
+                    }
+                    #elementor-btn-{{ section.id }}-2:hover {
+                      background-color: {{ section.settings.elementor_hover_bg_color }};
+                      color: {{ section.settings.elementor_hover_text_color }};
+                    }
+                  </style>
                   <a
                     {% if section.settings.button_link_2 == blank %}
                       role="link" aria-disabled="true"
@@ -296,9 +236,10 @@
                       href="{{ section.settings.button_link_2 }}"
                       {%- if section.settings.open_in_new_tab -%}target="_blank"{%- endif -%}
                     {% endif %}
-                    class="button{% if section.settings.button_style_secondary_2 %} button--secondary{% else %} button--primary{% endif %}"
+                    id="elementor-btn-{{ section.id }}-2"
+                    class="elementor-button"
                   >
-                    {{ section.settings.button_label_2 | escape }}
+                    <span class="elementor-button-text">{{ section.settings.button_label_2 | escape }}</span>
                   </a>
                 {%- endif -%}
               </div>
@@ -593,7 +534,7 @@
     {
       "type": "checkbox",
       "id": "use_custom_button",
-      "default": false,
+      "default": true,
       "label": "使用动画边框按钮"
     },
     {
@@ -642,7 +583,34 @@
       "label": "鼠标悬停时边框颜色",
       "default": "#000000"
     },
-
+    {
+      "type": "header",
+      "content": "Elementor按钮设置"
+    },
+    {
+      "type": "color",
+      "id": "elementor_bg_color",
+      "label": "按钮背景颜色",
+      "default": "#C02026"
+    },
+    {
+      "type": "color",
+      "id": "elementor_text_color",
+      "label": "按钮文本颜色",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "elementor_hover_bg_color",
+      "label": "鼠标悬停时背景颜色",
+      "default": "#A01B20"
+    },
+    {
+      "type": "color",
+      "id": "elementor_hover_text_color",
+      "label": "鼠标悬停时文本颜色",
+      "default": "#ffffff"
+    }
   ],
   "blocks": [
     {

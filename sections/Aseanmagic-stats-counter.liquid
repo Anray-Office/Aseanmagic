@@ -1,14 +1,11 @@
+{{ 'aseanmagic-common.css' | asset_url | stylesheet_tag }}
+
 {%- style -%}
   .section-{{ section.id }}-padding {
-    padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
-    padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
-  }
-
-  @media screen and (min-width: 750px) {
-    .section-{{ section.id }}-padding {
-      padding-top: {{ section.settings.padding_top }}px;
-      padding-bottom: {{ section.settings.padding_bottom }}px;
-    }
+    --padding-top-mobile: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
+    --padding-bottom-mobile: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
+    --padding-top: {{ section.settings.padding_top }}px;
+    --padding-bottom: {{ section.settings.padding_bottom }}px;
   }
 
   .stats-counter__container {
@@ -92,7 +89,7 @@
 {%- endstyle -%}
 
 <div class="isolate{% unless section.settings.full_width %} page-width{% endunless %}">
-  <div class="stats-counter content-container color-{{ section.settings.color_scheme }} gradient{% if section.settings.full_width %} stats-counter--full-width content-container--full-width{% endif %} section-{{ section.id }}-padding">
+  <div class="stats-counter content-container color-{{ section.settings.color_scheme }} gradient{% if section.settings.full_width %} stats-counter--full-width content-container--full-width{% endif %} section-{{ section.id }}-padding section-padding">
     <div class="stats-counter__wrapper{% if section.settings.full_width %} page-width{% endif %}">
       <div class="stats-counter__container">
         {%- for block in section.blocks -%}
