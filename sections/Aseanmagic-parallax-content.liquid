@@ -12,143 +12,148 @@
       padding-bottom: {{ section.settings.padding_bottom }}px;
     }
   }
-
-  .rich-text__heading {
+  
+  .parallax-content {
+    background-image: url('{{ section.settings.background_image | image_url: width: 3000 }}');
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: cover;
     position: relative;
   }
 
-  .rich-text__heading::before {
-    content: " ";
-    width: 250px;
-    border-bottom: 4px dotted #000000;
-    position: absolute;
-    top: -20px;
-    left: 5px;
+  .parallax-content__title {
+    margin-bottom: 40px;
   }
 
-  .parallax-logo-container {
+  .parallax-content__logos {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    margin: 40px 0;
+    margin-bottom: 40px;
   }
 
-  .parallax-logo-item {
+  .parallax-content__logo-item {
     width: 20%;
     padding: 15px;
     text-align: center;
     box-sizing: border-box;
   }
 
-  .parallax-logo-item img {
+  .parallax-content__logo-item a {
+    display: block;
+    height: 100%;
+  }
+
+  .parallax-content__logo-item img {
     max-width: 100%;
     height: auto;
     transition: transform 0.3s ease;
   }
 
-  .parallax-logo-item img:hover {
+  .parallax-content__logo-item a:hover img {
     transform: scale(1.05);
   }
 
-  @media screen and (max-width: 990px) {
-    .parallax-logo-item {
+  @media screen and (max-width: 749px) {
+    .parallax-content__logo-item {
       width: 33.333%;
     }
   }
 
-  @media screen and (max-width: 750px) {
-    .parallax-logo-item {
+  @media screen and (max-width: 480px) {
+    .parallax-content__logo-item {
       width: 50%;
-    }
-    
-    .rich-text__heading::before {
-      width: 150px;
     }
   }
 {%- endstyle -%}
 
 <div class="isolate{% unless section.settings.full_width %} page-width{% endunless %}">
-  <div class="parallax-content color-{{ section.settings.color_scheme }} gradient{% if section.settings.full_width %} content-container--full-width{% endif %} section-{{ section.id }}-padding">
+  <div class="parallax-content content-container color-{{ section.settings.color_scheme }} gradient{% if section.settings.full_width %} content-container--full-width{% endif %} section-{{ section.id }}-padding">
     <div class="rich-text__wrapper rich-text__wrapper--{{ section.settings.desktop_content_position }}{% if section.settings.full_width %} page-width{% endif %}">
-      <!-- 上部分：标题 -->
-      <div class="rich-text__blocks {{ section.settings.content_alignment }}">
-        {%- if section.settings.heading != blank -%}
-          <h2
-            class="rich-text__heading {{ section.settings.heading_size }}{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}"
-            {{ block.shopify_attributes }}
-            {% if settings.animations_reveal_on_scroll %}
-              data-cascade
-            {% endif %}
-          >
-            {{ section.settings.heading }}
-          </h2>
-        {%- endif -%}
+      <div class="parallax-content__blocks {{ section.settings.content_alignment }}">
         
-        {%- if section.settings.subheading != blank -%}
-          <div
-            class="rich-text__text rte{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}"
-            {% if settings.animations_reveal_on_scroll %}
-              data-cascade
-            {% endif %}
-          >
-            {{ section.settings.subheading }}
-          </div>
-        {%- endif -%}
-      </div>
-
-      <!-- 中部分：Logo -->
-      <div class="parallax-logo-container">
-        {%- for block in section.blocks -%}
-          {%- if block.type == 'logo_item' -%}
-            <div class="parallax-logo-item" {{ block.shopify_attributes }}>
-              <a href="{{ block.settings.logo_link | default: 'javascript:;' }}">
-                {%- if block.settings.logo_image != blank -%}
-                  <img
-                    srcset="{{ block.settings.logo_image | image_url: width: 100 }} 100w,
-                            {{ block.settings.logo_image | image_url: width: 200 }} 200w"
-                    src="{{ block.settings.logo_image | image_url: width: 200 }}"
-                    alt="{{ block.settings.logo_image.alt | escape }}"
-                    loading="lazy"
-                    width="{{ block.settings.logo_image.width }}"
-                    height="{{ block.settings.logo_image.height }}"
-                  >
-                {%- else -%}
-                  {{ 'image' | placeholder_svg_tag: 'placeholder-svg' }}
-                {%- endif -%}
-              </a>
-            </div>
-          {%- endif -%}
-        {%- endfor -%}
-      </div>
-
-      <!-- 下部分：按钮 -->
-      <div class="rich-text__blocks {{ section.settings.content_alignment }}">
-        <div class="rich-text__buttons{% if section.settings.button_label != blank and section.settings.button_label_2 != blank %} rich-text__buttons--multiple{% endif %}{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}">
-          {%- if section.settings.button_label != blank -%}
-            <a
-              {% if section.settings.button_link == blank %}
-                role="link" aria-disabled="true"
-              {% else %}
-                href="{{ section.settings.button_link }}"
-              {% endif %}
-              class="button{% if section.settings.button_style_secondary %} button--secondary{% else %} button--primary{% endif %}"
-            >
-              {{- section.settings.button_label | escape -}}
-            </a>
-          {%- endif -%}
-          {%- if section.settings.button_label_2 != blank -%}
-            <a
-              {% if section.settings.button_link_2 == blank %}
-                role="link" aria-disabled="true"
-              {% else %}
-                href="{{ section.settings.button_link_2 }}"
-              {% endif %}
-              class="button{% if section.settings.button_style_secondary_2 %} button--secondary{% else %} button--primary{% endif %}"
-            >
-              {{- section.settings.button_label_2 | escape -}}
-            </a>
-          {%- endif -%}
+        <!-- 上部 - 标题部分 -->
+        <div class="parallax-content__title">
+          {%- for block in section.blocks -%}
+            {%- if block.type == 'heading' -%}
+              <h2
+                class="rich-text__heading rte inline-richtext {{ block.settings.heading_size }}{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}"
+                {{ block.shopify_attributes }}
+                {% if settings.animations_reveal_on_scroll %}
+                  data-cascade
+                  style="--animation-order: {{ forloop.index }};"
+                {% endif %}
+              >
+                {{ block.settings.heading }}
+              </h2>
+            {%- endif -%}
+          {%- endfor -%}
         </div>
+
+        <!-- 中部 - Logo部分 -->
+        <div class="parallax-content__logos">
+          {%- for block in section.blocks -%}
+            {%- if block.type == 'logo' -%}
+              <div class="parallax-content__logo-item" {{ block.shopify_attributes }}>
+                <a href="{{ block.settings.logo_link | default: 'javascript:;' }}">
+                  {%- if block.settings.logo_image != blank -%}
+                    <img 
+                      src="{{ block.settings.logo_image | image_url: width: 300 }}" 
+                      alt="{{ block.settings.logo_image.alt | default: block.settings.logo_alt_text | default: shop.name }}"
+                      loading="lazy"
+                      width="{{ block.settings.logo_image.width }}"
+                      height="{{ block.settings.logo_image.height }}"
+                    >
+                  {%- else -%}
+                    {{ 'image' | placeholder_svg_tag: 'placeholder-svg' }}
+                  {%- endif -%}
+                </a>
+              </div>
+            {%- endif -%}
+          {%- endfor -%}
+        </div>
+
+        <!-- 下部 - 按钮部分 -->
+        <div class="parallax-content__button">
+          {%- for block in section.blocks -%}
+            {%- if block.type == 'button' -%}
+              <div
+                class="rich-text__buttons{% if block.settings.button_label != blank and block.settings.button_label_2 != blank %} rich-text__buttons--multiple{% endif %}{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}"
+                {{ block.shopify_attributes }}
+                {% if settings.animations_reveal_on_scroll %}
+                  data-cascade
+                  style="--animation-order: {{ forloop.index }};"
+                {% endif %}
+              >
+                {%- if block.settings.button_label != blank -%}
+                  <a
+                    {% if block.settings.button_link == blank %}
+                      role="link" aria-disabled="true"
+                    {% else %}
+                      href="{{ block.settings.button_link }}"
+                    {% endif %}
+                    class="button{% if block.settings.button_style_secondary %} button--secondary{% else %} button--primary{% endif %}"
+                  >
+                    {{- block.settings.button_label | escape -}}
+                  </a>
+                {%- endif -%}
+                {%- if block.settings.button_label_2 != blank -%}
+                  <a
+                    {% if block.settings.button_link_2 == blank %}
+                      role="link" aria-disabled="true"
+                    {% else %}
+                      href="{{ block.settings.button_link_2 }}"
+                    {% endif %}
+                    class="button{% if block.settings.button_style_secondary_2 %} button--secondary{% else %} button--primary{% endif %}"
+                  >
+                    {{- block.settings.button_label_2 | escape -}}
+                  </a>
+                {%- endif -%}
+              </div>
+            {%- endif -%}
+          {%- endfor -%}
+        </div>
+
       </div>
     </div>
   </div>
@@ -164,44 +169,9 @@
   },
   "settings": [
     {
-      "type": "text",
-      "id": "heading",
-      "default": "视差内容标题",
-      "label": "标题"
-    },
-    {
-      "type": "richtext",
-      "id": "subheading",
-      "default": "<p>添加描述文字</p>",
-      "label": "副标题"
-    },
-    {
-      "type": "select",
-      "id": "heading_size",
-      "options": [
-        {
-          "value": "h2",
-          "label": "小号"
-        },
-        {
-          "value": "h1",
-          "label": "中号"
-        },
-        {
-          "value": "h0",
-          "label": "大号"
-        },
-        {
-          "value": "hxl",
-          "label": "特大号"
-        },
-        {
-          "value": "hxxl",
-          "label": "超大号"
-        }
-      ],
-      "default": "h1",
-      "label": "标题大小"
+      "type": "image_picker",
+      "id": "background_image",
+      "label": "背景图片"
     },
     {
       "type": "select",
@@ -209,19 +179,19 @@
       "options": [
         {
           "value": "left",
-          "label": "左对齐"
+          "label": "t:sections.rich-text.settings.desktop_content_position.options__1.label"
         },
         {
           "value": "center",
-          "label": "居中对齐"
+          "label": "t:sections.rich-text.settings.desktop_content_position.options__2.label"
         },
         {
           "value": "right",
-          "label": "右对齐"
+          "label": "t:sections.rich-text.settings.desktop_content_position.options__3.label"
         }
       ],
       "default": "center",
-      "label": "桌面端内容位置"
+      "label": "t:sections.rich-text.settings.desktop_content_position.label"
     },
     {
       "type": "select",
@@ -229,76 +199,35 @@
       "options": [
         {
           "value": "left",
-          "label": "左对齐"
+          "label": "t:sections.rich-text.settings.content_alignment.options__1.label"
         },
         {
           "value": "center",
-          "label": "居中对齐"
+          "label": "t:sections.rich-text.settings.content_alignment.options__2.label"
         },
         {
           "value": "right",
-          "label": "右对齐"
+          "label": "t:sections.rich-text.settings.content_alignment.options__3.label"
         }
       ],
       "default": "center",
-      "label": "内容对齐方式"
+      "label": "t:sections.rich-text.settings.content_alignment.label"
     },
     {
       "type": "color_scheme",
       "id": "color_scheme",
-      "label": "配色方案",
+      "label": "t:sections.all.colors.label",
       "default": "scheme-1"
     },
     {
       "type": "checkbox",
       "id": "full_width",
       "default": true,
-      "label": "全宽显示"
+      "label": "t:sections.rich-text.settings.full_width.label"
     },
     {
       "type": "header",
-      "content": "按钮设置1"
-    },
-    {
-      "type": "text",
-      "id": "button_label",
-      "default": "按钮文字",
-      "label": "按钮文字"
-    },
-    {
-      "type": "url",
-      "id": "button_link",
-      "label": "按钮链接"
-    },
-    {
-      "type": "checkbox",
-      "id": "button_style_secondary",
-      "default": false,
-      "label": "使用次要按钮样式"
-    },
-    {
-      "type": "header",
-      "content": "按钮设置2"
-    },
-    {
-      "type": "text",
-      "id": "button_label_2",
-      "label": "按钮文字"
-    },
-    {
-      "type": "url",
-      "id": "button_link_2",
-      "label": "按钮链接"
-    },
-    {
-      "type": "checkbox",
-      "id": "button_style_secondary_2",
-      "default": false,
-      "label": "使用次要按钮样式"
-    },
-    {
-      "type": "header",
-      "content": "内边距设置"
+      "content": "t:sections.all.padding.section_padding_heading"
     },
     {
       "type": "range",
@@ -307,7 +236,7 @@
       "max": 100,
       "step": 4,
       "unit": "px",
-      "label": "顶部内边距",
+      "label": "t:sections.all.padding.padding_top",
       "default": 40
     },
     {
@@ -317,15 +246,55 @@
       "max": 100,
       "step": 4,
       "unit": "px",
-      "label": "底部内边距",
+      "label": "t:sections.all.padding.padding_bottom",
       "default": 52
     }
   ],
   "blocks": [
     {
-      "type": "logo_item",
-      "name": "Logo项",
-      "limit": 15,
+      "type": "heading",
+      "name": "标题",
+      "limit": 3,
+      "settings": [
+        {
+          "type": "inline_richtext",
+          "id": "heading",
+          "default": "视差内容标题",
+          "label": "t:sections.rich-text.blocks.heading.settings.heading.label"
+        },
+        {
+          "type": "select",
+          "id": "heading_size",
+          "options": [
+            {
+              "value": "h2",
+              "label": "t:sections.all.heading_size.options__1.label"
+            },
+            {
+              "value": "h1",
+              "label": "t:sections.all.heading_size.options__2.label"
+            },
+            {
+              "value": "h0",
+              "label": "t:sections.all.heading_size.options__3.label"
+            },
+            {
+              "value": "hxl",
+              "label": "t:sections.all.heading_size.options__4.label"
+            },
+            {
+              "value": "hxxl",
+              "label": "t:sections.all.heading_size.options__5.label"
+            }
+          ],
+          "default": "h1",
+          "label": "t:sections.all.heading_size.label"
+        }
+      ]
+    },
+    {
+      "type": "logo",
+      "name": "Logo",
       "settings": [
         {
           "type": "image_picker",
@@ -333,9 +302,66 @@
           "label": "Logo图片"
         },
         {
+          "type": "text",
+          "id": "logo_alt_text",
+          "label": "Logo替代文本",
+          "info": "为图片提供描述性替代文本。对于SEO和无障碍访问很重要。"
+        },
+        {
           "type": "url",
           "id": "logo_link",
-          "label": "Logo链接"
+          "label": "Logo链接",
+          "info": "如果留空，默认为'javascript:;'"
+        }
+      ]
+    },
+    {
+      "type": "button",
+      "name": "按钮",
+      "limit": 2,
+      "settings": [
+        {
+          "type": "header",
+          "content": "t:sections.rich-text.blocks.buttons.settings.header_button1.content"
+        },
+        {
+          "type": "text",
+          "id": "button_label",
+          "default": "探索美容网络",
+          "label": "t:sections.rich-text.blocks.buttons.settings.button_label_1.label",
+          "info": "t:sections.rich-text.blocks.buttons.settings.button_label_1.info"
+        },
+        {
+          "type": "url",
+          "id": "button_link",
+          "label": "t:sections.rich-text.blocks.buttons.settings.button_link_1.label"
+        },
+        {
+          "type": "checkbox",
+          "id": "button_style_secondary",
+          "default": false,
+          "label": "t:sections.rich-text.blocks.buttons.settings.button_style_secondary_1.label"
+        },
+        {
+          "type": "header",
+          "content": "t:sections.rich-text.blocks.buttons.settings.header_button2.content"
+        },
+        {
+          "type": "text",
+          "id": "button_label_2",
+          "label": "t:sections.rich-text.blocks.buttons.settings.button_label_2.label",
+          "info": "t:sections.rich-text.blocks.buttons.settings.button_label_2.info"
+        },
+        {
+          "type": "url",
+          "id": "button_link_2",
+          "label": "t:sections.rich-text.blocks.buttons.settings.button_link_2.label"
+        },
+        {
+          "type": "checkbox",
+          "id": "button_style_secondary_2",
+          "default": false,
+          "label": "t:sections.rich-text.blocks.buttons.settings.button_style_secondary_2.label"
         }
       ]
     }
@@ -345,19 +371,25 @@
       "name": "custom-parallax-content",
       "blocks": [
         {
-          "type": "logo_item"
+          "type": "heading"
         },
         {
-          "type": "logo_item"
+          "type": "logo"
         },
         {
-          "type": "logo_item"
+          "type": "logo"
         },
         {
-          "type": "logo_item"
+          "type": "logo"
         },
         {
-          "type": "logo_item"
+          "type": "logo"
+        },
+        {
+          "type": "logo"
+        },
+        {
+          "type": "button"
         }
       ]
     }
