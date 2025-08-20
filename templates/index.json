@@ -328,67 +328,6 @@
         "padding_bottom": 52
       }
     },
-    "aseanmagic_particle_image_ihjBRD": {
-      "type": "Aseanmagic-particle-image",
-      "blocks": {
-        "text_item_hCbMmm": {
-          "type": "text_item",
-          "settings": {
-            "bg_color": "#f8eae0",
-            "title": "标题文本",
-            "title_tag": "h3",
-            "title_size_desktop": 28,
-            "title_size_mobile": 22,
-            "description": "<p>描述文本内容，可以添加多行文本</p>",
-            "button_label": "查看更多",
-            "button_link": "",
-            "open_in_new_tab": true,
-            "use_custom_button": true,
-            "custom_text_color": "#000000",
-            "custom_bg_color": "rgba(0,0,0,0)",
-            "custom_border_color": "#000000",
-            "custom_border_width": 2,
-            "custom_hover_text_color": "#000000",
-            "custom_hover_bg_color": "rgba(0,0,0,0)",
-            "custom_hover_border_color": "#000000"
-          }
-        },
-        "text_item_n6JnyB": {
-          "type": "text_item",
-          "settings": {
-            "bg_color": "#f8eae0",
-            "title": "标题文本",
-            "title_tag": "h3",
-            "title_size_desktop": 28,
-            "title_size_mobile": 22,
-            "description": "<p>描述文本内容，可以添加多行文本</p>",
-            "button_label": "查看更多",
-            "button_link": "",
-            "open_in_new_tab": true,
-            "use_custom_button": true,
-            "custom_text_color": "#000000",
-            "custom_bg_color": "rgba(0,0,0,0)",
-            "custom_border_color": "#000000",
-            "custom_border_width": 2,
-            "custom_hover_text_color": "#000000",
-            "custom_hover_bg_color": "rgba(0,0,0,0)",
-            "custom_hover_border_color": "#000000"
-          }
-        }
-      },
-      "block_order": [
-        "text_item_hCbMmm",
-        "text_item_n6JnyB"
-      ],
-      "name": "custom-particle-image",
-      "settings": {
-        "layout_style": "horizontal",
-        "full_width": false,
-        "color_scheme": "",
-        "padding_top": 40,
-        "padding_bottom": 52
-      }
-    },
     "aseanmagic_stats_counter_kFpkex": {
       "type": "Aseanmagic-stats-counter",
       "blocks": {
@@ -454,6 +393,67 @@
         "padding_top": 40,
         "padding_bottom": 40
       }
+    },
+    "aseanmagic_particle_image_ihjBRD": {
+      "type": "Aseanmagic-particle-image",
+      "blocks": {
+        "text_item_hCbMmm": {
+          "type": "text_item",
+          "settings": {
+            "bg_color": "#f8eae0",
+            "title": "标题文本",
+            "title_tag": "h3",
+            "title_size_desktop": 28,
+            "title_size_mobile": 22,
+            "description": "<p>描述文本内容，可以添加多行文本</p>",
+            "button_label": "查看更多",
+            "button_link": "",
+            "open_in_new_tab": true,
+            "use_custom_button": true,
+            "custom_text_color": "#000000",
+            "custom_bg_color": "rgba(0,0,0,0)",
+            "custom_border_color": "#000000",
+            "custom_border_width": 2,
+            "custom_hover_text_color": "#000000",
+            "custom_hover_bg_color": "rgba(0,0,0,0)",
+            "custom_hover_border_color": "#000000"
+          }
+        },
+        "text_item_n6JnyB": {
+          "type": "text_item",
+          "settings": {
+            "bg_color": "#f8eae0",
+            "title": "标题文本",
+            "title_tag": "h3",
+            "title_size_desktop": 28,
+            "title_size_mobile": 22,
+            "description": "<p>描述文本内容，可以添加多行文本</p>",
+            "button_label": "查看更多",
+            "button_link": "",
+            "open_in_new_tab": true,
+            "use_custom_button": true,
+            "custom_text_color": "#000000",
+            "custom_bg_color": "rgba(0,0,0,0)",
+            "custom_border_color": "#000000",
+            "custom_border_width": 2,
+            "custom_hover_text_color": "#000000",
+            "custom_hover_bg_color": "rgba(0,0,0,0)",
+            "custom_hover_border_color": "#000000"
+          }
+        }
+      },
+      "block_order": [
+        "text_item_hCbMmm",
+        "text_item_n6JnyB"
+      ],
+      "name": "custom-particle-image",
+      "settings": {
+        "layout_style": "horizontal",
+        "full_width": false,
+        "color_scheme": "",
+        "padding_top": 40,
+        "padding_bottom": 52
+      }
     }
   },
   "order": [
@@ -462,7 +462,7 @@
     "aseanmagic_image_text_3WAfWq",
     "aseanmagic_rich_text_nGFYyH",
     "aseanmagic_particle_image_zf8dGd",
-    "aseanmagic_particle_image_ihjBRD",
-    "aseanmagic_stats_counter_kFpkex"
+    "aseanmagic_stats_counter_kFpkex",
+    "aseanmagic_particle_image_ihjBRD"
   ]
 }
