@@ -547,13 +547,13 @@
         "button_style_secondary_2": false,
         "buttons_alignment": "left",
         "use_custom_button": true,
-        "custom_text_color": "#000000",
-        "custom_bg_color": "rgba(0,0,0,0)",
-        "custom_border_color": "#000000",
+        "custom_text_color": "#ffffff",
+        "custom_bg_color": "#c32f26",
+        "custom_border_color": "#c32f26",
         "custom_border_width": 2,
-        "custom_hover_text_color": "#000000",
+        "custom_hover_text_color": "#ffffff",
         "custom_hover_bg_color": "rgba(0,0,0,0)",
-        "custom_hover_border_color": "#000000"
+        "custom_hover_border_color": "#c32f26"
       }
     }
   },
