@@ -374,7 +374,8 @@
       "settings": {
         "color_scheme": "",
         "full_width": false,
-        "horizontal_alignment": "flex-start",
+        "horizontal_alignment": "space-between",
+        "items_per_row": 4,
         "desktop_text_alignment": "left",
         "mobile_text_alignment": "left",
         "title_font_size": 25,
@@ -383,6 +384,7 @@
         "divider_width": 80,
         "divider_thickness": 1,
         "divider_color": "#c32f26",
+        "animation_duration": 2000,
         "value_font_size": 46,
         "value_font_weight": 700,
         "value_color": "#c32f26",
