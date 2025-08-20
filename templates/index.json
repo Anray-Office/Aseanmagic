@@ -456,6 +456,83 @@
         "padding_top": 40,
         "padding_bottom": 52
       }
+    },
+    "aseanmagic_parallax_content_mD8xid": {
+      "type": "Aseanmagic-parallax-content",
+      "blocks": {
+        "heading_aKTkjg": {
+          "type": "heading",
+          "settings": {
+            "heading": "视差内容标题",
+            "heading_size": "h1"
+          }
+        },
+        "logo_H8X3Um": {
+          "type": "logo",
+          "settings": {
+            "logo_alt_text": "",
+            "logo_link": ""
+          }
+        },
+        "logo_ppXqxz": {
+          "type": "logo",
+          "settings": {
+            "logo_alt_text": "",
+            "logo_link": ""
+          }
+        },
+        "logo_xAHqCa": {
+          "type": "logo",
+          "settings": {
+            "logo_alt_text": "",
+            "logo_link": ""
+          }
+        },
+        "logo_DCCQMF": {
+          "type": "logo",
+          "settings": {
+            "logo_alt_text": "",
+            "logo_link": ""
+          }
+        },
+        "logo_FJgf3K": {
+          "type": "logo",
+          "settings": {
+            "logo_alt_text": "",
+            "logo_link": ""
+          }
+        },
+        "button_6LT3VD": {
+          "type": "button",
+          "settings": {
+            "button_label": "探索美容网络",
+            "button_link": "",
+            "button_style_secondary": false,
+            "button_label_2": "",
+            "button_link_2": "",
+            "button_style_secondary_2": false
+          }
+        }
+      },
+      "block_order": [
+        "heading_aKTkjg",
+        "logo_H8X3Um",
+        "logo_ppXqxz",
+        "logo_xAHqCa",
+        "logo_DCCQMF",
+        "logo_FJgf3K",
+        "button_6LT3VD"
+      ],
+      "name": "custom-parallax-content",
+      "settings": {
+        "background_image": "shopify://shop_images/download.jpg",
+        "desktop_content_position": "left",
+        "content_alignment": "left",
+        "color_scheme": "",
+        "full_width": true,
+        "padding_top": 40,
+        "padding_bottom": 52
+      }
     }
   },
   "order": [
@@ -465,6 +542,7 @@
     "aseanmagic_rich_text_nGFYyH",
     "aseanmagic_particle_image_zf8dGd",
     "aseanmagic_stats_counter_kFpkex",
-    "aseanmagic_particle_image_ihjBRD"
+    "aseanmagic_particle_image_ihjBRD",
+    "aseanmagic_parallax_content_mD8xid"
   ]
 }
