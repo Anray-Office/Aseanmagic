@@ -55,13 +55,72 @@
     transform: scale(1.05);
   }
 
-  .rich-text__buttons {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
+  /* 自定义按钮样式 */
+  .custom-btn {
+    cursor: pointer;
+    color: #000000;
+    background-color: transparent;
+    display: inline-block;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 45px;
+    max-width: 160px;
+    position: relative;
+    text-decoration: none;
+    text-transform: uppercase;
     width: 100%;
-    margin: auto;
-    gap: 1rem;
+    text-align: center;
+    transition-property: all;
+    transition-duration: .25s;
+    transition-timing-function: ease;
+  }
+
+  .custom-btn:hover {
+    text-decoration: none;
+    color: #000000;
+    background-color: transparent;
+  }
+
+  .custom-btn svg {
+    height: 45px;
+    left: 0;
+    position: absolute;
+    top: 0;
+    width: 100%;
+    transition-property: all;
+    transition-duration: .25s;
+    transition-timing-function: ease;
+  }
+
+  .custom-btn rect {
+    fill: none;
+    stroke: #000000;
+    stroke-width: 2;
+    stroke-dasharray: 422, 0;
+    transition: all 0.35s linear;
+  }
+
+  .custom-btn:hover {
+    font-weight: 900;
+    letter-spacing: 1px;
+  }
+
+  .custom-btn:hover rect {
+    stroke: #000000;
+    stroke-width: 5;
+    stroke-dasharray: 15, 310;
+    stroke-dashoffset: 48;
+    transition: all 1.35s cubic-bezier(0.19, 1, 0.22, 1);
+  }
+
+  .custom-btn {
+    padding: 0;
+  }
+  
+  /* 按钮容器样式 */
+  .button-wrapper {
+    margin-top: 5px;
+    display: inline-block;
   }
 
   @media screen and (max-width: 749px) {
@@ -79,6 +138,15 @@
   .rich-text__buttons,
   .rich-text__heading{
     width:fit-content;
+  }
+  
+  .rich-text__buttons {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    width: 100%;
+    margin: auto;
+    gap: 1rem;
   }
 {%- endstyle -%}
 
@@ -132,43 +200,114 @@
             class="parallax-content__button"
             style="text-align: {{ section.settings.buttons_alignment | default: section.settings.content_alignment }};"
           >
-            <div
-              class="rich-text__buttons{% if section.settings.button_label != blank and section.settings.button_label_2 != blank %} rich-text__buttons--multiple{% endif %}{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}"
-              {% if settings.animations_reveal_on_scroll %}
-                data-cascade
-              {% endif %}
-            >
-              {%- if section.settings.button_label != blank -%}
-                <a
-                  {% if section.settings.button_link == blank %}
-                    role="link" aria-disabled="true"
-                  {% else %}
-                    href="{{ section.settings.button_link }}"
-                  {% endif %}
-                  class="button{% if section.settings.custom_button_style_secondary %} button--secondary{% else %} button--primary{% endif %}"
-                >
-                  {{- section.settings.button_label | escape -}}
-                </a>
-              {%- endif -%}
-              {%- if section.settings.button_label_2 != blank -%}
-                <a
-                  {% if section.settings.button_link_2 == blank %}
-                    role="link" aria-disabled="true"
-                  {% else %}
-                    href="{{ section.settings.button_link_2 }}"
-                  {% endif %}
-                  class="button{% if section.settings.custom_button_style_secondary_2 %} button--secondary{% else %} button--primary{% endif %}"
-                >
-                  {{- section.settings.button_label_2 | escape -}}
-                </a>
-              {%- endif -%}
-            </div>
+            {%- if section.settings.button_label != blank -%}
+              <div class="button-wrapper">
+                {%- if section.settings.use_custom_button -%}
+                  <style>
+                    #custom-btn-{{ section.id }} {
+                      color: {{ section.settings.custom_text_color }};
+                      background-color: {{ section.settings.custom_bg_color }};
+                    }
+                    #custom-btn-{{ section.id }}:hover {
+                      color: {{ section.settings.custom_hover_text_color }};
+                      background-color: {{ section.settings.custom_hover_bg_color }};
+                    }
+                    #custom-btn-{{ section.id }} rect {
+                      stroke: {{ section.settings.custom_border_color }};
+                      stroke-width: {{ section.settings.custom_border_width }}px;
+                    }
+                    #custom-btn-{{ section.id }}:hover rect {
+                      stroke: {{ section.settings.custom_hover_border_color }};
+                    }
+                  </style>
+
+                  <a
+                    {% if section.settings.button_link == blank %}
+                      role="link" aria-disabled="true"
+                    {% else %}
+                      href="{{ section.settings.button_link }}"
+                      {%- if section.settings.open_in_new_tab -%}target="_blank"{%- endif -%}
+                    {% endif %}
+                    id="custom-btn-{{ section.id }}"
+                    class="custom-btn"
+                  >
+                    <svg>
+                      <rect x="0" y="0" fill="none" width="100%" height="100%"/>
+                    </svg>
+                    {{ section.settings.button_label | escape }}
+                  </a>
+                {%- else -%}
+                  <a
+                    {% if section.settings.button_link == blank %}
+                      role="link" aria-disabled="true"
+                    {% else %}
+                      href="{{ section.settings.button_link }}"
+                      {%- if section.settings.open_in_new_tab -%}target="_blank"{%- endif -%}
+                    {% endif %}
+                    class="button{% if section.settings.button_style_secondary %} button--secondary{% else %} button--primary{% endif %}"
+                  >
+                    {{ section.settings.button_label | escape }}
+                  </a>
+                {%- endif -%}
+              </div>
+            {%- endif -%}
+
+            {%- if section.settings.button_label_2 != blank -%}
+              <div class="button-wrapper">
+                {%- if section.settings.use_custom_button -%}
+                  <style>
+                    #custom-btn-{{ section.id }}-2 {
+                      color: {{ section.settings.custom_text_color }};
+                      background-color: {{ section.settings.custom_bg_color }};
+                    }
+                    #custom-btn-{{ section.id }}-2:hover {
+                      color: {{ section.settings.custom_hover_text_color }};
+                      background-color: {{ section.settings.custom_hover_bg_color }};
+                    }
+                    #custom-btn-{{ section.id }}-2 rect {
+                      stroke: {{ section.settings.custom_border_color }};
+                      stroke-width: {{ section.settings.custom_border_width }}px;
+                    }
+                    #custom-btn-{{ section.id }}-2:hover rect {
+                      stroke: {{ section.settings.custom_hover_border_color }};
+                    }
+                  </style>
+
+                  <a
+                    {% if section.settings.button_link_2 == blank %}
+                      role="link" aria-disabled="true"
+                    {% else %}
+                      href="{{ section.settings.button_link_2 }}"
+                      {%- if section.settings.open_in_new_tab -%}target="_blank"{%- endif -%}
+                    {% endif %}
+                    id="custom-btn-{{ section.id }}-2"
+                    class="custom-btn"
+                  >
+                    <svg>
+                      <rect x="0" y="0" fill="none" width="100%" height="100%"/>
+                    </svg>
+                    {{ section.settings.button_label_2 | escape }}
+                  </a>
+                {%- else -%}
+                  <a
+                    {% if section.settings.button_link_2 == blank %}
+                      role="link" aria-disabled="true"
+                    {% else %}
+                      href="{{ section.settings.button_link_2 }}"
+                      {%- if section.settings.open_in_new_tab -%}target="_blank"{%- endif -%}
+                    {% endif %}
+                    class="button{% if section.settings.button_style_secondary_2 %} button--secondary{% else %} button--primary{% endif %}"
+                  >
+                    {{ section.settings.button_label_2 | escape }}
+                  </a>
+                {%- endif -%}
+              </div>
+            {%- endif -%}
           </div>
       </div>
     </div>
   </div>
 </div>
-
 
 {% schema %}
 {
@@ -399,6 +538,12 @@
       "label": "t:sections.rich-text.blocks.buttons.settings.button_link_1.label"
     },
     {
+      "type": "checkbox",
+      "id": "button_style_secondary",
+      "default": false,
+      "label": "t:sections.rich-text.blocks.buttons.settings.button_style_secondary_1.label"
+    },
+    {
       "type": "text",
       "id": "button_label_2",
       "label": "t:sections.rich-text.blocks.buttons.settings.button_label_2.label",
@@ -408,6 +553,12 @@
       "type": "url",
       "id": "button_link_2",
       "label": "t:sections.rich-text.blocks.buttons.settings.button_link_2.label"
+    },
+    {
+      "type": "checkbox",
+      "id": "button_style_secondary_2",
+      "default": false,
+      "label": "t:sections.rich-text.blocks.buttons.settings.button_style_secondary_2.label"
     },
     {
       "type": "select",
@@ -431,16 +582,67 @@
     },
     {
       "type": "checkbox",
-      "id": "custom_button_style_secondary",
+      "id": "open_in_new_tab",
       "default": false,
-      "label": "使用次要按钮样式"
+      "label": "在新标签页中打开链接"
+    },
+    {
+      "type": "header",
+      "content": "自定义按钮设置"
     },
     {
       "type": "checkbox",
-      "id": "custom_button_style_secondary_2",
+      "id": "use_custom_button",
       "default": false,
-      "label": "第二个按钮使用次要样式"
-    }
+      "label": "使用动画边框按钮"
+    },
+    {
+      "type": "color",
+      "id": "custom_text_color",
+      "label": "按钮文本颜色",
+      "default": "#000000"
+    },
+    {
+      "type": "color",
+      "id": "custom_bg_color",
+      "label": "按钮背景颜色",
+      "default": "transparent"
+    },
+    {
+      "type": "color",
+      "id": "custom_border_color",
+      "label": "按钮边框颜色",
+      "default": "#000000"
+    },
+    {
+      "type": "range",
+      "id": "custom_border_width",
+      "min": 1,
+      "max": 10,
+      "step": 1,
+      "unit": "px",
+      "label": "按钮边框宽度",
+      "default": 2
+    },
+    {
+      "type": "color",
+      "id": "custom_hover_text_color",
+      "label": "鼠标悬停时文本颜色",
+      "default": "#000000"
+    },
+    {
+      "type": "color",
+      "id": "custom_hover_bg_color",
+      "label": "鼠标悬停时背景颜色",
+      "default": "transparent"
+    },
+    {
+      "type": "color",
+      "id": "custom_hover_border_color",
+      "label": "鼠标悬停时边框颜色",
+      "default": "#000000"
+    },
+
   ],
   "blocks": [
     {
