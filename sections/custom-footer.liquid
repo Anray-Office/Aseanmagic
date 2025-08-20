@@ -1,0 +1,634 @@
+{{ 'section-footer.css' | asset_url | stylesheet_tag }}
+
+{%- style -%}
+  .footer {
+    padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
+    padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
+    {% if section.settings.background_image != blank %}
+      background-image: url('{{ section.settings.background_image | image_url: width: 3000 }}');
+      background-size: cover;
+      background-position: center center;
+      background-repeat: no-repeat;
+    {% elsif section.settings.background_color != blank %}
+      background-color: {{ section.settings.background_color }};
+    {% endif %}
+  }
+
+  @media screen and (min-width: 750px) {
+    .footer {
+      padding-top: {{ section.settings.padding_top }}px;
+      padding-bottom: {{ section.settings.padding_bottom }}px;
+    }
+  }
+
+  .footer-logo {
+    display: block;
+    max-width: 300px;
+    max-height: 100px;
+    width: auto;
+    margin: 0 auto;
+  }
+
+  .footer-logo-wrapper {
+    text-align: {{ section.settings.logo_alignment }};
+    margin-bottom: 30px;
+  }
+
+  .footer-logo-text {
+    font-size: 24px;
+    font-weight: bold;
+    margin: 0;
+  }
+
+  .footer-content {
+    display: flex;
+    flex-wrap: wrap;
+  }
+
+  .footer-nav {
+    flex: 1 1 60%;
+    display: flex;
+    flex-wrap: wrap;
+  }
+
+  .footer-nav-column {
+    flex: 1 1 200px;
+    margin-bottom: 20px;
+    padding-right: 20px;
+  }
+
+  .footer-nav-title {
+    font-size: {{ section.settings.heading_font_size }}px;
+    font-weight: {{ section.settings.heading_font_weight }};
+    margin-bottom: 15px;
+    color: {{ section.settings.heading_color }};
+  }
+
+  .footer-nav-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  .footer-nav-list li {
+    margin-bottom: 8px;
+  }
+
+  .footer-nav-list a {
+    text-decoration: none;
+    font-size: {{ section.settings.link_font_size }}px;
+    font-weight: {{ section.settings.link_font_weight }};
+    color: {{ section.settings.link_color }};
+    transition: color 0.3s ease;
+  }
+
+  .footer-nav-list a:hover {
+    color: {{ section.settings.link_hover_color }};
+  }
+
+  .footer-social {
+    flex: 1 1 40%;
+  }
+
+  .footer-social-title {
+    font-size: {{ section.settings.heading_font_size }}px;
+    font-weight: {{ section.settings.heading_font_weight }};
+    margin-bottom: 15px;
+    color: {{ section.settings.heading_color }};
+  }
+
+  .footer-social-icons {
+    display: flex;
+    flex-wrap: wrap;
+    margin-bottom: 20px;
+  }
+
+  .footer-social-icon {
+    margin-right: 15px;
+    margin-bottom: 10px;
+  }
+
+  .footer-social-icon img {
+    width: 30px;
+    height: 30px;
+  }
+
+  .footer-newsletter {
+    margin-top: 15px;
+  }
+
+  .footer-newsletter-form {
+    display: flex;
+    max-width: 400px;
+  }
+
+  .footer-newsletter-input {
+    flex-grow: 1;
+    padding: 10px;
+    border: 1px solid {{ section.settings.form_border_color }};
+    border-right: 0;
+  }
+
+  .footer-newsletter-button {
+    padding: 10px 20px;
+    background-color: {{ section.settings.button_background }};
+    color: {{ section.settings.button_text_color }};
+    border: 1px solid {{ section.settings.button_background }};
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+
+  .footer-newsletter-button:hover {
+    background-color: {{ section.settings.button_background_hover }};
+  }
+
+  @media screen and (max-width: 749px) {
+    .footer-content {
+      flex-direction: column;
+    }
+
+    .footer-nav {
+      flex-direction: column;
+    }
+
+    .footer-social {
+      margin-top: 30px;
+    }
+
+    .footer-newsletter-form {
+      flex-direction: column;
+    }
+
+    .footer-newsletter-input {
+      margin-bottom: 10px;
+      border-right: 1px solid {{ section.settings.form_border_color }};
+    }
+
+    .footer-logo-wrapper {
+      text-align: center;
+    }
+  }
+{%- endstyle -%}
+
+<div class="isolate{% unless section.settings.full_width %} page-width{% endunless %}">
+  <div class="footer content-container color-{{ section.settings.color_scheme }} gradient{% if section.settings.full_width %} content-container--full-width{% endif %}">
+    <div class="page-width">
+      <!-- 上部分 - Logo -->
+      <div class="footer-logo-wrapper">
+        {%- if section.settings.footer_logo != blank -%}
+          {{ section.settings.footer_logo | image_url: width: 300 | image_tag: 
+            alt: section.settings.footer_logo.alt | default: shop.name,
+            loading: 'lazy',
+            class: 'footer-logo',
+            style: 'margin: {% if section.settings.logo_alignment == "left" %}0 auto 0 0{% elsif section.settings.logo_alignment == "right" %}0 0 0 auto{% else %}0 auto{% endif %};'
+          }}
+        {%- else -%}
+          <div class="footer-logo-text" style="text-align: {{ section.settings.logo_alignment }};">{{ shop.name }}</div>
+        {%- endif -%}
+      </div>
+
+      <!-- 下部分 -->
+      <div class="footer-content">
+        <!-- 导航列表 -->
+        <div class="footer-nav">
+          {%- for block in section.blocks -%}
+            {%- if block.type == 'link_list' -%}
+              <div class="footer-nav-column" {{ block.shopify_attributes }}>
+                {%- if block.settings.heading != blank -%}
+                  <h3 class="footer-nav-title">{{ block.settings.heading }}</h3>
+                {%- endif -%}
+                
+                {%- if block.settings.menu != blank -%}
+                  <ul class="footer-nav-list">
+                    {%- for link in block.settings.menu.links -%}
+                      <li>
+                        <a href="{{ link.url }}">{{ link.title }}</a>
+                      </li>
+                    {%- endfor -%}
+                  </ul>
+                {%- endif -%}
+              </div>
+            {%- endif -%}
+          {%- endfor -%}
+        </div>
+
+        <!-- 社交媒体和订阅 -->
+        <div class="footer-social">
+          {%- if section.settings.social_heading != blank -%}
+            <h3 class="footer-social-title">{{ section.settings.social_heading }}</h3>
+          {%- endif -%}
+          
+          <!-- 社交媒体图标 -->
+          <div class="footer-social-icons">
+            {%- if section.settings.show_social_icons -%}
+              {%- for block in section.blocks -%}
+                {%- if block.type == 'social_icon' and block.settings.enabled -%}
+                  <a href="{{ block.settings.link | default: '#' }}" class="footer-social-icon" {{ block.shopify_attributes }}>
+                    {%- if block.settings.custom_icon != blank -%}
+                      {{ block.settings.custom_icon | image_url: width: 60 | image_tag:
+                        alt: block.settings.custom_icon.alt | default: block.settings.platform,
+                        loading: 'lazy',
+                        width: 30,
+                        height: 30
+                      }}
+                    {%- else -%}
+                      {%- case block.settings.platform -%}
+                        {%- when 'facebook' -%}
+                          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-facebook"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path></svg>
+                        {%- when 'instagram' -%}
+                          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-instagram"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
+                        {%- when 'twitter' -%}
+                          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-twitter"><path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"></path></svg>
+                        {%- when 'linkedin' -%}
+                          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-linkedin"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg>
+                        {%- when 'youtube' -%}
+                          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-youtube"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 0 0-1.94 2A29 29 0 0 0 1 11.75a29 29 0 0 0 .46 5.33A2.78 2.78 0 0 0 3.4 19c1.72.46 8.6.46 8.6.46s6.88 0 8.6-.46a2.78 2.78 0 0 0 1.94-2 29 29 0 0 0 .46-5.25 29 29 0 0 0-.46-5.33z"></path><polygon points="9.75 15.02 15.5 11.75 9.75 8.48 9.75 15.02"></polygon></svg>
+                        {%- when 'wechat' -%}
+                          <!-- WeChat Icon -->
+                          <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M8.691 2C4.306 2 .7 4.962.7 8.623c0 1.982 1.028 3.749 2.704 5.146-.235.714-.852 2.605-.852 2.605-.132.411.417.202.417.202l3.095-1.65c.383.106.782.202 1.198.274C7.69 17.3 9.967 19.5 12.639 19.5c.742 0 1.463-.09 2.136-.26.256.06 2.895 1.566 2.895 1.566s.549.234.417-.202c0 0-.545-1.734-.781-2.446 1.786-1.466 2.785-3.39 2.785-5.496 0-3.949-3.919-7.143-8.756-7.143-1.753 0-3.37.481-4.727 1.263-.094-.856-.368-3.785-4.137-3.785-1.45 0-1.45.998-1.45.998V7.01s.006.947 1.45.947c1.19 0 1.45-.947 1.45-.947V4.697s.006-.649.77-.649c1.087 0 1.232 1.562 1.232 1.562-.936.555-1.701 1.333-2.232 2.25"></path><path d="M7.689 6.947c.668 0 1.209.516 1.209 1.158 0 .634-.542 1.151-1.209 1.151-.661 0-1.193-.517-1.193-1.151 0-.642.532-1.158 1.193-1.158zm7.679 0c.662 0 1.201.516 1.201 1.158 0 .634-.54 1.151-1.201 1.151-.668 0-1.209-.517-1.209-1.151 0-.642.541-1.158 1.209-1.158zm-9.635 5.246c-.483 0-.879-.387-.879-.862 0-.482.396-.87.879-.87.49 0 .878.388.878.87 0 .475-.387.862-.878.862zm5.913 0c-.49 0-.878-.387-.878-.862 0-.482.387-.87.878-.87.483 0 .879.388.879.87 0 .475-.396.862-.879.862z"></path></svg>
+                        {%- when 'tiktok' -%}
+                          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M9.37,23.5a7.468,7.468,0,0,1,0-14.936.537.537,0,0,1,.538.5v3.8a.542.542,0,0,1-.5.5,2.671,2.671,0,1,0,2.645,2.669.432.432,0,0,1,0-.074V1a.5.5,0,0,1,.5-.5h3.787a.5.5,0,0,1,.5.5A4.759,4.759,0,0,0,21.59,5.76a.5.5,0,0,1,.5.5L22.1,10.04a.5.5,0,0,1-.5.5,9.427,9.427,0,0,1-4.6-1.259.537.537,0,0,0-.8.466V16.5A7.476,7.476,0,0,1,9.37,23.5Z"/></svg>
+                        {%- else -%}
+                          <!-- Default social icon -->
+                          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-share-2"><circle cx="18" cy="5" r="3"></circle><circle cx="6" cy="12" r="3"></circle><circle cx="18" cy="19" r="3"></circle><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"></line><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"></line></svg>
+                      {%- endcase -%}
+                    {%- endif -%}
+                  </a>
+                {%- endif -%}
+              {%- endfor -%}
+            {%- endif -%}
+          </div>
+          
+          <!-- 邮件订阅 -->
+          {%- if section.settings.show_newsletter -%}
+            <div class="footer-newsletter">
+              {%- if section.settings.newsletter_heading != blank -%}
+                <h4 class="footer-newsletter-heading">{{ section.settings.newsletter_heading }}</h4>
+              {%- endif -%}
+              
+              {%- if section.settings.newsletter_description != blank -%}
+                <p class="footer-newsletter-description">{{ section.settings.newsletter_description }}</p>
+              {%- endif -%}
+              
+              <form action="/contact#footer-newsletter-signup" method="post" class="footer-newsletter-form">
+                <input 
+                  type="email"
+                  name="contact[email]"
+                  class="footer-newsletter-input"
+                  value=""
+                  placeholder="{{ section.settings.newsletter_placeholder }}"
+                  required
+                >
+                <input 
+                  type="submit"
+                  class="footer-newsletter-button"
+                  value="{{ section.settings.newsletter_button_text }}"
+                >
+                <div class="form-success" style="display: none;">
+                  <p>{{ 'newsletter.success' | t }}</p>
+                </div>
+              </form>
+            </div>
+          {%- endif -%}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "custom-footer",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    {
+      "type": "header",
+      "content": "布局设置"
+    },
+    {
+      "type": "checkbox",
+      "id": "full_width",
+      "default": true,
+      "label": "全宽显示"
+    },
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "配色方案",
+      "default": "scheme-1"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "背景颜色",
+      "default": "#000000"
+    },
+    {
+      "type": "image_picker",
+      "id": "background_image",
+      "label": "背景图片"
+    },
+    {
+      "type": "header",
+      "content": "Logo设置"
+    },
+    {
+      "type": "image_picker",
+      "id": "footer_logo",
+      "label": "Logo图片"
+    },
+    {
+      "type": "select",
+      "id": "logo_alignment",
+      "options": [
+        {
+          "value": "left",
+          "label": "左对齐"
+        },
+        {
+          "value": "center",
+          "label": "居中"
+        },
+        {
+          "value": "right",
+          "label": "右对齐"
+        }
+      ],
+      "default": "center",
+      "label": "Logo对齐方式"
+    },
+    {
+      "type": "header",
+      "content": "字体样式"
+    },
+    {
+      "type": "range",
+      "id": "heading_font_size",
+      "min": 12,
+      "max": 28,
+      "step": 1,
+      "unit": "px",
+      "label": "标题字体大小",
+      "default": 18
+    },
+    {
+      "type": "range",
+      "id": "heading_font_weight",
+      "min": 400,
+      "max": 900,
+      "step": 100,
+      "label": "标题字体粗细",
+      "default": 700
+    },
+    {
+      "type": "color",
+      "id": "heading_color",
+      "label": "标题颜色",
+      "default": "#ffffff"
+    },
+    {
+      "type": "range",
+      "id": "link_font_size",
+      "min": 12,
+      "max": 20,
+      "step": 1,
+      "unit": "px",
+      "label": "链接字体大小",
+      "default": 14
+    },
+    {
+      "type": "range",
+      "id": "link_font_weight",
+      "min": 400,
+      "max": 700,
+      "step": 100,
+      "label": "链接字体粗细",
+      "default": 400
+    },
+    {
+      "type": "color",
+      "id": "link_color",
+      "label": "链接颜色",
+      "default": "#cccccc"
+    },
+    {
+      "type": "color",
+      "id": "link_hover_color",
+      "label": "链接悬停颜色",
+      "default": "#ffffff"
+    },
+    {
+      "type": "header",
+      "content": "社交媒体设置"
+    },
+    {
+      "type": "text",
+      "id": "social_heading",
+      "label": "社交媒体标题",
+      "default": "关注我们"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_social_icons",
+      "label": "显示社交媒体图标",
+      "default": true
+    },
+    {
+      "type": "header",
+      "content": "邮件订阅设置"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_newsletter",
+      "label": "显示订阅表单",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "newsletter_heading",
+      "label": "订阅标题",
+      "default": "立即订阅展会通讯"
+    },
+    {
+      "type": "text",
+      "id": "newsletter_description",
+      "label": "订阅描述"
+    },
+    {
+      "type": "text",
+      "id": "newsletter_placeholder",
+      "label": "输入框占位符",
+      "default": "电邮"
+    },
+    {
+      "type": "text",
+      "id": "newsletter_button_text",
+      "label": "提交按钮文本",
+      "default": "订阅"
+    },
+    {
+      "type": "color",
+      "id": "form_border_color",
+      "label": "表单边框颜色",
+      "default": "#cccccc"
+    },
+    {
+      "type": "color",
+      "id": "button_background",
+      "label": "按钮背景颜色",
+      "default": "#C02026"
+    },
+    {
+      "type": "color",
+      "id": "button_text_color",
+      "label": "按钮文本颜色",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "button_background_hover",
+      "label": "按钮悬停背景颜色",
+      "default": "#A01B20"
+    },
+    {
+      "type": "header",
+      "content": "间距设置"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "顶部内边距",
+      "default": 40
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "底部内边距",
+      "default": 40
+    }
+  ],
+  "blocks": [
+    {
+      "type": "link_list",
+      "name": "链接列表",
+      "settings": [
+        {
+          "type": "text",
+          "id": "heading",
+          "default": "快速链接",
+          "label": "标题"
+        },
+        {
+          "type": "link_list",
+          "id": "menu",
+          "default": "footer",
+          "label": "菜单"
+        }
+      ]
+    },
+    {
+      "type": "social_icon",
+      "name": "社交媒体图标",
+      "settings": [
+        {
+          "type": "checkbox",
+          "id": "enabled",
+          "label": "启用",
+          "default": true
+        },
+        {
+          "type": "select",
+          "id": "platform",
+          "options": [
+            {
+              "value": "facebook",
+              "label": "Facebook"
+            },
+            {
+              "value": "instagram",
+              "label": "Instagram"
+            },
+            {
+              "value": "twitter",
+              "label": "Twitter"
+            },
+            {
+              "value": "linkedin",
+              "label": "LinkedIn"
+            },
+            {
+              "value": "youtube",
+              "label": "YouTube"
+            },
+            {
+              "value": "tiktok",
+              "label": "TikTok"
+            },
+            {
+              "value": "wechat",
+              "label": "微信"
+            },
+            {
+              "value": "custom",
+              "label": "自定义"
+            }
+          ],
+          "default": "facebook",
+          "label": "平台"
+        },
+        {
+          "type": "image_picker",
+          "id": "custom_icon",
+          "label": "自定义图标(150x150px)",
+          "info": "如果选择自定义平台，请上传图标"
+        },
+        {
+          "type": "url",
+          "id": "link",
+          "label": "链接"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "custom-footer",
+      "blocks": [
+        {
+          "type": "link_list"
+        },
+        {
+          "type": "link_list"
+        },
+        {
+          "type": "social_icon",
+          "settings": {
+            "platform": "facebook"
+          }
+        },
+        {
+          "type": "social_icon",
+          "settings": {
+            "platform": "instagram"
+          }
+        },
+        {
+          "type": "social_icon",
+          "settings": {
+            "platform": "wechat"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}
