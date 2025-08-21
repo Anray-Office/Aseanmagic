@@ -16,6 +16,10 @@
   <link rel="stylesheet" href="{{ 'component-mega-menu.css' | asset_url }}" media="print" onload="this.media='all'">
 {%- endif -%}
 
+{%- if section.settings.menu_type_desktop == 'aseanmagic' -%}
+  <link rel="stylesheet" href="{{ 'component-aseanmagic-menu.css' | asset_url }}" media="print" onload="this.media='all'">
+{%- endif -%}
+
 <style>
   header-drawer {
     justify-self: start;
@@ -547,7 +551,7 @@
         },
         {
           "value": "aseanmagic",
-          "label": "Aseanmagic菜单"
+          "label": "aseanmagic menu"
         }
       ],
       "default": "dropdown",

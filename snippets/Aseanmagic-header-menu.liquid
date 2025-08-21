@@ -1,0 +1,99 @@
+{% comment %}
+  Renders Aseanmagic custom menu for the header.
+
+  Usage:
+  {% render 'Aseanmagic-header-menu' %}
+{% endcomment %}
+
+<nav class="header__inline-menu aseanmagic-menu-desktop">
+  <ul class="list-menu list-menu--inline" role="list">
+    {%- for link in section.settings.menu.links -%}
+      <li class="aseanmagic-menu-item">
+        {%- if link.links != blank -%}
+          <header-menu>
+            <details id="Details-HeaderMenu-{{ forloop.index }}" class="aseanmagic-menu">
+              <summary
+                id="HeaderMenu-{{ link.handle }}"
+                class="header__menu-item list-menu__item link focus-inset"
+              >
+                <span
+                  {%- if link.child_active %}
+                    class="header__active-menu-item"
+                  {% endif %}
+                >
+                  {{- link.title | escape -}}
+                </span>
+                {{- 'icon-caret.svg' | inline_asset_content -}}
+              </summary>
+              <div
+                id="AseanmagicMenu-Content-{{ forloop.index }}"
+                class="aseanmagic-menu__content color-{{ section.settings.menu_color_scheme }} gradient motion-reduce"
+                tabindex="-1"
+              >
+                <ul
+                  class="aseanmagic-menu__list"
+                  role="list"
+                >
+                  {%- for childlink in link.links -%}
+                    <li class="aseanmagic-menu__item-level-2{% if childlink.links != blank %} has-submenu{% endif %}">
+                      <a
+                        id="HeaderMenu-{{ link.handle }}-{{ childlink.handle }}"
+                        href="{{ childlink.url }}"
+                        class="aseanmagic-menu__link aseanmagic-menu__link--level-2 link{% if childlink.current %} aseanmagic-menu__link--active{% endif %}"
+                        {% if childlink.current %}
+                          aria-current="page"
+                        {% endif %}
+                      >
+                        {{ childlink.title | escape }}
+                        {%- if childlink.links != blank -%}
+                          <span class="aseanmagic-submenu-indicator">›</span>
+                        {%- endif -%}
+                      </a>
+                      {%- if childlink.links != blank -%}
+                        <div class="aseanmagic-submenu">
+                          <ul class="aseanmagic-submenu__list" role="list">
+                            {%- for grandchildlink in childlink.links -%}
+                              <li>
+                                <a
+                                  id="HeaderMenu-{{ link.handle }}-{{ childlink.handle }}-{{ grandchildlink.handle }}"
+                                  href="{{ grandchildlink.url }}"
+                                  class="aseanmagic-menu__link aseanmagic-menu__link--level-3 link{% if grandchildlink.current %} aseanmagic-menu__link--active{% endif %}"
+                                  {% if grandchildlink.current %}
+                                    aria-current="page"
+                                  {% endif %}
+                                >
+                                  {{ grandchildlink.title | escape }}
+                                </a>
+                              </li>
+                            {%- endfor -%}
+                          </ul>
+                        </div>
+                      {%- endif -%}
+                    </li>
+                  {%- endfor -%}
+                </ul>
+              </div>
+            </details>
+          </header-menu>
+        {%- else -%}
+          <a
+            id="HeaderMenu-{{ link.handle }}"
+            href="{{ link.url }}"
+            class="header__menu-item list-menu__item link link--text focus-inset"
+            {% if link.current %}
+              aria-current="page"
+            {% endif %}
+          >
+            <span
+              {%- if link.current %}
+                class="header__active-menu-item"
+              {% endif %}
+            >
+              {{- link.title | escape -}}
+            </span>
+          </a>
+        {%- endif -%}
+      </li>
+    {%- endfor -%}
+  </ul>
+</nav>

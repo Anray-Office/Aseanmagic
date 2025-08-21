@@ -1,0 +1,169 @@
+.aseanmagic-menu-desktop {
+  width: 100%;
+}
+
+.aseanmagic-menu-desktop .list-menu--inline {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: nowrap;
+}
+
+.aseanmagic-menu-item {
+  position: relative;
+}
+
+.aseanmagic-menu {
+  position: relative;
+}
+
+.aseanmagic-menu summary {
+  padding: 15px;
+  position: relative;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+}
+
+.aseanmagic-menu summary::marker {
+  display: none;
+}
+
+.aseanmagic-menu summary::-webkit-details-marker {
+  display: none;
+}
+
+.aseanmagic-menu__content {
+  position: absolute;
+  z-index: 100;
+  left: 0;
+  background-color: #fff;
+  min-width: 200px;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+  border-radius: 0 0 8px 8px;
+  padding: 10px 0;
+  transform: translateY(10px);
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.3s ease;
+}
+
+.aseanmagic-menu[open] .aseanmagic-menu__content {
+  transform: translateY(0);
+  opacity: 1;
+  visibility: visible;
+}
+
+.aseanmagic-menu__list {
+  display: block;
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+
+.aseanmagic-menu__item-level-2 {
+  position: relative;
+  padding: 0;
+  margin: 0;
+}
+
+.aseanmagic-menu__link {
+  display: block;
+  color: #333;
+  text-decoration: none;
+  padding: 10px 15px;
+  transition: background-color 0.3s;
+  white-space: nowrap;
+}
+
+.aseanmagic-menu__link:hover {
+  background-color: #f6f6f6;
+  color: #c83232;
+}
+
+.aseanmagic-menu__link--level-2 {
+  font-weight: 500;
+  font-size: 14px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.aseanmagic-menu__link--level-3 {
+  font-size: 13px;
+}
+
+.aseanmagic-menu__link--active {
+  color: #c83232;
+  font-weight: 600;
+}
+
+.aseanmagic-submenu-indicator {
+  margin-left: 8px;
+  font-size: 16px;
+  font-weight: bold;
+}
+
+/* 三级菜单样式 */
+.aseanmagic-submenu {
+  position: absolute;
+  top: 0;
+  left: 100%;
+  background-color: #fff;
+  min-width: 200px;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+  border-radius: 0 8px 8px 0;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateX(10px);
+  transition: all 0.3s ease;
+}
+
+.aseanmagic-menu__item-level-2:hover .aseanmagic-submenu {
+  opacity: 1;
+  visibility: visible;
+  transform: translateX(0);
+}
+
+.aseanmagic-submenu__list {
+  padding: 10px 0;
+  margin: 0;
+  list-style: none;
+}
+
+/* 主要导航菜单样式 - 匹配图片中的样式 */
+.list-menu__item {
+  font-size: 16px;
+  color: #333;
+}
+
+/* 确保在手机端不显示 */
+@media screen and (max-width: 989px) {
+  .aseanmagic-menu-desktop {
+    display: none;
+  }
+}
+
+/* 匹配图片中的红色背景主菜单 */
+.header__menu-item {
+  color: #fff;
+  background-color: #c83232;
+  border-radius: 0;
+  padding: 15px 20px;
+  margin: 0;
+}
+
+.header__menu-item:hover {
+  background-color: #a52929;
+}
+
+/* 适配图片中的按钮样式 */
+.header__menu-item.link--text {
+  color: #fff;
+}
+
+/* 标记当前活动项 */
+.header__active-menu-item {
+  text-decoration: underline;
+  font-weight: bold;
+}
