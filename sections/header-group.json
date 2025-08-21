@@ -92,7 +92,7 @@
       ],
       "name": "custom-header-promo",
       "settings": {
-        "full_width": true
+        "full_width": false
       }
     },
     "aseanmagic_header_nav_k3yNWC": {
