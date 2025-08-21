@@ -1,125 +1,131 @@
 {{ 'section-rich-text.css' | asset_url | stylesheet_tag }}
 
 {%- style -%}
-  .section-{{ section.id }}-padding {
-    padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
-    padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
-  }
-
-  @media screen and (min-width: 750px) {
     .section-{{ section.id }}-padding {
-      padding-top: {{ section.settings.padding_top }}px;
-      padding-bottom: {{ section.settings.padding_bottom }}px;
+      padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
+      padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
     }
-  }
 
-  .contact-info-container {
-    {% if section.settings.background_image != blank %}
-      background-image: url('{{ section.settings.background_image | image_url: width: 3000 }}');
-      background-size: cover;
-      background-position: center center;
-      background-repeat: no-repeat;
-    {% elsif section.settings.background_color != blank %}
-      background-color: {{ section.settings.background_color }};
-    {% endif %}
-  }
+    @media screen and (min-width: 750px) {
+      .section-{{ section.id }}-padding {
+        padding-top: {{ section.settings.padding_top }}px;
+        padding-bottom: {{ section.settings.padding_bottom }}px;
+      }
+    }
 
-  .contact-info__title {
-    margin: 1.5rem;
-    font-size: {{ section.settings.title_font_size }}px;
-    font-weight: {{ section.settings.title_font_weight }};
-    color: {{ section.settings.title_color }};
-    text-align: {{ section.settings.title_alignment }};
-  }
+    .contact-info-container {
+      {% if section.settings.background_image != blank %}
+        background-image: url('{{ section.settings.background_image | image_url: width: 3000 }}');
+        background-size: cover;
+        background-position: center center;
+        background-repeat: no-repeat;
+      {% elsif section.settings.background_color != blank %}
+        background-color: {{ section.settings.background_color }};
+      {% endif %}
+    }
 
-  .contact-info__content {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 2rem;
-    justify-content: {{ section.settings.content_alignment }};
-    margin-bottom: 1.5rem;
-    flex-direction: {{ section.settings.layout_direction }};
-  }
+    .contact-info__title {
+      margin: 1.5rem;
+      font-size: {{ section.settings.title_font_size }}px;
+      font-weight: {{ section.settings.title_font_weight }};
+      color: {{ section.settings.title_color }};
+      text-align: {{ section.settings.title_alignment }};
+    }
 
-  .contact-info__item {
-    max-width: 100%;
-    flex: 1 1 {% if section.settings.layout_direction == 'row' %}300px{% else %}100%{% endif %};
-  }
-
-  .contact-info__location {
-    margin-bottom: 0.8rem;
-    font-size: {{ section.settings.location_font_size }}px;
-    font-weight: {{ section.settings.location_font_weight }};
-    color: {{ section.settings.location_color }};
-  }
-
-  .contact-info__contact {
-    display: flex;
-    flex-direction: column;
-  }
-
-  .contact-info__phone {
-    margin-bottom: 0.3rem;
-    font-size: {{ section.settings.contact_font_size }}px;
-    font-weight: {{ section.settings.contact_font_weight }};
-    color: {{ section.settings.contact_color }};
-  }
-
-  .contact-info__email {
-    font-size: {{ section.settings.contact_font_size }}px;
-    font-weight: {{ section.settings.contact_font_weight }};
-  }
-
-  .contact-info__email a {
-    color: {{ section.settings.email_color }};
-    text-decoration: none;
-    transition: color 0.3s;
-  }
-
-  .contact-info__email a:hover {
-    color: {{ section.settings.email_hover_color }};
-  }
-
-  .contact-info__copyright {
-    text-align: center;
-    padding-top: 1rem;
-    margin: 0;
-  }
-
-  .copyright__content {
-    font-size: {{ section.settings.copyright_font_size }}px;
-    font-weight: {{ section.settings.copyright_font_weight }};
-    color: {{ section.settings.copyright_color }};
-    margin-right: 0.75rem;
-  }
-
-  .policies {
-    display: inline-flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    margin: 0;
-    padding: 0;
-  }
-
-  .policies li {
-    display: inline-block;
-    margin-right: 0.75rem;
-  }
-
-  @media screen and (max-width: 749px) {
     .contact-info__content {
-      flex-direction: column;
-      align-items: {{ section.settings.content_alignment }};
+      display: flex;
+      flex-wrap: wrap;
+      gap: 2rem;
+      justify-content: {{ section.settings.content_alignment }};
+      margin-bottom: 1.5rem;
+      flex-direction: {{ section.settings.layout_direction }};
     }
-    
+
     .contact-info__item {
-      width: 100%;
+      max-width: 100%;
+      flex: 1 1 {% if section.settings.layout_direction == 'row' %}300px{% else %}100%{% endif %};
+    }
+
+    .contact-info__location {
+      margin-bottom: 0.8rem;
+      font-size: {{ section.settings.location_font_size }}px;
+      font-weight: {{ section.settings.location_font_weight }};
+      color: {{ section.settings.location_color }};
+    }
+
+    .contact-info__contact {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .contact-info__phone {
+      margin-bottom: 0.3rem;
+      font-size: {{ section.settings.contact_font_size }}px;
+      font-weight: {{ section.settings.contact_font_weight }};
+      color: {{ section.settings.contact_color }};
+    }
+
+    .contact-info__email {
+      font-size: {{ section.settings.contact_font_size }}px;
+      font-weight: {{ section.settings.contact_font_weight }};
+    }
+
+    .contact-info__email a {
+      color: {{ section.settings.email_color }};
+      text-decoration: none;
+      transition: color 0.3s;
+    }
+
+    .contact-info__email a:hover {
+      color: {{ section.settings.email_hover_color }};
+    }
+
+    .contact-info__copyright {
+      text-align: center;
+      padding-top: 1rem;
+      margin: 0;
+    }
+
+    .copyright__content {
+      font-size: {{ section.settings.copyright_font_size }}px;
+      font-weight: {{ section.settings.copyright_font_weight }};
+      color: {{ section.settings.copyright_color }};
+      margin-right: 0.75rem;
     }
 
     .policies {
-      margin-top: 1rem;
+      display: inline-flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      margin: 0;
+      padding: 0;
     }
-  }
+
+    .policies li {
+      display: inline-block;
+      margin-right: 0.75rem;
+    }
+
+    @media screen and (max-width: 749px) {
+      .contact-info__content {
+        flex-direction: column;
+        align-items: {{ section.settings.content_alignment }};
+      }
+
+      .contact-info__item {
+        width: 100%;
+      }
+
+      .policies {
+        margin-top: 1rem;
+      }
+    }
+
+    @media screen and (min-width: 750px) {
+      .page-width {
+        padding: 0 15rem;
+      }
+    }
 {%- endstyle -%}
 
 <div class="isolate{% unless section.settings.full_width %} page-width{% endunless %}">
@@ -162,7 +168,14 @@
       <!-- 底部版权容器 -->
       <div class="contact-info__copyright">
         {%- if section.settings.show_copyright -%}
-          <small class="copyright__content">&copy; {{ 'now' | date: '%Y' }}{% if section.settings.company_name != blank %}, {{ section.settings.company_name }}{% else %}, {{ shop.name }}{% endif %}</small>
+          <small class="copyright__content"
+            >&copy; {{ 'now' | date: '%Y' -}}
+            {%- if section.settings.company_name != blank -%}
+              , {{ section.settings.company_name -}}
+            {%- else -%}
+              , {{ shop.name -}}
+            {%- endif -%}
+          </small>
         {%- endif -%}
 
         {%- if section.settings.show_reserved_text -%}
@@ -188,14 +201,18 @@
             {%- if section.settings.terms_url != blank -%}
               <li>
                 <small class="copyright__content">
-                  <a href="{{ section.settings.terms_url }}">{{ section.settings.terms_text | default: 'TERMS OF USE' }}</a>
+                  <a href="{{ section.settings.terms_url }}">
+                    {{- section.settings.terms_text | default: 'TERMS OF USE' -}}
+                  </a>
                 </small>
               </li>
             {%- endif -%}
             {%- if section.settings.privacy_url != blank -%}
               <li>
                 <small class="copyright__content">
-                  <a href="{{ section.settings.privacy_url }}">{{ section.settings.privacy_text | default: 'PRIVACY POLICY' }}</a>
+                  <a href="{{ section.settings.privacy_url }}">
+                    {{- section.settings.privacy_text | default: 'PRIVACY POLICY' -}}
+                  </a>
                 </small>
               </li>
             {%- endif -%}
