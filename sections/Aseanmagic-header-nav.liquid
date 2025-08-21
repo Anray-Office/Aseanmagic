@@ -4,125 +4,133 @@
   .section-{{ section.id }} .isolate{ z-index: 5; }
 {%- endstyle -%}
 
-<div class="section-{{ section.id }} isolate{% unless section.settings.full_width %} page-width{% endunless %}">
-  <nav class="header__inline-menu aseanmagic-menu-desktop">
-    <ul class="list-menu list-menu--inline" role="list">
-      {%- for link in section.settings.menu.links -%}
-        <li>
-          {%- if link.links != blank -%}
-            <header-menu>
-              <details id="Details-HeaderMenu-{{ forloop.index }}" class="aseanmagic-menu">
-                <summary
-                  id="HeaderMenu-{{ link.handle }}"
-                  class="header__menu-item list-menu__item link focus-inset"
-                >
-                  <span
-                    {%- if link.child_active %}
-                      class="header__active-menu-item"
-                    {% endif %}
+<div class="section-{{ section.id }}">
+  <div class="isolate{% unless section.settings.full_width %} page-width{% endunless %}">
+    <nav class="header__inline-menu aseanmagic-menu-desktop">
+      <ul class="list-menu list-menu--inline" role="list">
+        {%- for link in section.settings.menu.links -%}
+          <li>
+            {%- if link.links != blank -%}
+              <header-menu>
+                <details id="Details-HeaderMenu-{{ forloop.index }}" class="aseanmagic-menu">
+                  <summary
+                    id="HeaderMenu-{{ link.handle }}"
+                    class="header__menu-item list-menu__item link focus-inset"
                   >
-                    {{- link.title | escape -}}
-                  </span>
-                  {{- 'icon-caret.svg' | inline_asset_content -}}
-                </summary>
-                <div
-                  id="AseanmagicMenu-Content-{{ forloop.index }}"
-                  class="aseanmagic-menu__content color-{{ section.settings.menu_color_scheme }} gradient motion-reduce global-settings-popup"
-                  tabindex="-1"
-                >
-                  <ul class="aseanmagic-menu__list" role="list">
-                    {%- for childlink in link.links -%}
-                      <li class="aseanmagic-menu__item">
-                        <a
-                          id="HeaderMenu-{{ link.handle }}-{{ childlink.handle }}"
-                          href="{{ childlink.url }}"
-                          class="aseanmagic-menu__link aseanmagic-menu__link--level-2 link{% if childlink.current %} aseanmagic-menu__link--active{% endif %}"
-                          {% if childlink.current %}
-                            aria-current="page"
-                          {% endif %}
-                        >
-                          {{ childlink.title | escape }}
-                        </a>
-                        {%- if childlink.links != blank -%}
-                          <ul class="aseanmagic-submenu" role="list">
-                            {%- for grandchildlink in childlink.links -%}
-                              <li>
-                                <a
-                                  id="HeaderMenu-{{ link.handle }}-{{ childlink.handle }}-{{ grandchildlink.handle }}"
-                                  href="{{ grandchildlink.url }}"
-                                  class="aseanmagic-submenu__link link{% if grandchildlink.current %} aseanmagic-menu__link--active{% endif %}"
-                                  {% if grandchildlink.current %}
-                                    aria-current="page"
-                                  {% endif %}
-                                >
-                                  {{ grandchildlink.title | escape }}
-                                </a>
-                              </li>
-                            {%- endfor -%}
-                          </ul>
-                        {%- endif -%}
-                      </li>
-                    {%- endfor -%}
-                  </ul>
-                </div>
-              </details>
-            </header-menu>
-          {%- else -%}
-            <a
-              id="HeaderMenu-{{ link.handle }}"
-              href="{{ link.url }}"
-              class="header__menu-item list-menu__item link link--text focus-inset"
-              {% if link.current %}
-                aria-current="page"
-              {% endif %}
-            >
-              <span
-                {%- if link.current %}
-                  class="header__active-menu-item"
+                    <span
+                      {%- if link.child_active %}
+                        class="header__active-menu-item"
+                      {% endif %}
+                    >
+                      {{- link.title | escape -}}
+                    </span>
+                    {{- 'icon-caret.svg' | inline_asset_content -}}
+                  </summary>
+                  <div
+                    id="AseanmagicMenu-Content-{{ forloop.index }}"
+                    class="aseanmagic-menu__content color-{{ section.settings.menu_color_scheme }} gradient motion-reduce global-settings-popup"
+                    tabindex="-1"
+                  >
+                    <ul class="aseanmagic-menu__list" role="list">
+                      {%- for childlink in link.links -%}
+                        <li class="aseanmagic-menu__item">
+                          <a
+                            id="HeaderMenu-{{ link.handle }}-{{ childlink.handle }}"
+                            href="{{ childlink.url }}"
+                            class="aseanmagic-menu__link aseanmagic-menu__link--level-2 link{% if childlink.current %} aseanmagic-menu__link--active{% endif %}"
+                            {% if childlink.current %}
+                              aria-current="page"
+                            {% endif %}
+                          >
+                            {{ childlink.title | escape }}
+                          </a>
+                          {%- if childlink.links != blank -%}
+                            <ul class="aseanmagic-submenu" role="list">
+                              {%- for grandchildlink in childlink.links -%}
+                                <li>
+                                  <a
+                                    id="HeaderMenu-{{ link.handle }}-{{ childlink.handle }}-{{ grandchildlink.handle }}"
+                                    href="{{ grandchildlink.url }}"
+                                    class="aseanmagic-submenu__link link{% if grandchildlink.current %} aseanmagic-menu__link--active{% endif %}"
+                                    {% if grandchildlink.current %}
+                                      aria-current="page"
+                                    {% endif %}
+                                  >
+                                    {{ grandchildlink.title | escape }}
+                                  </a>
+                                </li>
+                              {%- endfor -%}
+                            </ul>
+                          {%- endif -%}
+                        </li>
+                      {%- endfor -%}
+                    </ul>
+                  </div>
+                </details>
+              </header-menu>
+            {%- else -%}
+              <a
+                id="HeaderMenu-{{ link.handle }}"
+                href="{{ link.url }}"
+                class="header__menu-item list-menu__item link link--text focus-inset"
+                {% if link.current %}
+                  aria-current="page"
                 {% endif %}
               >
-                {{- link.title | escape -}}
-              </span>
-            </a>
-          {%- endif -%}
-        </li>
-      {%- endfor -%}
-    </ul>
-  </nav>
+                <span
+                  {%- if link.current %}
+                    class="header__active-menu-item"
+                  {% endif %}
+                >
+                  {{- link.title | escape -}}
+                </span>
+              </a>
+            {%- endif -%}
+          </li>
+        {%- endfor -%}
+      </ul>
+    </nav>
+  </div>
 </div>
 
 <script>
   document.addEventListener('DOMContentLoaded', function () {
     var mq = window.matchMedia('(min-width: 990px)');
-    var isDesktop = function () { return mq.matches; };
+    var isDesktop = function () {
+      return mq.matches;
+    };
 
-    document.querySelectorAll('.aseanmagic-menu-desktop header-menu details.aseanmagic-menu').forEach(function (details) {
-      var summary = details.querySelector('summary');
-      var hoverTimer;
+    document
+      .querySelectorAll('.aseanmagic-menu-desktop header-menu details.aseanmagic-menu')
+      .forEach(function (details) {
+        var summary = details.querySelector('summary');
+        var hoverTimer;
 
-      var openOnHover = function () {
-        if (!isDesktop()) return;
-        clearTimeout(hoverTimer);
-        details.setAttribute('open', '');
-      };
+        var openOnHover = function () {
+          if (!isDesktop()) return;
+          clearTimeout(hoverTimer);
+          details.setAttribute('open', '');
+        };
 
-      var closeOnLeave = function () {
-        if (!isDesktop()) return;
-        hoverTimer = setTimeout(function(){ details.removeAttribute('open'); }, 120);
-      };
+        var closeOnLeave = function () {
+          if (!isDesktop()) return;
+          hoverTimer = setTimeout(function () {
+            details.removeAttribute('open');
+          }, 120);
+        };
 
-      details.addEventListener('mouseenter', openOnHover);
-      details.addEventListener('mouseleave', closeOnLeave);
+        details.addEventListener('mouseenter', openOnHover);
+        details.addEventListener('mouseleave', closeOnLeave);
 
-      if (summary) {
-        summary.addEventListener('click', function (e) {
-          if (!isDesktop()) return; // 移动端保留点击展开
-          e.preventDefault(); // 桌面端阻止点击切换，用悬停控制
-        });
-      }
-    });
+        if (summary) {
+          summary.addEventListener('click', function (e) {
+            if (!isDesktop()) return; // 移动端保留点击展开
+            e.preventDefault(); // 桌面端阻止点击切换，用悬停控制
+          });
+        }
+      });
   });
-  </script>
+</script>
 
 {% schema %}
 {
@@ -159,5 +167,3 @@
   ]
 }
 {% endschema %}
-
-
