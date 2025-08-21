@@ -114,6 +114,7 @@
   .footer-social-icon svg {
     width: {{ section.settings.social_icon_size }}px;
     height: {{ section.settings.social_icon_size }}px;
+    color: {{ section.settings.heading_color }};
   }
 
   .footer-newsletter {
@@ -453,7 +454,7 @@
       "max": 150,
       "step":10,
       "unit": "px",
-      "label": "自定义社交媒体图标尺寸",
+      "label": "社交媒体图标尺寸",
       "default": 50
     },
     {
@@ -466,6 +467,7 @@
       "label": "自定义社交媒体图标尺寸",
       "default": 50
     },
+
     {
       "type": "header",
       "content": "邮件订阅设置"
