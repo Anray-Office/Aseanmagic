@@ -30,9 +30,9 @@
             {% assign letter_spacing = block.settings.letter_spacing | default: 0 %}
             {% assign margin_y = block.settings.margin_y | default: 4 %}
             {% assign text_color = block.settings.text_color | default: '' %}
-            <p class="am-center__line" style="font-size: {{ font_size }}px; font-weight: {{ font_weight }}; letter-spacing: {{ letter_spacing }}px; margin: {{ margin_y }}px 0;{% if text_color != '' %} color: {{ text_color }};{% endif %}" {{ block.shopify_attributes }}>
+            <div class="am-center__line rte" style="font-size: {{ font_size }}px; font-weight: {{ font_weight }}; letter-spacing: {{ letter_spacing }}px; margin: {{ margin_y }}px 0;{% if text_color != '' %} color: {{ text_color }};{% endif %}" {{ block.shopify_attributes }}>
               {{ block.settings.text }}
-            </p>
+            </div>
           {% endif %}
         {% endfor %}
       </div>
@@ -147,7 +147,7 @@
       "type": "center_line",
       "name": "Center: Text line",
       "settings": [
-        { "type": "inline_richtext", "id": "text", "label": "Text", "default": "示例文本" },
+        { "type": "richtext", "id": "text", "label": "Text", "default": "<p>示例文本</p>" },
         { "type": "range", "id": "font_size", "min": 12, "max": 56, "step": 1, "unit": "px", "label": "Font size", "default": 24 },
         { "type": "select", "id": "font_weight", "label": "Font weight", "default": "700", "options": [
           {"value":"400","label":"Normal (400)"},
