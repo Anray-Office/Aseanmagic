@@ -13,6 +13,7 @@
   "sections": {
     "header": {
       "type": "header",
+      "disabled": true,
       "settings": {
         "logo_position": "top-center",
         "mobile_logo_position": "center",
@@ -29,9 +30,84 @@
         "padding_top": 20,
         "padding_bottom": 0
       }
+    },
+    "aseanmagic_header_promo_whPjd7": {
+      "type": "Aseanmagic-header-promo",
+      "blocks": {
+        "left_logo_H3KQxD": {
+          "type": "left_logo",
+          "settings": {
+            "image": "shopify://shop_images/CA_Logo_without2012.jpg",
+            "alt": "",
+            "link_url": "",
+            "img_width": 600,
+            "img_height": 200
+          }
+        },
+        "center_line_8r3X8J": {
+          "type": "center_line",
+          "settings": {
+            "text": "",
+            "font_size": 24,
+            "font_weight": "700",
+            "letter_spacing": 0,
+            "margin_y": 4,
+            "text_color": ""
+          }
+        },
+        "right_group_YkxdR9": {
+          "type": "right_group",
+          "settings": {
+            "group": "r1",
+            "title": "标题",
+            "subtitle": "副标题",
+            "title_size": 25,
+            "title_weight": "800",
+            "subtitle_size": 22,
+            "subtitle_weight": "600",
+            "logo_1_alt": "",
+            "logo_2_alt": ""
+          }
+        },
+        "right_group_fYpiTD": {
+          "type": "right_group",
+          "settings": {
+            "group": "r1",
+            "title": "标题",
+            "subtitle": "副标题",
+            "title_size": 25,
+            "title_weight": "800",
+            "subtitle_size": 22,
+            "subtitle_weight": "600",
+            "logo_1_alt": "",
+            "logo_2_alt": ""
+          }
+        }
+      },
+      "block_order": [
+        "left_logo_H3KQxD",
+        "center_line_8r3X8J",
+        "right_group_YkxdR9",
+        "right_group_fYpiTD"
+      ],
+      "name": "custom-header-promo",
+      "settings": {
+        "full_width": true
+      }
+    },
+    "aseanmagic_header_nav_k3yNWC": {
+      "type": "Aseanmagic-header-nav",
+      "name": "custom-header-nav",
+      "settings": {
+        "menu": "main-menu",
+        "menu_color_scheme": "",
+        "full_width": true
+      }
     }
   },
   "order": [
-    "header"
+    "header",
+    "aseanmagic_header_promo_whPjd7",
+    "aseanmagic_header_nav_k3yNWC"
   ]
 }
