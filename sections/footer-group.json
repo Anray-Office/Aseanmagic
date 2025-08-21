@@ -11,66 +11,6 @@
   "name": "t:sections.footer.name",
   "type": "footer",
   "sections": {
-    "aseanmagic_contact_info_7QjpXz": {
-      "type": "Aseanmagic-contact-info",
-      "blocks": {
-        "contact_item_thHxh9": {
-          "type": "contact_item",
-          "settings": {
-            "location": "<p>Sales Office Asia Pacific: Informa Markets, Hong Kong – Hong Kong</p>",
-            "phone": "<p>ph. +852.3709.4988</p>",
-            "email": "example@example.com"
-          }
-        },
-        "contact_item_LEpL4f": {
-          "type": "contact_item",
-          "settings": {
-            "location": "<p>Sales Office Europe, Africa, Middle East, The Americas: BolognaFiere Cosmoprof S.p.a. – Milan – Italy</p>",
-            "phone": "<p>ph. +39.02.796.420- fax +39.02.795.036</p>",
-            "email": "international@example.com"
-          }
-        },
-        "contact_item_A4RrxL": {
-          "type": "contact_item",
-          "settings": {
-            "location": "<p>Marketing and Promotion: BolognaFiere Cosmoprof S.p.a. – Milan – Italy</p>",
-            "phone": "<p>ph. +39.02.796.420 – fax +39.02.795.036</p>",
-            "email": "info@example.com"
-          }
-        }
-      },
-      "block_order": [
-        "contact_item_thHxh9",
-        "contact_item_LEpL4f",
-        "contact_item_A4RrxL"
-      ],
-      "name": "custom-contact-info",
-      "settings": {
-        "full_width": true,
-        "background_color": "#f8f0e7",
-        "title": "联系我们",
-        "heading_tag": "h2",
-        "title_font_size": 28,
-        "title_font_weight": 700,
-        "title_color": "#333333",
-        "title_alignment": "center",
-        "content_alignment": "center",
-        "location_font_size": 16,
-        "location_font_weight": 700,
-        "location_color": "#333333",
-        "contact_font_size": 14,
-        "contact_font_weight": 400,
-        "contact_color": "#333333",
-        "email_color": "#cc0000",
-        "email_hover_color": "#990000",
-        "copyright": "<p>© 2023 您的公司名称. 版权所有</p>",
-        "copyright_font_size": 14,
-        "copyright_font_weight": 400,
-        "copyright_color": "#777777",
-        "padding_top": 40,
-        "padding_bottom": 40
-      }
-    },
     "custom_footer_Rtyc4r": {
       "type": "custom-footer",
       "blocks": {
@@ -178,6 +118,66 @@
         "padding_bottom": 40
       }
     },
+    "aseanmagic_contact_info_7QjpXz": {
+      "type": "Aseanmagic-contact-info",
+      "blocks": {
+        "contact_item_thHxh9": {
+          "type": "contact_item",
+          "settings": {
+            "location": "<p>Sales Office Asia Pacific: Informa Markets, Hong Kong – Hong Kong</p>",
+            "phone": "<p>ph. +852.3709.4988</p>",
+            "email": "example@example.com"
+          }
+        },
+        "contact_item_LEpL4f": {
+          "type": "contact_item",
+          "settings": {
+            "location": "<p>Sales Office Europe, Africa, Middle East, The Americas: BolognaFiere Cosmoprof S.p.a. – Milan – Italy</p>",
+            "phone": "<p>ph. +39.02.796.420- fax +39.02.795.036</p>",
+            "email": "international@example.com"
+          }
+        },
+        "contact_item_A4RrxL": {
+          "type": "contact_item",
+          "settings": {
+            "location": "<p>Marketing and Promotion: BolognaFiere Cosmoprof S.p.a. – Milan – Italy</p>",
+            "phone": "<p>ph. +39.02.796.420 – fax +39.02.795.036</p>",
+            "email": "info@example.com"
+          }
+        }
+      },
+      "block_order": [
+        "contact_item_thHxh9",
+        "contact_item_LEpL4f",
+        "contact_item_A4RrxL"
+      ],
+      "name": "custom-contact-info",
+      "settings": {
+        "full_width": true,
+        "background_color": "#f8f0e7",
+        "title": "联系我们",
+        "heading_tag": "h1",
+        "title_font_size": 32,
+        "title_font_weight": 700,
+        "title_color": "#333333",
+        "title_alignment": "center",
+        "content_alignment": "space-between",
+        "location_font_size": 16,
+        "location_font_weight": 700,
+        "location_color": "#333333",
+        "contact_font_size": 14,
+        "contact_font_weight": 400,
+        "contact_color": "#333333",
+        "email_color": "#cc0000",
+        "email_hover_color": "#990000",
+        "copyright": "<p>© 2023 您的公司名称. 版权所有</p>",
+        "copyright_font_size": 14,
+        "copyright_font_weight": 400,
+        "copyright_color": "#777777",
+        "padding_top": 40,
+        "padding_bottom": 40
+      }
+    },
     "footer": {
       "type": "footer",
       "blocks": {
@@ -226,7 +226,7 @@
       ],
       "disabled": true,
       "settings": {
-        "color_scheme": "scheme-1",
+        "color_scheme": "scheme-5",
         "newsletter_enable": true,
         "newsletter_heading": "好奇我们不？ 订阅呀",
         "enable_follow_on_shop": true,
@@ -242,8 +242,8 @@
     }
   },
   "order": [
-    "aseanmagic_contact_info_7QjpXz",
     "custom_footer_Rtyc4r",
+    "aseanmagic_contact_info_7QjpXz",
     "footer"
   ]
 }
