@@ -1,0 +1,459 @@
+{{ 'section-rich-text.css' | asset_url | stylesheet_tag }}
+
+{%- style -%}
+  .section-{{ section.id }}-padding {
+    padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
+    padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
+  }
+
+  @media screen and (min-width: 750px) {
+    .section-{{ section.id }}-padding {
+      padding-top: {{ section.settings.padding_top }}px;
+      padding-bottom: {{ section.settings.padding_bottom }}px;
+    }
+  }
+
+  .contact-info-container {
+    {% if section.settings.background_image != blank %}
+      background-image: url('{{ section.settings.background_image | image_url: width: 3000 }}');
+      background-size: cover;
+      background-position: center center;
+      background-repeat: no-repeat;
+    {% elsif section.settings.background_color != blank %}
+      background-color: {{ section.settings.background_color }};
+    {% endif %}
+  }
+
+  .contact-info__title {
+    margin-bottom: 1.5rem;
+    font-size: {{ section.settings.title_font_size }}px;
+    font-weight: {{ section.settings.title_font_weight }};
+    color: {{ section.settings.title_color }};
+    text-align: {{ section.settings.title_alignment }};
+  }
+
+  .contact-info__content {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2rem;
+    justify-content: {{ section.settings.content_alignment }};
+    margin-bottom: 1.5rem;
+  }
+
+  .contact-info__item {
+    max-width: 100%;
+    flex: 1 1 300px;
+  }
+
+  .contact-info__location {
+    margin-bottom: 0.8rem;
+    font-size: {{ section.settings.location_font_size }}px;
+    font-weight: {{ section.settings.location_font_weight }};
+    color: {{ section.settings.location_color }};
+  }
+
+  .contact-info__contact {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .contact-info__phone {
+    margin-bottom: 0.3rem;
+    font-size: {{ section.settings.contact_font_size }}px;
+    font-weight: {{ section.settings.contact_font_weight }};
+    color: {{ section.settings.contact_color }};
+  }
+
+  .contact-info__email {
+    font-size: {{ section.settings.contact_font_size }}px;
+    font-weight: {{ section.settings.contact_font_weight }};
+  }
+
+  .contact-info__email a {
+    color: {{ section.settings.email_color }};
+    text-decoration: none;
+    transition: color 0.3s;
+  }
+
+  .contact-info__email a:hover {
+    color: {{ section.settings.email_hover_color }};
+  }
+
+  .contact-info__copyright {
+    text-align: center;
+    font-size: {{ section.settings.copyright_font_size }}px;
+    font-weight: {{ section.settings.copyright_font_weight }};
+    color: {{ section.settings.copyright_color }};
+    padding-top: 1rem;
+    margin: 0;
+  }
+
+  @media screen and (max-width: 749px) {
+    .contact-info__content {
+      flex-direction: column;
+      align-items: {{ section.settings.content_alignment }};
+    }
+    
+    .contact-info__item {
+      width: 100%;
+    }
+  }
+{%- endstyle -%}
+
+<div class="isolate{% unless section.settings.full_width %} page-width{% endunless %}">
+  <div class="contact-info-container gradient{% if section.settings.full_width %} content-container--full-width{% endif %} section-{{ section.id }}-padding">
+    <div class="{% if section.settings.full_width %} page-width{% endif %}">
+      <!-- 顶部标题容器 -->
+      {% if section.settings.title != blank %}
+        <{{ section.settings.heading_tag }} class="contact-info__title">
+          {{ section.settings.title }}
+        </{{ section.settings.heading_tag }}>
+      {% endif %}
+
+      <!-- 中间内容区域 -->
+      <div class="contact-info__content">
+        {%- for block in section.blocks -%}
+          {%- if block.type == 'contact_item' -%}
+            <div class="contact-info__item" {{ block.shopify_attributes }}>
+              <!-- 上部分 - 地点信息 -->
+              <div class="contact-info__location rte">
+                {{ block.settings.location }}
+              </div>
+
+              <!-- 下部分 - 联系方式 -->
+              <div class="contact-info__contact">
+                <!-- 电话 -->
+                <div class="contact-info__phone rte">
+                  {{ block.settings.phone }}
+                </div>
+
+                <!-- 邮箱 -->
+                <div class="contact-info__email">
+                  <a href="mailto:{{ block.settings.email }}">{{ block.settings.email }}</a>
+                </div>
+              </div>
+            </div>
+          {%- endif -%}
+        {%- endfor -%}
+      </div>
+
+      <!-- 底部版权容器 -->
+      {% if section.settings.copyright != blank %}
+        <p class="contact-info__copyright">
+          {{ section.settings.copyright }}
+        </p>
+      {% endif %}
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "custom-contact-info",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    {
+      "type": "header",
+      "content": "布局设置"
+    },
+    {
+      "type": "checkbox",
+      "id": "full_width",
+      "default": true,
+      "label": "全宽显示"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "背景颜色",
+      "default": "#f8f0e7"
+    },
+    {
+      "type": "image_picker",
+      "id": "background_image",
+      "label": "背景图片"
+    },
+    {
+      "type": "header",
+      "content": "标题设置"
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "标题内容",
+      "default": "联系我们"
+    },
+    {
+      "type": "select",
+      "id": "heading_tag",
+      "options": [
+        {
+          "value": "h1",
+          "label": "H1"
+        },
+        {
+          "value": "h2",
+          "label": "H2"
+        },
+        {
+          "value": "h3",
+          "label": "H3"
+        }
+      ],
+      "default": "h2",
+      "label": "标题标签"
+    },
+    {
+      "type": "range",
+      "id": "title_font_size",
+      "min": 16,
+      "max": 60,
+      "step": 2,
+      "unit": "px",
+      "label": "标题字体大小",
+      "default": 28
+    },
+    {
+      "type": "range",
+      "id": "title_font_weight",
+      "min": 400,
+      "max": 900,
+      "step": 100,
+      "label": "标题字体粗细",
+      "default": 700
+    },
+    {
+      "type": "color",
+      "id": "title_color",
+      "label": "标题颜色",
+      "default": "#333333"
+    },
+    {
+      "type": "select",
+      "id": "title_alignment",
+      "options": [
+        {
+          "value": "left",
+          "label": "左对齐"
+        },
+        {
+          "value": "center",
+          "label": "居中"
+        },
+        {
+          "value": "right",
+          "label": "右对齐"
+        }
+      ],
+      "default": "center",
+      "label": "标题对齐方式"
+    },
+    {
+      "type": "header",
+      "content": "内容设置"
+    },
+    {
+      "type": "select",
+      "id": "content_alignment",
+      "options": [
+        {
+          "value": "flex-start",
+          "label": "左对齐"
+        },
+        {
+          "value": "center",
+          "label": "居中"
+        },
+        {
+          "value": "flex-end",
+          "label": "右对齐"
+        },
+        {
+          "value": "space-between",
+          "label": "两端对齐"
+        },
+        {
+          "value": "space-around",
+          "label": "均匀分布"
+        }
+      ],
+      "default": "center",
+      "label": "内容对齐方式"
+    },
+    {
+      "type": "range",
+      "id": "location_font_size",
+      "min": 12,
+      "max": 24,
+      "step": 1,
+      "unit": "px",
+      "label": "地点字体大小",
+      "default": 16
+    },
+    {
+      "type": "range",
+      "id": "location_font_weight",
+      "min": 400,
+      "max": 900,
+      "step": 100,
+      "label": "地点字体粗细",
+      "default": 700
+    },
+    {
+      "type": "color",
+      "id": "location_color",
+      "label": "地点文字颜色",
+      "default": "#333333"
+    },
+    {
+      "type": "range",
+      "id": "contact_font_size",
+      "min": 12,
+      "max": 24,
+      "step": 1,
+      "unit": "px",
+      "label": "联系方式字体大小",
+      "default": 14
+    },
+    {
+      "type": "range",
+      "id": "contact_font_weight",
+      "min": 400,
+      "max": 900,
+      "step": 100,
+      "label": "联系方式字体粗细",
+      "default": 400
+    },
+    {
+      "type": "color",
+      "id": "contact_color",
+      "label": "电话文字颜色",
+      "default": "#333333"
+    },
+    {
+      "type": "color",
+      "id": "email_color",
+      "label": "邮箱文字颜色",
+      "default": "#cc0000"
+    },
+    {
+      "type": "color",
+      "id": "email_hover_color",
+      "label": "邮箱悬停颜色",
+      "default": "#990000"
+    },
+    {
+      "type": "header",
+      "content": "版权设置"
+    },
+    {
+      "type": "richtext",
+      "id": "copyright",
+      "label": "版权内容",
+      "default": "<p>© 2023 您的公司名称. 版权所有</p>"
+    },
+    {
+      "type": "range",
+      "id": "copyright_font_size",
+      "min": 10,
+      "max": 18,
+      "step": 1,
+      "unit": "px",
+      "label": "版权字体大小",
+      "default": 14
+    },
+    {
+      "type": "range",
+      "id": "copyright_font_weight",
+      "min": 400,
+      "max": 700,
+      "step": 100,
+      "label": "版权字体粗细",
+      "default": 400
+    },
+    {
+      "type": "color",
+      "id": "copyright_color",
+      "label": "版权文字颜色",
+      "default": "#777777"
+    },
+    {
+      "type": "header",
+      "content": "间距设置"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "顶部内边距",
+      "default": 40
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "底部内边距",
+      "default": 40
+    }
+  ],
+  "blocks": [
+    {
+      "type": "contact_item",
+      "name": "联系项",
+      "settings": [
+        {
+          "type": "richtext",
+          "id": "location",
+          "label": "地点信息",
+          "default": "<p>Sales Office Asia Pacific: Informa Markets, Hong Kong – Hong Kong</p>"
+        },
+        {
+          "type": "richtext",
+          "id": "phone",
+          "label": "电话信息",
+          "default": "<p>ph. +852.3709.4988</p>"
+        },
+        {
+          "type": "text",
+          "id": "email",
+          "label": "电子邮箱",
+          "default": "example@example.com"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "custom-contact-info",
+      "blocks": [
+        {
+          "type": "contact_item"
+        },
+        {
+          "type": "contact_item",
+          "settings": {
+            "location": "<p>Sales Office Europe, Africa, Middle East, The Americas: BolognaFiere Cosmoprof S.p.a. – Milan – Italy</p>",
+            "phone": "<p>ph. +39.02.796.420- fax +39.02.795.036</p>",
+            "email": "international@example.com"
+          }
+        },
+        {
+          "type": "contact_item",
+          "settings": {
+            "location": "<p>Marketing and Promotion: BolognaFiere Cosmoprof S.p.a. – Milan – Italy</p>",
+            "phone": "<p>ph. +39.02.796.420 – fax +39.02.795.036</p>",
+            "email": "info@example.com"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}
