@@ -2,6 +2,101 @@
     position: relative;
 }
 
+/* 顶级 nav 占满宽度，ul 居中 */
+.aseanmagic-menu-desktop {
+    width: 100%;
+    display: block;
+}
+
+.aseanmagic-menu-desktop .list-menu--inline {
+    display: flex;
+    /* 覆盖主题的 inline-flex，便于水平居中 */
+    justify-content: center;
+    /* 居中 */
+    width: 100%;
+    margin: 0 auto;
+}
+
+/* 宣传条四列布局，仅桌面端显示 */
+@media (min-width: 990px) {
+    .am-promo-bar {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr 1fr;
+        align-items: center;
+        gap: 0px;
+        padding: 15px 0;
+        width: 100%;
+        border-bottom: 1px solid #9d9d9c;
+    }
+
+    .am-col {
+        display: block;
+    }
+
+    .am-left-fixed__img {
+        max-width: 100%;
+        height: auto;
+        display: block;
+    }
+
+    .am-center__line {
+        margin: 4px 0;
+        font-size: 24px;
+        font-weight: 700;
+        text-align: left;
+    }
+
+    .am-right-item {
+        display: grid;
+        grid-template-rows: auto auto auto;
+        align-items: start;
+        gap: 8px;
+    }
+
+    .am-right-item__title {
+        margin: 0;
+        font-size: 25px;
+        font-weight: 800;
+        letter-spacing: 1px;
+    }
+
+    .am-right-item__subtitle {
+        margin: 0;
+        font-size: 22px;
+        font-weight: 600;
+    }
+
+    .am-logos {
+        display: grid;
+        grid-template-rows: auto auto;
+        gap: 6px;
+        margin-top: 4px;
+    }
+
+    .am-logo-img {
+        width: 100%;
+        height: auto;
+        display: block;
+        filter: grayscale(100%);
+    }
+
+    /* 视觉分隔线 */
+    .am-col--center {
+        padding-left: 15px;
+    }
+
+    .am-col--right {
+        padding-left: 15px;
+        border-left: 2px solid #9d9d9c;
+    }
+}
+
+@media (max-width: 989px) {
+    .am-promo-bar {
+        display: none;
+    }
+}
+
 .aseanmagic-menu__content {
     position: absolute;
     top: 100%;

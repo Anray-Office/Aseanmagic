@@ -6,6 +6,46 @@
 {% endcomment %}
 
 <nav class="header__inline-menu aseanmagic-menu-desktop">
+    <div class="header__logo-time-container">
+      {% assign am_left_logo_w = 1347 %}
+      {% assign am_left_logo_h = 456 %}
+      {% assign am_right_logo_w = 2048 %}
+      {% assign am_right_logo_h = 240 %}
+      <div class="am-promo-bar">
+        <div class="am-col am-col--left">
+          <a href="{{ routes.root_url }}" class="am-left-fixed">
+            <img class="am-left-fixed__img" src="https://cdn.shopify.com/s/files/1/0924/6244/9007/files/CA_Logo_without2012.jpg?v=1755761735" alt="COSMOPROF ASIA" loading="lazy" width="{{ am_left_logo_w }}" height="{{ am_left_logo_h }}">
+          </a>
+        </div>
+
+        <div class="am-col am-col--center">
+          <p class="am-center__line">第28届</p>
+          <p class="am-center__line">中国香港</p>
+        </div>
+
+        <div class="am-col am-col--right am-col--r1">
+          <div class="am-right-item">
+            <h5 class="am-right-item__title">2025年11月11-13日</h5>
+            <p class="am-right-item__subtitle">亚洲国际博览馆</p>
+            <div class="am-logos">
+              <img class="am-logo-img" src="https://cdn.shopify.com/s/files/1/0924/6244/9007/files/CPKA_Machinery_nero_rgb-2048x240.jpg?v=1755761739" alt="COSMOPACK ASIA" loading="lazy" width="{{ am_right_logo_w }}" height="{{ am_right_logo_h }}">
+              <img class="am-logo-img" src="https://cdn.shopify.com/s/files/1/0924/6244/9007/files/CPKA_Machinery_nero_rgb-2048x240.jpg?v=1755761739" alt="COSMOPACK ASIA" loading="lazy" width="{{ am_right_logo_w }}" height="{{ am_right_logo_h }}">
+            </div>
+          </div>
+        </div>
+
+        <div class="am-col am-col--right am-col--r2">
+          <div class="am-right-item">
+            <h5 class="am-right-item__title">2025年11月12-14日</h5>
+            <p class="am-right-item__subtitle">香港会议展览中心</p>
+            <div class="am-logos">
+              <img class="am-logo-img" src="https://cdn.shopify.com/s/files/1/0924/6244/9007/files/CPKA_Machinery_nero_rgb-2048x240.jpg?v=1755761739" alt="COSMOPROF ASIA" loading="lazy" width="{{ am_right_logo_w }}" height="{{ am_right_logo_h }}">
+              <img class="am-logo-img" src="https://cdn.shopify.com/s/files/1/0924/6244/9007/files/CPKA_Machinery_nero_rgb-2048x240.jpg?v=1755761739" alt="COSMOPROF ASIA" loading="lazy" width="{{ am_right_logo_w }}" height="{{ am_right_logo_h }}">
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   <ul class="list-menu list-menu--inline" role="list">
     {%- for link in section.settings.menu.links -%}
       <li>
