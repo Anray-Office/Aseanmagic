@@ -1,0 +1,197 @@
+{{ 'component-aseanmagic-menu.css' | asset_url | stylesheet_tag }}
+
+<div class="isolate{% unless section.settings.full_width %} page-width{% endunless %}">
+  {% assign am_left_logo_w = 1347 %}
+  {% assign am_left_logo_h = 456 %}
+  {% assign am_right_logo_w = 2048 %}
+  {% assign am_right_logo_h = 240 %}
+
+  <div class="header__logo-time-container">
+    <div class="am-promo-bar">
+      <div class="am-col am-col--left">
+        {% for block in section.blocks %}
+          {% if block.type == 'left_logo' %}
+            <a href="{{ block.settings.link_url | default: routes.root_url }}" class="am-left-fixed" {{ block.shopify_attributes }}>
+              {% if block.settings.image != blank %}
+                {% assign target_width = block.settings.img_width | default: am_left_logo_w %}
+                {% assign target_height = block.settings.img_height | default: am_left_logo_h %}
+                <img class="am-left-fixed__img" src="{{ block.settings.image | image_url: width: target_width }}" alt="{{ block.settings.alt | escape }}" loading="lazy" width="{{ target_width }}" height="{{ target_height }}">
+              {% endif %}
+            </a>
+          {% endif %}
+        {% endfor %}
+      </div>
+
+      <div class="am-col am-col--center">
+        {% for block in section.blocks %}
+          {% if block.type == 'center_line' %}
+            {% assign font_size = block.settings.font_size | default: 24 %}
+            {% assign font_weight = block.settings.font_weight | default: '700' %}
+            {% assign letter_spacing = block.settings.letter_spacing | default: 0 %}
+            {% assign margin_y = block.settings.margin_y | default: 4 %}
+            {% assign text_color = block.settings.text_color | default: '' %}
+            <p class="am-center__line" style="font-size: {{ font_size }}px; font-weight: {{ font_weight }}; letter-spacing: {{ letter_spacing }}px; margin: {{ margin_y }}px 0;{% if text_color != '' %} color: {{ text_color }};{% endif %}" {{ block.shopify_attributes }}>
+              {{ block.settings.text }}
+            </p>
+          {% endif %}
+        {% endfor %}
+      </div>
+
+      <div class="am-col am-col--right am-col--r1">
+        {% for block in section.blocks %}
+          {% if block.type == 'right_group' and block.settings.group == 'r1' %}
+            {% assign title_size = block.settings.title_size | default: 25 %}
+            {% assign title_weight = block.settings.title_weight | default: '800' %}
+            {% assign subtitle_size = block.settings.subtitle_size | default: 22 %}
+            {% assign subtitle_weight = block.settings.subtitle_weight | default: '600' %}
+            <div class="am-right-item" {{ block.shopify_attributes }}>
+              {% if block.settings.title != blank %}
+                <h5 class="am-right-item__title" style="margin:0; font-size: {{ title_size }}px; font-weight: {{ title_weight }};">
+                  {{ block.settings.title | escape }}
+                </h5>
+              {% endif %}
+              {% if block.settings.subtitle != blank %}
+                <p class="am-right-item__subtitle" style="margin:0; font-size: {{ subtitle_size }}px; font-weight: {{ subtitle_weight }};">
+                  {{ block.settings.subtitle | escape }}
+                </p>
+              {% endif %}
+              {% if block.settings.logo_1 != blank or block.settings.logo_2 != blank %}
+                <div class="am-logos">
+                  {% if block.settings.logo_1 != blank %}
+                    <img class="am-logo-img" src="{{ block.settings.logo_1 | image_url: width: am_right_logo_w }}" alt="{{ block.settings.logo_1_alt | escape }}" loading="lazy" width="{{ am_right_logo_w }}" height="{{ am_right_logo_h }}">
+                  {% endif %}
+                  {% if block.settings.logo_2 != blank %}
+                    <img class="am-logo-img" src="{{ block.settings.logo_2 | image_url: width: am_right_logo_w }}" alt="{{ block.settings.logo_2_alt | escape }}" loading="lazy" width="{{ am_right_logo_w }}" height="{{ am_right_logo_h }}">
+                  {% endif %}
+                </div>
+              {% endif %}
+            </div>
+          {% endif %}
+        {% endfor %}
+      </div>
+
+      <div class="am-col am-col--right am-col--r2">
+        {% for block in section.blocks %}
+          {% if block.type == 'right_group' and block.settings.group == 'r2' %}
+            {% assign title_size = block.settings.title_size | default: 25 %}
+            {% assign title_weight = block.settings.title_weight | default: '800' %}
+            {% assign subtitle_size = block.settings.subtitle_size | default: 22 %}
+            {% assign subtitle_weight = block.settings.subtitle_weight | default: '600' %}
+            <div class="am-right-item" {{ block.shopify_attributes }}>
+              {% if block.settings.title != blank %}
+                <h5 class="am-right-item__title" style="margin:0; font-size: {{ title_size }}px; font-weight: {{ title_weight }};">
+                  {{ block.settings.title | escape }}
+                </h5>
+              {% endif %}
+              {% if block.settings.subtitle != blank %}
+                <p class="am-right-item__subtitle" style="margin:0; font-size: {{ subtitle_size }}px; font-weight: {{ subtitle_weight }};">
+                  {{ block.settings.subtitle | escape }}
+                </p>
+              {% endif %}
+              {% if block.settings.logo_1 != blank or block.settings.logo_2 != blank %}
+                <div class="am-logos">
+                  {% if block.settings.logo_1 != blank %}
+                    <img class="am-logo-img" src="{{ block.settings.logo_1 | image_url: width: am_right_logo_w }}" alt="{{ block.settings.logo_1_alt | escape }}" loading="lazy" width="{{ am_right_logo_w }}" height="{{ am_right_logo_h }}">
+                  {% endif %}
+                  {% if block.settings.logo_2 != blank %}
+                    <img class="am-logo-img" src="{{ block.settings.logo_2 | image_url: width: am_right_logo_w }}" alt="{{ block.settings.logo_2_alt | escape }}" loading="lazy" width="{{ am_right_logo_w }}" height="{{ am_right_logo_h }}">
+                  {% endif %}
+                </div>
+              {% endif %}
+            </div>
+          {% endif %}
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "custom-header-promo",
+  "tag": "section",
+  "class": "section",
+  "disabled_on": {
+    "groups": ["footer"]
+  },
+  "settings": [
+    {
+      "type": "checkbox",
+      "id": "full_width",
+      "default": true,
+      "label": "Full width"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "left_logo",
+      "name": "Left: Logo",
+      "limit": 1,
+      "settings": [
+        { "type": "image_picker", "id": "image", "label": "Logo image" },
+        { "type": "text", "id": "alt", "label": "Alt text" },
+        { "type": "url", "id": "link_url", "label": "Link URL" },
+        { "type": "range", "id": "img_width", "min": 100, "max": 1100, "step": 10, "unit": "px", "label": "Image width", "default": 600 },
+        { "type": "range", "id": "img_height", "min": 40, "max": 1200, "step": 20, "unit": "px", "label": "Image height (for attr only)", "default": 200 }
+      ]
+    },
+    {
+      "type": "center_line",
+      "name": "Center: Text line",
+      "settings": [
+        { "type": "inline_richtext", "id": "text", "label": "Text", "default": "示例文本" },
+        { "type": "range", "id": "font_size", "min": 12, "max": 56, "step": 1, "unit": "px", "label": "Font size", "default": 24 },
+        { "type": "select", "id": "font_weight", "label": "Font weight", "default": "700", "options": [
+          {"value":"400","label":"Normal (400)"},
+          {"value":"500","label":"Medium (500)"},
+          {"value":"600","label":"Semi-bold (600)"},
+          {"value":"700","label":"Bold (700)"},
+          {"value":"800","label":"Extra-bold (800)"}
+        ]},
+        { "type": "range", "id": "letter_spacing", "min": -2, "max": 10, "step": 1, "unit": "px", "label": "Letter spacing", "default": 0 },
+        { "type": "range", "id": "margin_y", "min": 0, "max": 30, "step": 1, "unit": "px", "label": "Vertical margin", "default": 4 },
+        { "type": "color", "id": "text_color", "label": "Text color" }
+      ]
+    },
+    {
+      "type": "right_group",
+      "name": "Right: Group",
+      "settings": [
+        { "type": "select", "id": "group", "label": "Position", "default": "r1", "options": [
+          {"value":"r1","label":"Right group 1"},
+          {"value":"r2","label":"Right group 2"}
+        ]},
+        { "type": "text", "id": "title", "label": "Title", "default": "标题" },
+        { "type": "text", "id": "subtitle", "label": "Subtitle", "default": "副标题" },
+        { "type": "range", "id": "title_size", "min": 12, "max": 56, "step": 1, "unit": "px", "label": "Title size", "default": 25 },
+        { "type": "select", "id": "title_weight", "label": "Title weight", "default": "800", "options": [
+          {"value":"400","label":"Normal (400)"},
+          {"value":"500","label":"Medium (500)"},
+          {"value":"600","label":"Semi-bold (600)"},
+          {"value":"700","label":"Bold (700)"},
+          {"value":"800","label":"Extra-bold (800)"}
+        ]},
+        { "type": "range", "id": "subtitle_size", "min": 12, "max": 56, "step": 1, "unit": "px", "label": "Subtitle size", "default": 22 },
+        { "type": "select", "id": "subtitle_weight", "label": "Subtitle weight", "default": "600", "options": [
+          {"value":"400","label":"Normal (400)"},
+          {"value":"500","label":"Medium (500)"},
+          {"value":"600","label":"Semi-bold (600)"},
+          {"value":"700","label":"Bold (700)"},
+          {"value":"800","label":"Extra-bold (800)"}
+        ]},
+        { "type": "image_picker", "id": "logo_1", "label": "Logo 1" },
+        { "type": "text", "id": "logo_1_alt", "label": "Logo 1 alt" },
+        { "type": "image_picker", "id": "logo_2", "label": "Logo 2" },
+        { "type": "text", "id": "logo_2_alt", "label": "Logo 2 alt" }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "custom-header-promo"
+    }
+  ]
+}
+{% endschema %}
+
+
