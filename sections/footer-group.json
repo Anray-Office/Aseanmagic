@@ -161,6 +161,7 @@
         "title_font_weight": 700,
         "title_color": "#333333",
         "title_alignment": "center",
+        "layout_direction": "column",
         "content_alignment": "center",
         "location_font_size": 16,
         "location_font_weight": 700,
