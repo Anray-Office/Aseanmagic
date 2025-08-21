@@ -17,6 +17,23 @@
     margin: 0 auto;
 }
 
+/* 顶级菜单：移除任何默认项目符号/分隔符与内外边距 */
+.aseanmagic-menu-desktop .list-menu,
+.aseanmagic-menu-desktop .list-menu--inline {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.aseanmagic-menu-desktop .list-menu--inline > li {
+    list-style: none;
+    position: relative;
+}
+
+/* 禁用主题或浏览器可能添加的分隔点 */
+.aseanmagic-menu-desktop .list-menu--inline > li::marker { content: ''; }
+.aseanmagic-menu-desktop .list-menu--inline > li::before { content: none !important; }
+
 /* 宣传条四列布局，仅桌面端显示 */
 @media (min-width: 990px) {
     .am-promo-bar {
