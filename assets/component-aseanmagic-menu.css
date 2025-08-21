@@ -103,7 +103,7 @@
     }
 
     .am-col--right {
-        padding-left: 15px;
+        padding: 12px;
         border-left: 2px solid #9d9d9c;
     }
 }
