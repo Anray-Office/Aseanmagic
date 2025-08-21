@@ -89,7 +89,7 @@
       "name": "custom-footer",
       "settings": {
         "full_width": true,
-        "color_scheme": "",
+        "color_scheme": "scheme-1cf94937-524d-47d5-a9e8-6772cbe4c4a4",
         "background_color": "#000000",
         "footer_logo": "shopify://shop_images/logo_cosmoprof-asia-w.png",
         "logo_alignment": "center",
@@ -102,15 +102,17 @@
         "link_hover_color": "#ffffff",
         "social_heading": "关注我们",
         "show_social_icons": true,
+        "social_icon_size": 30,
+        "custom_social_icon_size": 100,
         "show_newsletter": true,
         "newsletter_heading": "立即订阅展会通讯",
         "newsletter_description": "",
         "newsletter_placeholder": "电邮",
         "newsletter_button_text": "订阅",
         "form_border_color": "#cccccc",
-        "button_background": "#C02026",
+        "button_background": "#c02026",
         "button_text_color": "#ffffff",
-        "button_background_hover": "#A01B20",
+        "button_background_hover": "#a01b20",
         "padding_top": 40,
         "padding_bottom": 40
       }
