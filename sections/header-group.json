@@ -33,7 +33,7 @@
         "padding_bottom": 0
       }
     },
-    "aseanmagic_header_promo_whPjd7": {
+    "aseanmagic_header_promo": {
       "type": "Aseanmagic-header-promo",
       "blocks": {
         "left_logo_H3KQxD": {
@@ -99,19 +99,19 @@
         "full_width": false
       }
     },
-    "aseanmagic_header_nav_k3yNWC": {
+    "aseanmagic_header_nav": {
       "type": "Aseanmagic-header-nav",
       "name": "custom-header-nav",
       "settings": {
         "menu": "main-menu",
-        "menu_color_scheme": "",
+        "menu_color_scheme": "scheme-1",
         "full_width": true
       }
     }
   },
   "order": [
     "header",
-    "aseanmagic_header_promo_whPjd7",
-    "aseanmagic_header_nav_k3yNWC"
+    "aseanmagic_header_promo",
+    "aseanmagic_header_nav"
   ]
 }
