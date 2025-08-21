@@ -13,7 +13,9 @@
   "sections": {
     "header": {
       "type": "header",
-      "custom_css": [],
+      "custom_css": [
+        "@media screen and (min-width: 990px){.header__inline-menu {display: none; }}"
+      ],
       "settings": {
         "logo_position": "top-center",
         "mobile_logo_position": "center",
