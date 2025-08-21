@@ -1,169 +1,389 @@
-.aseanmagic-menu-desktop {
-  width: 100%;
-}
-
-.aseanmagic-menu-desktop .list-menu--inline {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  flex-wrap: nowrap;
-}
-
-.aseanmagic-menu-item {
-  position: relative;
-}
-
 .aseanmagic-menu {
-  position: relative;
-}
-
-.aseanmagic-menu summary {
-  padding: 15px;
-  position: relative;
-  font-weight: 600;
-  display: flex;
-  align-items: center;
-}
-
-.aseanmagic-menu summary::marker {
-  display: none;
-}
-
-.aseanmagic-menu summary::-webkit-details-marker {
-  display: none;
+    position: relative;
 }
 
 .aseanmagic-menu__content {
-  position: absolute;
-  z-index: 100;
-  left: 0;
-  background-color: #fff;
-  min-width: 200px;
-  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
-  border-radius: 0 0 8px 8px;
-  padding: 10px 0;
-  transform: translateY(10px);
-  opacity: 0;
-  visibility: hidden;
-  transition: all 0.3s ease;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    min-width: 10rem;
+    max-width: 1000px;
+    background: #fff;
+    /* border: 1px solid #cccccc; */
+    /* border-right: none; */
+    /* box-shadow: 0 10px 28px rgba(0, 0, 0, 0.18); */
+    z-index: 30;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(10px);
+    transition: all 0.2s ease;
+    will-change: transform, opacity;
 }
 
 .aseanmagic-menu[open] .aseanmagic-menu__content {
-  transform: translateY(0);
-  opacity: 1;
-  visibility: visible;
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
 }
 
+/* 悬停顶级菜单项即显示二级菜单（桌面端交互） */
+.aseanmagic-menu:hover>.aseanmagic-menu__content {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+@media (min-width: 990px) {
+    .aseanmagic-menu-desktop summary.header__menu-item {
+        min-width: 12rem;
+        max-width: 18rem;
+        /* 控制宽度范围 */
+        justify-content: center;
+    }
+
+    .aseanmagic-menu-desktop .header__menu-item span {
+        font-size: 18px;
+        /* 调整一级菜单字体大小 */
+    }
+}
+
+.header__menu-item .icon-caret {
+    right: 1.8rem;
+}
+
+/* 悬停展开：二级菜单项逐个缓慢出现 */
+/* 初始为向右偏移且透明，展开时按序从右向左进入 */
+.aseanmagic-menu__content .aseanmagic-menu__item {
+    opacity: 0;
+    transform: translateX(15px);
+}
+
+@keyframes amFadeInLeft {
+    from {
+        opacity: 0;
+        transform: translateX(15px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+.aseanmagic-menu:hover>.aseanmagic-menu__content .aseanmagic-menu__item,
+.aseanmagic-menu[open]>.aseanmagic-menu__content .aseanmagic-menu__item {
+    animation-name: amFadeInLeft;
+    animation-duration: 220ms;
+    animation-timing-function: ease;
+    animation-fill-mode: forwards;
+}
+
+/* Stagger 延时（前 16 项，按需可继续补充） */
+.aseanmagic-menu__content .aseanmagic-menu__item:nth-child(1) {
+    animation-delay: 0ms;
+    animation-duration: 2000ms;
+}
+
+.aseanmagic-menu__content .aseanmagic-menu__item:nth-child(2) {
+    animation-delay: 50ms;
+    animation-duration: 2200ms;
+}
+
+.aseanmagic-menu__content .aseanmagic-menu__item:nth-child(3) {
+    animation-delay: 1000ms;
+    animation-duration: 2400ms;
+}
+
+.aseanmagic-menu__content .aseanmagic-menu__item:nth-child(4) {
+    animation-delay: 1500ms;
+    animation-duration: 2600ms;
+}
+
+.aseanmagic-menu__content .aseanmagic-menu__item:nth-child(5) {
+    animation-delay: 2000ms;
+    animation-duration: 280ms;
+}
+
+.aseanmagic-menu__content .aseanmagic-menu__item:nth-child(6) {
+    animation-delay: 2500ms;
+    animation-duration: 300ms;
+}
+
+.aseanmagic-menu__content .aseanmagic-menu__item:nth-child(7) {
+    animation-delay: 3000ms;
+    animation-duration: 320ms;
+}
+
+.aseanmagic-menu__content .aseanmagic-menu__item:nth-child(8) {
+    animation-delay: 3500ms;
+    animation-duration: 3400ms;
+}
+
+.aseanmagic-menu__content .aseanmagic-menu__item:nth-child(9) {
+    animation-delay: 4000ms;
+    animation-duration: 360ms;
+}
+
+.aseanmagic-menu__content .aseanmagic-menu__item:nth-child(10) {
+    animation-delay: 4500ms;
+    animation-duration: 380ms;
+}
+
+.aseanmagic-menu__content .aseanmagic-menu__item:nth-child(11) {
+    animation-delay: 5000ms;
+    animation-duration: 400ms;
+}
+
+.aseanmagic-menu__content .aseanmagic-menu__item:nth-child(12) {
+    animation-delay: 5500ms;
+    animation-duration: 420ms;
+}
+
+.aseanmagic-menu__content .aseanmagic-menu__item:nth-child(13) {
+    animation-delay: 6000ms;
+    animation-duration: 440ms;
+}
+
+.aseanmagic-menu__content .aseanmagic-menu__item:nth-child(14) {
+    animation-delay: 6500ms;
+    animation-duration: 460ms;
+}
+
+.aseanmagic-menu__content .aseanmagic-menu__item:nth-child(15) {
+    animation-delay: 7000ms;
+    animation-duration: 480ms;
+}
+
+.aseanmagic-menu__content .aseanmagic-menu__item:nth-child(16) {
+    animation-delay: 7500ms;
+    animation-duration: 500ms;
+}
+
+/* 二级菜单列表：单列垂直列表 */
 .aseanmagic-menu__list {
-  display: block;
-  padding: 0;
-  margin: 0;
-  list-style: none;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    width: auto;
+    min-width: 15rem;
+    max-width: 1000px;
 }
 
-.aseanmagic-menu__item-level-2 {
-  position: relative;
-  padding: 0;
-  margin: 0;
+.aseanmagic-menu__item {
+    position: relative;
 }
 
-.aseanmagic-menu__link {
-  display: block;
-  color: #333;
-  text-decoration: none;
-  padding: 10px 15px;
-  transition: background-color 0.3s;
-  white-space: nowrap;
+/* 二级菜单链接样式：默认黑字，无下划线，悬停红底白字 */
+.aseanmagic-menu__link,
+.aseanmagic-submenu__link {
+    display: block;
+    padding: 12px 16px;
+    color: #111;
+    text-decoration: none;
+    line-height: 1.4;
+    transition: background-color 0.52s ease, color 0.52s ease;
 }
 
-.aseanmagic-menu__link:hover {
-  background-color: #f6f6f6;
-  color: #c83232;
+.aseanmagic-menu__link:hover,
+.aseanmagic-submenu__link:hover {
+    background-color: #C32F26;
+    color: #fff;
+    text-decoration: none;
 }
 
-.aseanmagic-menu__link--level-2 {
-  font-weight: 500;
-  font-size: 14px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.aseanmagic-menu__link--level-3 {
-  font-size: 13px;
-}
-
-.aseanmagic-menu__link--active {
-  color: #c83232;
-  font-weight: 600;
-}
-
-.aseanmagic-submenu-indicator {
-  margin-left: 8px;
-  font-size: 16px;
-  font-weight: bold;
-}
-
-/* 三级菜单样式 */
+/* 三级菜单容器：在二级菜单右侧展开 */
 .aseanmagic-submenu {
-  position: absolute;
-  top: 0;
-  left: 100%;
-  background-color: #fff;
-  min-width: 200px;
-  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
-  border-radius: 0 8px 8px 0;
-  opacity: 0;
-  visibility: hidden;
-  transform: translateX(10px);
-  transition: all 0.3s ease;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    position: absolute;
+    top: 0;
+    left: calc(100% + 0px);
+    /* 右侧留出 8px 间距 */
+    min-width: 15rem;
+    max-width: 1000px;
+    background: #fff;
+    /* border: 1px solid #cccccc; */
+    /* box-shadow: 0 10px 28px rgba(0, 0, 0, 0.18); */
+    opacity: 0;
+    visibility: hidden;
+    transform: translateX(10px);
+    transition: all 0.2s ease;
+    z-index: 40;
+    will-change: transform, opacity;
 }
 
-.aseanmagic-menu__item-level-2:hover .aseanmagic-submenu {
-  opacity: 1;
-  visibility: visible;
-  transform: translateX(0);
+/* 悬停二级项时显示右侧的三级菜单 */
+.aseanmagic-menu__item:hover>.aseanmagic-submenu {
+    opacity: 1;
+    visibility: visible;
+    transform: translateX(0);
 }
 
-.aseanmagic-submenu__list {
-  padding: 10px 0;
-  margin: 0;
-  list-style: none;
+/* 三级菜单逐项出现动画 */
+.aseanmagic-submenu li {
+    opacity: 0;
+    transform: translateX(12px);
 }
 
-/* 主要导航菜单样式 - 匹配图片中的样式 */
-.list-menu__item {
-  font-size: 16px;
-  color: #333;
+.aseanmagic-menu__item:hover>.aseanmagic-submenu li {
+    animation-name: amFadeInLeft;
+    animation-duration: 200ms;
+    animation-timing-function: ease;
+    animation-fill-mode: forwards;
+}
+
+/* Stagger 第三级（前 12 项）*/
+.aseanmagic-menu__item:hover>.aseanmagic-submenu li:nth-child(1) {
+    animation-delay: 0ms;
+}
+
+.aseanmagic-menu__item:hover>.aseanmagic-submenu li:nth-child(2) {
+    animation-delay: 40ms;
+}
+
+.aseanmagic-menu__item:hover>.aseanmagic-submenu li:nth-child(3) {
+    animation-delay: 80ms;
+}
+
+.aseanmagic-menu__item:hover>.aseanmagic-submenu li:nth-child(4) {
+    animation-delay: 120ms;
+}
+
+.aseanmagic-menu__item:hover>.aseanmagic-submenu li:nth-child(5) {
+    animation-delay: 160ms;
+}
+
+.aseanmagic-menu__item:hover>.aseanmagic-submenu li:nth-child(6) {
+    animation-delay: 200ms;
+}
+
+.aseanmagic-menu__item:hover>.aseanmagic-submenu li:nth-child(7) {
+    animation-delay: 240ms;
+}
+
+.aseanmagic-menu__item:hover>.aseanmagic-submenu li:nth-child(8) {
+    animation-delay: 280ms;
+}
+
+.aseanmagic-menu__item:hover>.aseanmagic-submenu li:nth-child(9) {
+    animation-delay: 320ms;
+}
+
+.aseanmagic-menu__item:hover>.aseanmagic-submenu li:nth-child(10) {
+    animation-delay: 360ms;
+}
+
+.aseanmagic-menu__item:hover>.aseanmagic-submenu li:nth-child(11) {
+    animation-delay: 400ms;
+}
+
+.aseanmagic-menu__item:hover>.aseanmagic-submenu li:nth-child(12) {
+    animation-delay: 440ms;
+}
+
+/* 二级标题（level-2）稍微加粗，字号略大以匹配视觉层级 */
+.aseanmagic-menu__link--level-2 {
+    font-weight: 700;
+}
+
+/* 移除所有下划线，确保任何状态都不显示下划线 */
+.aseanmagic-menu__link:link,
+.aseanmagic-menu__link:visited,
+.aseanmagic-menu__link:hover,
+.aseanmagic-menu__link:active,
+.aseanmagic-submenu__link:link,
+.aseanmagic-submenu__link:visited,
+.aseanmagic-submenu__link:hover,
+.aseanmagic-submenu__link:active {
+    text-decoration: none;
+}
+
+.list-menu {
+    gap: 15px;
+}
+
+/* 顶级菜单（summary 与无子项的 a）默认黑色，悬停红底白字，且无下划线 */
+.aseanmagic-menu-desktop .header__menu-item {
+    color: #111;
+    text-decoration: none;
+    transition: background-color 0.25s ease, color 0.25s ease;
+}
+
+.aseanmagic-menu-desktop .header__menu-item span {
+    text-decoration: none;
+}
+
+.aseanmagic-menu-desktop .header__menu-item:hover,
+.aseanmagic-menu-desktop .header__menu-item:focus {
+    background-color: #C32F26;
+    color: #fff;
+    text-decoration: none;
+    transition: background-color 0.18s ease, color 0.18s ease;
+}
+
+.aseanmagic-menu-desktop a.header__menu-item:hover,
+.aseanmagic-menu-desktop a.header__menu-item:focus {
+    background-color: #C32F26;
+    color: #fff !important;
+    /* 覆盖 .link--text:hover */
+}
+
+.aseanmagic-menu-desktop a.header__menu-item:hover span,
+.aseanmagic-menu-desktop a.header__menu-item:focus span,
+.aseanmagic-menu-desktop .header__menu-item:hover .header__active-menu-item,
+.aseanmagic-menu-desktop .header__menu-item:focus .header__active-menu-item {
+    color: #fff !important;
+    /* 覆盖 .header__active-menu-item 默认色 */
+}
+
+.aseanmagic-menu-desktop .header__menu-item:hover span,
+.aseanmagic-menu-desktop .header__menu-item:focus span {
+    text-decoration: none !important;
+}
+
+/* 删除 header 链接类在该区域内的任何下划线装饰 */
+.aseanmagic-menu-desktop .link,
+.aseanmagic-menu-desktop .link:link,
+.aseanmagic-menu-desktop .link:visited,
+.aseanmagic-menu-desktop .link:hover,
+.aseanmagic-menu-desktop .link:active {
+    text-decoration: none;
+}
+
+/* 顶级下拉箭头旋转与变白（基于 currentColor 的 SVG） */
+.aseanmagic-menu>summary svg {
+    transition: transform 0.2s ease, color 0.2s ease;
+    margin-left: 6px;
+}
+
+.aseanmagic-menu:hover>summary,
+.aseanmagic-menu[open]>summary {
+    color: #fff;
+    background-color: #C32F26;
+    transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.aseanmagic-menu:hover>summary span,
+.aseanmagic-menu[open]>summary span {
+    text-decoration: none !important;
+}
+
+.aseanmagic-menu:hover>summary svg,
+.aseanmagic-menu[open]>summary svg {
+    transform: rotate(180deg);
+}
+
+/* 强力覆盖 Dawn 内置的下划线规则 */
+.aseanmagic-menu-desktop details[open]>.header__menu-item,
+.aseanmagic-menu-desktop details[open]>.header__menu-item span,
+.aseanmagic-menu-desktop .header__menu-item:hover span {
+    text-decoration: none !important;
 }
 
 /* 确保在手机端不显示 */
 @media screen and (max-width: 989px) {
-  .aseanmagic-menu-desktop {
-    display: none;
-  }
-}
-
-/* 匹配图片中的红色背景主菜单 */
-.header__menu-item {
-  color: #fff;
-  background-color: #c83232;
-  border-radius: 0;
-  padding: 15px 20px;
-  margin: 0;
-}
-
-.header__menu-item:hover {
-  background-color: #a52929;
-}
-
-/* 适配图片中的按钮样式 */
-.header__menu-item.link--text {
-  color: #fff;
-}
-
-/* 标记当前活动项 */
-.header__active-menu-item {
-  text-decoration: underline;
-  font-weight: bold;
+    .aseanmagic-menu-desktop {
+        display: none;
+    }
 }

@@ -8,7 +8,7 @@
 <nav class="header__inline-menu aseanmagic-menu-desktop">
   <ul class="list-menu list-menu--inline" role="list">
     {%- for link in section.settings.menu.links -%}
-      <li class="aseanmagic-menu-item">
+      <li>
         {%- if link.links != blank -%}
           <header-menu>
             <details id="Details-HeaderMenu-{{ forloop.index }}" class="aseanmagic-menu">
@@ -27,15 +27,12 @@
               </summary>
               <div
                 id="AseanmagicMenu-Content-{{ forloop.index }}"
-                class="aseanmagic-menu__content color-{{ section.settings.menu_color_scheme }} gradient motion-reduce"
+                class="aseanmagic-menu__content color-{{ section.settings.menu_color_scheme }} gradient motion-reduce global-settings-popup"
                 tabindex="-1"
               >
-                <ul
-                  class="aseanmagic-menu__list"
-                  role="list"
-                >
+                <ul class="aseanmagic-menu__list" role="list">
                   {%- for childlink in link.links -%}
-                    <li class="aseanmagic-menu__item-level-2{% if childlink.links != blank %} has-submenu{% endif %}">
+                    <li class="aseanmagic-menu__item">
                       <a
                         id="HeaderMenu-{{ link.handle }}-{{ childlink.handle }}"
                         href="{{ childlink.url }}"
@@ -45,29 +42,24 @@
                         {% endif %}
                       >
                         {{ childlink.title | escape }}
-                        {%- if childlink.links != blank -%}
-                          <span class="aseanmagic-submenu-indicator">›</span>
-                        {%- endif -%}
                       </a>
                       {%- if childlink.links != blank -%}
-                        <div class="aseanmagic-submenu">
-                          <ul class="aseanmagic-submenu__list" role="list">
-                            {%- for grandchildlink in childlink.links -%}
-                              <li>
-                                <a
-                                  id="HeaderMenu-{{ link.handle }}-{{ childlink.handle }}-{{ grandchildlink.handle }}"
-                                  href="{{ grandchildlink.url }}"
-                                  class="aseanmagic-menu__link aseanmagic-menu__link--level-3 link{% if grandchildlink.current %} aseanmagic-menu__link--active{% endif %}"
-                                  {% if grandchildlink.current %}
-                                    aria-current="page"
-                                  {% endif %}
-                                >
-                                  {{ grandchildlink.title | escape }}
-                                </a>
-                              </li>
-                            {%- endfor -%}
-                          </ul>
-                        </div>
+                        <ul class="aseanmagic-submenu" role="list">
+                          {%- for grandchildlink in childlink.links -%}
+                            <li>
+                              <a
+                                id="HeaderMenu-{{ link.handle }}-{{ childlink.handle }}-{{ grandchildlink.handle }}"
+                                href="{{ grandchildlink.url }}"
+                                class="aseanmagic-submenu__link link{% if grandchildlink.current %} aseanmagic-menu__link--active{% endif %}"
+                                {% if grandchildlink.current %}
+                                  aria-current="page"
+                                {% endif %}
+                              >
+                                {{ grandchildlink.title | escape }}
+                              </a>
+                            </li>
+                          {%- endfor -%}
+                        </ul>
                       {%- endif -%}
                     </li>
                   {%- endfor -%}
@@ -97,3 +89,36 @@
     {%- endfor -%}
   </ul>
 </nav>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    var mq = window.matchMedia('(min-width: 990px)');
+    var isDesktop = function () { return mq.matches; };
+
+    document.querySelectorAll('.aseanmagic-menu-desktop header-menu details.aseanmagic-menu').forEach(function (details) {
+      var summary = details.querySelector('summary');
+      var hoverTimer;
+
+      var openOnHover = function () {
+        if (!isDesktop()) return;
+        clearTimeout(hoverTimer);
+        details.setAttribute('open', '');
+      };
+
+      var closeOnLeave = function () {
+        if (!isDesktop()) return;
+        hoverTimer = setTimeout(function(){ details.removeAttribute('open'); }, 120);
+      };
+
+      details.addEventListener('mouseenter', openOnHover);
+      details.addEventListener('mouseleave', closeOnLeave);
+
+      if (summary) {
+        summary.addEventListener('click', function (e) {
+          if (!isDesktop()) return; // 移动端保留点击展开
+          e.preventDefault(); // 桌面端阻止点击切换，用悬停控制
+        });
+      }
+    });
+  });
+</script>
