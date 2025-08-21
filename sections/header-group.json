@@ -58,7 +58,6 @@
         "right_group_YkxdR9": {
           "type": "right_group",
           "settings": {
-            "group": "r1",
             "title": "标题",
             "subtitle": "副标题",
             "title_size": 25,
@@ -72,7 +71,6 @@
         "right_group_fYpiTD": {
           "type": "right_group",
           "settings": {
-            "group": "r1",
             "title": "标题",
             "subtitle": "副标题",
             "title_size": 25,

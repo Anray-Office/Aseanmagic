@@ -38,8 +38,11 @@
       </div>
 
       <div class="am-col am-col--right am-col--r1">
+        {% assign rg_index = 0 %}
         {% for block in section.blocks %}
-          {% if block.type == 'right_group' and block.settings.group == 'r1' %}
+          {% if block.type == 'right_group' %}
+            {% assign rg_index = rg_index | plus: 1 %}
+            {% if rg_index == 1 %}
             {% assign title_size = block.settings.title_size | default: 25 %}
             {% assign title_weight = block.settings.title_weight | default: '800' %}
             {% assign subtitle_size = block.settings.subtitle_size | default: 22 %}
@@ -66,13 +69,17 @@
                 </div>
               {% endif %}
             </div>
+            {% endif %}
           {% endif %}
         {% endfor %}
       </div>
 
       <div class="am-col am-col--right am-col--r2">
+        {% assign rg_index_2 = 0 %}
         {% for block in section.blocks %}
-          {% if block.type == 'right_group' and block.settings.group == 'r2' %}
+          {% if block.type == 'right_group' %}
+            {% assign rg_index_2 = rg_index_2 | plus: 1 %}
+            {% if rg_index_2 == 2 %}
             {% assign title_size = block.settings.title_size | default: 25 %}
             {% assign title_weight = block.settings.title_weight | default: '800' %}
             {% assign subtitle_size = block.settings.subtitle_size | default: 22 %}
@@ -99,6 +106,7 @@
                 </div>
               {% endif %}
             </div>
+            {% endif %}
           {% endif %}
         {% endfor %}
       </div>
@@ -157,10 +165,6 @@
       "type": "right_group",
       "name": "Right: Group",
       "settings": [
-        { "type": "select", "id": "group", "label": "Position", "default": "r1", "options": [
-          {"value":"r1","label":"Right group 1"},
-          {"value":"r2","label":"Right group 2"}
-        ]},
         { "type": "text", "id": "title", "label": "Title", "default": "标题" },
         { "type": "text", "id": "subtitle", "label": "Subtitle", "default": "副标题" },
         { "type": "range", "id": "title_size", "min": 12, "max": 56, "step": 1, "unit": "px", "label": "Title size", "default": 25 },
