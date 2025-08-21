@@ -25,14 +25,19 @@
     margin: 0;
 }
 
-.aseanmagic-menu-desktop .list-menu--inline > li {
+.aseanmagic-menu-desktop .list-menu--inline>li {
     list-style: none;
     position: relative;
 }
 
 /* 禁用主题或浏览器可能添加的分隔点 */
-.aseanmagic-menu-desktop .list-menu--inline > li::marker { content: ''; }
-.aseanmagic-menu-desktop .list-menu--inline > li::before { content: none !important; }
+.aseanmagic-menu-desktop .list-menu--inline>li::marker {
+    content: '';
+}
+
+.aseanmagic-menu-desktop .list-menu--inline>li::before {
+    content: none !important;
+}
 
 /* 宣传条四列布局，仅桌面端显示 */
 @media (min-width: 990px) {
@@ -146,21 +151,21 @@
 }
 
 @media (min-width: 990px) {
-    .aseanmagic-menu-desktop summary.header__menu-item {
-        min-width: 12rem;
+
+
+    .aseanmagic-menu-desktop summary.header__menu-item,
+    .aseanmagic-menu-desktop a.header__menu-item {
+        min-width: 10rem;
         max-width: 18rem;
         /* 控制宽度范围 */
         justify-content: center;
+        text-align: center;
     }
 
     .aseanmagic-menu-desktop .header__menu-item span {
         font-size: 18px;
         /* 调整一级菜单字体大小 */
     }
-}
-
-.header__menu-item .icon-caret {
-    right: 1.8rem;
 }
 
 /* 悬停展开：二级菜单项逐个缓慢出现 */
