@@ -35,6 +35,14 @@
       }
     }
   {%- endif -%}
+  
+  {%- if section.settings.menu_type_desktop == "aseanmagic" -%}
+    @media screen and (max-width: 989px) {
+      .aseanmagic-menu-desktop {
+        display: none;
+      }
+    }
+  {%- endif -%}
 
   .menu-drawer-container {
     display: flex;
@@ -184,6 +192,8 @@
       if section.settings.menu != blank
         if section.settings.menu_type_desktop == 'dropdown'
           render 'header-dropdown-menu'
+        elsif section.settings.menu_type_desktop == 'aseanmagic'
+          render 'Aseanmagic-header-menu'
         elsif section.settings.menu_type_desktop != 'drawer'
           render 'header-mega-menu'
         endif
@@ -534,6 +544,10 @@
         {
           "value": "drawer",
           "label": "t:sections.header.settings.menu_type_desktop.options__3.label"
+        },
+        {
+          "value": "aseanmagic",
+          "label": "Aseanmagic菜单"
         }
       ],
       "default": "dropdown",
