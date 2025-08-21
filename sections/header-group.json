@@ -47,37 +47,41 @@
         "center_line_8r3X8J": {
           "type": "center_line",
           "settings": {
-            "text": "",
-            "font_size": 24,
+            "text": "<p>第28届<br/>中国香港</p>",
+            "font_size": 25,
             "font_weight": "700",
             "letter_spacing": 0,
             "margin_y": 4,
             "text_color": ""
           }
         },
-        "right_group_YkxdR9": {
+        "right_group_gW8Bz7": {
           "type": "right_group",
           "settings": {
-            "title": "标题",
-            "subtitle": "副标题",
-            "title_size": 25,
+            "title": "2025年11月11-13日",
+            "subtitle": "亞洲國際博覽館",
+            "title_size": 21,
             "title_weight": "800",
             "subtitle_size": 22,
             "subtitle_weight": "600",
+            "logo_1": "shopify://shop_images/CPKA_Machinery_nero_rgb-2048x240.jpg",
             "logo_1_alt": "",
+            "logo_2": "shopify://shop_images/CPKA_Machinery_nero_rgb-2048x240.jpg",
             "logo_2_alt": ""
           }
         },
-        "right_group_fYpiTD": {
+        "right_group_bLgJwy": {
           "type": "right_group",
           "settings": {
-            "title": "标题",
-            "subtitle": "副标题",
-            "title_size": 25,
+            "title": "2025年11月11-13日",
+            "subtitle": "亞洲國際博覽館",
+            "title_size": 21,
             "title_weight": "800",
             "subtitle_size": 22,
             "subtitle_weight": "600",
+            "logo_1": "shopify://shop_images/CPKA_Machinery_nero_rgb-2048x240.jpg",
             "logo_1_alt": "",
+            "logo_2": "shopify://shop_images/CPKA_Machinery_nero_rgb-2048x240.jpg",
             "logo_2_alt": ""
           }
         }
@@ -85,8 +89,8 @@
       "block_order": [
         "left_logo_H3KQxD",
         "center_line_8r3X8J",
-        "right_group_YkxdR9",
-        "right_group_fYpiTD"
+        "right_group_gW8Bz7",
+        "right_group_bLgJwy"
       ],
       "name": "custom-header-promo",
       "settings": {
