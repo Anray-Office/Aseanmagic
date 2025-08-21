@@ -25,7 +25,7 @@
   }
 
   .contact-info__title {
-    margin-bottom: 1.5rem;
+    margin: 1.5rem;
     font-size: {{ section.settings.title_font_size }}px;
     font-weight: {{ section.settings.title_font_weight }};
     color: {{ section.settings.title_color }};
@@ -38,11 +38,12 @@
     gap: 2rem;
     justify-content: {{ section.settings.content_alignment }};
     margin-bottom: 1.5rem;
+    flex-direction: {{ section.settings.layout_direction }};
   }
 
   .contact-info__item {
     max-width: 100%;
-    flex: 1 1 300px;
+    flex: 1 1 {% if section.settings.layout_direction == 'row' %}300px{% else %}100%{% endif %};
   }
 
   .contact-info__location {
@@ -310,6 +311,22 @@
     {
       "type": "header",
       "content": "内容设置"
+    },
+    {
+      "type": "select",
+      "id": "layout_direction",
+      "options": [
+        {
+          "value": "row",
+          "label": "横向排列"
+        },
+        {
+          "value": "column",
+          "label": "纵向排列"
+        }
+      ],
+      "default": "row",
+      "label": "排列方向"
     },
     {
       "type": "select",
