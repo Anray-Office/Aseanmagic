@@ -100,17 +100,20 @@
   .footer-social-icons {
     display: flex;
     flex-wrap: wrap;
+    align-items: center;
     margin-bottom: 20px;
   }
 
   .footer-social-icon {
     margin-right: 15px;
-    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
-
-  .footer-social-icon img {
-    width: 30px;
-    height: 30px;
+  
+  .footer-social-icon svg {
+    width: {{ section.settings.social_icon_size }}px;
+    height: {{ section.settings.social_icon_size }}px;
   }
 
   .footer-newsletter {
@@ -234,11 +237,11 @@
                 {%- if block.type == 'social_icon' and block.settings.enabled -%}
                   <a href="{{ block.settings.link | default: '#' }}" class="footer-social-icon" {{ block.shopify_attributes }}>
                     {%- if block.settings.custom_icon != blank -%}
-                      {{ block.settings.custom_icon | image_url: width: 60 | image_tag:
+                      {{ block.settings.custom_icon | image_url: width: section.settings.custom_social_icon_size | image_tag:
                         alt: block.settings.custom_icon.alt | default: block.settings.platform,
                         loading: 'lazy',
-                        width: 30,
-                        height: 30
+                        width: section.settings.custom_social_icon_size,
+                        height: section.settings.custom_social_icon_size
                       }}
                     {%- else -%}
                       {%- case block.settings.platform -%}
@@ -442,6 +445,26 @@
       "id": "show_social_icons",
       "label": "显示社交媒体图标",
       "default": true
+    },
+    {
+      "type": "range",
+      "id": "social_icon_size",
+      "min": 20,
+      "max": 150,
+      "step":10,
+      "unit": "px",
+      "label": "自定义社交媒体图标尺寸",
+      "default": 50
+    },
+    {
+      "type": "range",
+      "id": "custom_social_icon_size",
+      "min": 20,
+      "max": 150,
+      "step":10,
+      "unit": "px",
+      "label": "自定义社交媒体图标尺寸",
+      "default": 50
     },
     {
       "type": "header",
