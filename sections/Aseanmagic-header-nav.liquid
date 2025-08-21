@@ -1,6 +1,10 @@
 {{ 'component-aseanmagic-menu.css' | asset_url | stylesheet_tag }}
 
-<div class="isolate{% unless section.settings.full_width %} page-width{% endunless %}">
+{%- style -%}
+  .section-{{ section.id }} .isolate{ z-index: 5; }
+{%- endstyle -%}
+
+<div class="section-{{ section.id }} isolate{% unless section.settings.full_width %} page-width{% endunless %}">
   <nav class="header__inline-menu aseanmagic-menu-desktop">
     <ul class="list-menu list-menu--inline" role="list">
       {%- for link in section.settings.menu.links -%}
