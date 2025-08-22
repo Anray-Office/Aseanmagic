@@ -59,8 +59,7 @@
         "slide_RVDx8H": {
           "type": "slide",
           "settings": {
-            "image": "shopify://shop_images/aseanmagic-pc-slide1.jpg",
-            "mobile_image": "shopify://shop_images/aseanmagic-moble-slide1.jpg",
+            "image": "shopify://shop_images/16_9.jpg",
             "image_overlay_opacity": 0,
             "heading": "",
             "heading_size": "h1",
@@ -78,8 +77,7 @@
         "slide_q96Q96": {
           "type": "slide",
           "settings": {
-            "image": "shopify://shop_images/aseanmagic-pc-slide4.jpg",
-            "mobile_image": "shopify://shop_images/aseanmagic-moble-slide2.jpg",
+            "image": "shopify://shop_images/2025__page-0014.jpg",
             "image_overlay_opacity": 0,
             "heading": "",
             "heading_size": "h1",
@@ -97,8 +95,7 @@
         "slide_VFq6JL": {
           "type": "slide",
           "settings": {
-            "image": "shopify://shop_images/aseanmagic-pc-slide2.jpg",
-            "mobile_image": "shopify://shop_images/aseanmagic-moble-slide1.jpg",
+            "image": "shopify://shop_images/2025__page-0013.jpg",
             "image_overlay_opacity": 0,
             "heading": "",
             "heading_size": "h1",
@@ -177,7 +174,6 @@
         "media_type": "video",
         "video": "shopify://files/videos/48_1755713186.mp4",
         "video_url": "",
-        "cover_image": "shopify://shop_images/2025__page-0014_b92afea6-d959-4217-973d-5caf044eb602.jpg",
         "description": "法规不过是白色",
         "enable_video_looping": true,
         "height": "adapt",
