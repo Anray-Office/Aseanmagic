@@ -175,8 +175,8 @@
       "name": "custom-image-text",
       "settings": {
         "media_type": "external_video",
-        "video_url": "https://youtu.be/9NVtdkkkUm8?si=t_fxpKEzthojnN95",
-        "cover_image": "shopify://shop_images/Screenshot_2025-08-01_at_10.25.40.png",
+        "video": "shopify://files/videos/48_1755713186.mp4",
+        "video_url": "",
         "description": "法规不过是白色",
         "enable_video_looping": true,
         "height": "adapt",
