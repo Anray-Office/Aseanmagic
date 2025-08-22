@@ -33,7 +33,7 @@
                   >
                     <ul class="aseanmagic-menu__list" role="list">
                       {%- for childlink in link.links -%}
-                        <li class="aseanmagic-menu__item">
+                        <li class="aseanmagic-menu__item{% if childlink.links != blank %} has-submenu{% endif %}">
                           <a
                             id="HeaderMenu-{{ link.handle }}-{{ childlink.handle }}"
                             href="{{ childlink.url }}"
