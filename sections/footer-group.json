@@ -44,6 +44,7 @@
         },
         "social_icon_TjneVd": {
           "type": "social_icon",
+          "disabled": true,
           "settings": {
             "enabled": true,
             "platform": "facebook",
@@ -52,6 +53,7 @@
         },
         "social_icon_ii77U7": {
           "type": "social_icon",
+          "disabled": true,
           "settings": {
             "enabled": true,
             "platform": "instagram",
@@ -60,6 +62,7 @@
         },
         "social_icon_CUC3tx": {
           "type": "social_icon",
+          "disabled": true,
           "settings": {
             "enabled": true,
             "platform": "instagram",
