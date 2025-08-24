@@ -307,8 +307,9 @@
               {%- for block in section.blocks -%}
                 {%- if block.type == 'social_icon' and block.settings.enabled -%}
                   <a
-                    href="{{ block.settings.link | default: 'javascript:;' }}"
+                    href="{% if block.settings.custom_icon != blank %}{{ block.settings.custom_icon | image_url: width: 2048 }}{% else %}{{ block.settings.link | default: 'javascript:;' }}{% endif %}"
                     class="footer-social-icon"
+                    {% if block.settings.custom_icon != blank %}download{% endif %}
                     {{ block.shopify_attributes }}
                   >
                     {%- if block.settings.custom_icon != blank -%}
