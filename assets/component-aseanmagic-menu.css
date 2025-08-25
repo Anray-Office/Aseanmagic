@@ -99,7 +99,7 @@
         width: 100%;
         height: auto;
         display: block;
-        filter: grayscale(100%);
+        /* filter: grayscale(100%); */
     }
 
     /* 视觉分隔线 */
