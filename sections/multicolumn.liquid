@@ -13,6 +13,60 @@
       padding-bottom: {{ section.settings.padding_bottom }}px;
     }
   }
+  /* Image preview dialog styles */
+  .multicolumn-card__image-wrapper .media {
+    position: relative;
+  }
+  .multicolumn-image-zoom-btn {
+    background: transparent;
+    border: 0;
+    border-width: 0;
+    padding: 0;
+    margin: 0;
+    position: absolute;
+    inset: 0;
+    z-index: 2;
+    cursor: zoom-in;
+    outline: none;
+    box-shadow: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+  }
+  .multicolumn-image-zoom-btn:focus { outline: none; box-shadow: none; }
+  .multicolumn-image-zoom-btn:focus-visible { outline: none; box-shadow: none; }
+  .multicolumn-image-dialog {
+    border: 0;
+    border-width: 0;
+    padding: 0;
+    background: transparent;
+    max-width: none;
+    outline: none;
+    box-shadow: none;
+    border-radius: 0;
+  }
+  .multicolumn-image-dialog::backdrop {
+    background: rgba(0, 0, 0, 0.6);
+    outline: none;
+  }
+  .multicolumn-image-dialog__inner {
+    width: 100vw;
+    height: 100vh;
+    display: grid;
+    place-items: center;
+    cursor: zoom-out;
+  }
+  .multicolumn-image-dialog__img {
+    max-width: 90vw;
+    max-height: 90vh;
+    width: auto;
+    height: auto;
+    object-fit: contain;
+    background: transparent;
+    box-shadow: none;
+    border: 0;
+    display: block;
+  }
 {%- endstyle -%}
 
 {%- liquid
@@ -115,6 +169,7 @@
                         sizes: sizes,
                         class: 'multicolumn-card__image'
                     }}
+                    <button type="button" class="multicolumn-image-zoom-btn" aria-label="Open image preview" data-dialog-id="multicolumn-dialog-{{ section.id }}" data-fullsrc="{{ block.settings.image | image_url: width: 3200 }}" data-alt="{{ block.settings.image.alt | escape }}"></button>
                   </div>
                 </div>
               {%- endif -%}
@@ -187,6 +242,56 @@
         </a>
       {%- endif -%}
     </div>
+    <dialog id="multicolumn-dialog-{{ section.id }}" class="multicolumn-image-dialog" aria-label="Image preview">
+      <div class="multicolumn-image-dialog__inner">
+        <img class="multicolumn-image-dialog__img" alt="" width="1600" height="1200">
+      </div>
+    </dialog>
+    <script>
+      (function() {
+        var slider = document.getElementById('Slider-{{ section.id }}');
+        var sectionEl = slider ? slider.closest('.multicolumn') || slider : null;
+        var dialog = document.getElementById('multicolumn-dialog-{{ section.id }}');
+        if (!dialog || !sectionEl) return;
+
+        sectionEl.addEventListener('click', function(e) {
+          var closest = e.target && e.target.closest ? e.target.closest('.multicolumn-image-zoom-btn') : null;
+          if (!closest) return;
+          var fullsrc = closest.getAttribute('data-fullsrc');
+          var alt = closest.getAttribute('data-alt') || '';
+          var img = dialog.querySelector('.multicolumn-image-dialog__img');
+          if (img && fullsrc) {
+            img.src = fullsrc;
+            img.alt = alt;
+            if (typeof dialog.showModal === 'function') {
+              dialog.showModal();
+            } else {
+              dialog.setAttribute('open', '');
+            }
+          }
+        });
+
+        dialog.addEventListener('click', function(e) {
+          var imgEl = dialog.querySelector('.multicolumn-image-dialog__img');
+          var clickedInsideImage = imgEl && (e.target === imgEl || (imgEl.contains && imgEl.contains(e.target)));
+          if (!clickedInsideImage) {
+            if (typeof dialog.close === 'function') {
+              dialog.close();
+            } else {
+              dialog.removeAttribute('open');
+            }
+          }
+        });
+
+        document.addEventListener('keydown', function(e) {
+          var isEscape = e.key === 'Escape' || e.key === 'Esc';
+          if (isEscape && (dialog.open || dialog.hasAttribute('open'))) {
+            if (typeof dialog.close === 'function') dialog.close();
+            else dialog.removeAttribute('open');
+          }
+        });
+      })();
+    </script>
   </div>
 </div>
 
