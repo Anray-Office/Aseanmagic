@@ -53,74 +53,6 @@
         "padding_bottom": 52
       }
     },
-    "aseanmagic_stats_counter_kFpkex": {
-      "type": "Aseanmagic-stats-counter",
-      "blocks": {
-        "stat_item_jWEDFW": {
-          "type": "stat_item",
-          "settings": {
-            "title": "2025年",
-            "value": "28",
-            "suffix": "届"
-          }
-        },
-        "stat_item_JzyDyt": {
-          "type": "stat_item",
-          "settings": {
-            "title": "预计参展商",
-            "value": "2,800",
-            "suffix": "+"
-          }
-        },
-        "stat_item_bEdteQ": {
-          "type": "stat_item",
-          "settings": {
-            "title": "预计入场人士",
-            "value": "70,000",
-            "suffix": "+"
-          }
-        },
-        "stat_item_KJQQ8G": {
-          "type": "stat_item",
-          "settings": {
-            "title": "国家及团体展馆",
-            "value": "18",
-            "suffix": "+"
-          }
-        }
-      },
-      "block_order": [
-        "stat_item_jWEDFW",
-        "stat_item_JzyDyt",
-        "stat_item_bEdteQ",
-        "stat_item_KJQQ8G"
-      ],
-      "name": "custom-stats-counter",
-      "settings": {
-        "color_scheme": "",
-        "full_width": false,
-        "horizontal_alignment": "space-between",
-        "items_per_row": 4,
-        "desktop_text_alignment": "left",
-        "mobile_text_alignment": "left",
-        "title_font_size": 25,
-        "title_font_weight": 600,
-        "title_color": "#000000",
-        "divider_width": 80,
-        "divider_thickness": 1,
-        "divider_color": "#c32f26",
-        "animation_duration": 2000,
-        "value_font_size": 46,
-        "value_font_weight": 700,
-        "value_color": "#c32f26",
-        "suffix_font_size": 19,
-        "suffix_font_weight": 600,
-        "suffix_align": "super",
-        "suffix_color": "#c32f26",
-        "padding_top": 40,
-        "padding_bottom": 40
-      }
-    },
     "aseanmagic_slideshow_wHHgaM": {
       "type": "Aseanmagic-slideshow",
       "blocks": {
@@ -228,7 +160,7 @@
           "type": "heading",
           "settings": {
             "heading": "中国·东盟杂技魔术交流活动",
-            "heading_size": "h1"
+            "heading_size": "h2"
           }
         },
         "text_3jJt4T": {
@@ -280,6 +212,74 @@
         "color_scheme": "",
         "padding_top": 36,
         "padding_bottom": 36
+      }
+    },
+    "aseanmagic_stats_counter_kFpkex": {
+      "type": "Aseanmagic-stats-counter",
+      "blocks": {
+        "stat_item_jWEDFW": {
+          "type": "stat_item",
+          "settings": {
+            "title": "2025年",
+            "value": "28",
+            "suffix": "届"
+          }
+        },
+        "stat_item_JzyDyt": {
+          "type": "stat_item",
+          "settings": {
+            "title": "预计参展商",
+            "value": "2,800",
+            "suffix": "+"
+          }
+        },
+        "stat_item_bEdteQ": {
+          "type": "stat_item",
+          "settings": {
+            "title": "预计入场人士",
+            "value": "70,000",
+            "suffix": "+"
+          }
+        },
+        "stat_item_KJQQ8G": {
+          "type": "stat_item",
+          "settings": {
+            "title": "国家及团体展馆",
+            "value": "18",
+            "suffix": "+"
+          }
+        }
+      },
+      "block_order": [
+        "stat_item_jWEDFW",
+        "stat_item_JzyDyt",
+        "stat_item_bEdteQ",
+        "stat_item_KJQQ8G"
+      ],
+      "name": "custom-stats-counter",
+      "settings": {
+        "color_scheme": "",
+        "full_width": false,
+        "horizontal_alignment": "space-between",
+        "items_per_row": 4,
+        "desktop_text_alignment": "left",
+        "mobile_text_alignment": "left",
+        "title_font_size": 25,
+        "title_font_weight": 600,
+        "title_color": "#000000",
+        "divider_width": 80,
+        "divider_thickness": 1,
+        "divider_color": "#c32f26",
+        "animation_duration": 2000,
+        "value_font_size": 46,
+        "value_font_weight": 700,
+        "value_color": "#c32f26",
+        "suffix_font_size": 19,
+        "suffix_font_weight": 600,
+        "suffix_align": "super",
+        "suffix_color": "#c32f26",
+        "padding_top": 40,
+        "padding_bottom": 40
       }
     },
     "multicolumn_DQaTKn": {
