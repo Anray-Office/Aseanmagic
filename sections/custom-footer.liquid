@@ -211,6 +211,12 @@
       justify-content: center;
     }
 
+    .custom-newsletter-container{
+      width:100%;
+      display:flex;
+      justify-content: center;
+    }
+
     .footer-newsletter-form {
       flex-direction: column;
       margin: 0 auto;
@@ -449,7 +455,8 @@
                 <p class="footer-newsletter-description">{{ section.settings.newsletter_description }}</p>
               {%- endif -%}
 
-              {% form 'customer', class: 'footer-newsletter-form' %}
+              <div class="custom-newsletter-container">
+                {% form 'customer', class: 'footer-newsletter-form' %}
                 <input type="hidden" name="contact[tags]" value="newsletter">
                 <input
                   type="email"
@@ -489,6 +496,7 @@
                   </div>
                 {%- endif -%}
               {% endform %}
+              </div>
             </div>
           {%- endif -%}
         </div>
