@@ -104,7 +104,7 @@
 
     /* 视觉分隔线 */
     .am-col--center {
-        padding-left: 15px;
+        padding:0 8px;
     }
 
     .am-col--right {
