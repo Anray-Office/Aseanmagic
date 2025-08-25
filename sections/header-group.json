@@ -60,15 +60,14 @@
         "right_group_gW8Bz7": {
           "type": "right_group",
           "settings": {
-            "title": "2025年11月11-13日",
-            "subtitle": "亞洲國際博覽館",
+            "title": "2025年8月27-30日",
+            "subtitle": "",
             "title_size": 21,
             "title_weight": "800",
             "subtitle_size": 22,
             "subtitle_weight": "600",
-            "logo_1": "shopify://shop_images/CPKA_Machinery_nero_rgb-2048x240.jpg",
+            "logo_1": "shopify://shop_images/16_9.jpg",
             "logo_1_alt": "",
-            "logo_2": "shopify://shop_images/CPKA_Machinery_nero_rgb-2048x240.jpg",
             "logo_2_alt": ""
           }
         },
@@ -76,14 +75,13 @@
           "type": "right_group",
           "settings": {
             "title": "2025年11月11-13日",
-            "subtitle": "亞洲國際博覽館",
+            "subtitle": "",
             "title_size": 21,
             "title_weight": "800",
             "subtitle_size": 22,
             "subtitle_weight": "600",
-            "logo_1": "shopify://shop_images/CPKA_Machinery_nero_rgb-2048x240.jpg",
+            "logo_1": "shopify://shop_images/2025__page-0001.jpg",
             "logo_1_alt": "",
-            "logo_2": "shopify://shop_images/CPKA_Machinery_nero_rgb-2048x240.jpg",
             "logo_2_alt": ""
           }
         }
