@@ -93,6 +93,9 @@
         "social_icon_CUC3tx",
         "social_icon_czFUDx"
       ],
+      "custom_css": [
+        "h4,h3 {text-align: center;}"
+      ],
       "name": "custom-footer",
       "settings": {
         "full_width": true,
