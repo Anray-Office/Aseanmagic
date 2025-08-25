@@ -97,6 +97,25 @@
         "slide_q96Q96": {
           "type": "slide",
           "settings": {
+            "image": "shopify://shop_images/2025__page-0010.jpg",
+            "mobile_image": "shopify://shop_images/b1d51de31033d89992f7bec65f8087a4.png",
+            "image_overlay_opacity": 0,
+            "heading": "",
+            "heading_size": "h1",
+            "subheading": "",
+            "button_label": "",
+            "link": "",
+            "button_style_secondary": false,
+            "show_text_box": false,
+            "box_align": "middle-center",
+            "text_alignment": "center",
+            "text_alignment_mobile": "center",
+            "color_scheme": "scheme-1"
+          }
+        },
+        "slide_b9qfQH": {
+          "type": "slide",
+          "settings": {
             "image": "shopify://shop_images/2025__page-0014.jpg",
             "mobile_image": "shopify://shop_images/moble3.png",
             "image_overlay_opacity": 0,
@@ -117,7 +136,8 @@
       "block_order": [
         "slide_RVDx8H",
         "slide_VFq6JL",
-        "slide_q96Q96"
+        "slide_q96Q96",
+        "slide_b9qfQH"
       ],
       "name": "custom-slideshow",
       "settings": {
