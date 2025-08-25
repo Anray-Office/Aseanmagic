@@ -200,7 +200,7 @@
         "heading_e84MDj": {
           "type": "heading",
           "settings": {
-            "heading": "探索在两个场地举行的四个精彩活动",
+            "heading": "豪华嘉宾阵容",
             "heading_size": "h1"
           }
         }
@@ -221,10 +221,80 @@
     "aseanmagic_particle_image_zf8dGd": {
       "type": "Aseanmagic-particle-image",
       "blocks": {
+        "item_hfGNbh": {
+          "type": "item",
+          "name": "嘉宾阵容",
+          "settings": {
+            "image": "shopify://shop_images/2025__page-0005.jpg",
+            "logo": "shopify://shop_images/logo_2025_8_24__10_17_16.png",
+            "title": "",
+            "title_tag": "h3",
+            "title_size_desktop": 28,
+            "title_size_mobile": 22,
+            "description": "",
+            "button_label": "",
+            "button_link": "",
+            "open_in_new_tab": true,
+            "use_custom_button": true,
+            "custom_text_color": "#ffffff",
+            "custom_bg_color": "#c32f26",
+            "custom_border_color": "#c32f26",
+            "custom_border_width": 2,
+            "custom_hover_text_color": "#121212",
+            "custom_hover_bg_color": "rgba(0,0,0,0)",
+            "custom_hover_border_color": "#c32f26"
+          }
+        },
         "item_7aq8yF": {
           "type": "item",
           "settings": {
-            "image": "shopify://shop_images/2025__page-0003.jpg",
+            "image": "shopify://shop_images/2025__page-0006.jpg",
+            "logo": "shopify://shop_images/logo_2025_8_24__10_17_16.png",
+            "title": "",
+            "title_tag": "h3",
+            "title_size_desktop": 28,
+            "title_size_mobile": 22,
+            "description": "",
+            "button_label": "",
+            "button_link": "",
+            "open_in_new_tab": true,
+            "use_custom_button": true,
+            "custom_text_color": "#ffffff",
+            "custom_bg_color": "#c32f26",
+            "custom_border_color": "#c32f26",
+            "custom_border_width": 2,
+            "custom_hover_text_color": "#121212",
+            "custom_hover_bg_color": "rgba(0,0,0,0)",
+            "custom_hover_border_color": "#c32f26"
+          }
+        },
+        "item_M4HcYj": {
+          "type": "item",
+          "settings": {
+            "image": "shopify://shop_images/2025__page-0007.jpg",
+            "logo": "shopify://shop_images/logo_2025_8_24__10_17_16.png",
+            "title": "",
+            "title_tag": "h3",
+            "title_size_desktop": 28,
+            "title_size_mobile": 22,
+            "description": "",
+            "button_label": "",
+            "button_link": "",
+            "open_in_new_tab": true,
+            "use_custom_button": true,
+            "custom_text_color": "#ffffff",
+            "custom_bg_color": "#c32f26",
+            "custom_border_color": "#c32f26",
+            "custom_border_width": 2,
+            "custom_hover_text_color": "#121212",
+            "custom_hover_bg_color": "rgba(0,0,0,0)",
+            "custom_hover_border_color": "#c32f26"
+          }
+        },
+        "item_3kmahy": {
+          "type": "item",
+          "settings": {
+            "image": "shopify://shop_images/2025__page-0008.jpg",
             "logo": "shopify://shop_images/logo_2025_8_24__10_17_16.png",
             "title": "",
             "title_tag": "h3",
@@ -246,6 +316,7 @@
         },
         "item_dT7gkh": {
           "type": "item",
+          "disabled": true,
           "settings": {
             "image": "shopify://shop_images/DM_20250819055048_007.jpg",
             "logo": "shopify://shop_images/DM_20250819055048_002.png",
@@ -256,52 +327,6 @@
             "description": "<p>描述文本内容，可以添加多行文本</p>",
             "button_label": "查看更多",
             "button_link": "",
-            "open_in_new_tab": true,
-            "use_custom_button": true,
-            "custom_text_color": "#ffffff",
-            "custom_bg_color": "#c32f26",
-            "custom_border_color": "#c32f26",
-            "custom_border_width": 2,
-            "custom_hover_text_color": "#121212",
-            "custom_hover_bg_color": "rgba(0,0,0,0)",
-            "custom_hover_border_color": "#c32f26"
-          }
-        },
-        "item_kFNXKC": {
-          "type": "item",
-          "settings": {
-            "image": "shopify://shop_images/DM_20250819055048_007.jpg",
-            "logo": "shopify://shop_images/DM_20250819055048_002.png",
-            "title": "标题文本",
-            "title_tag": "h3",
-            "title_size_desktop": 28,
-            "title_size_mobile": 22,
-            "description": "<p>描述文本内容，可以添加多行文本</p>",
-            "button_label": "查看更多",
-            "button_link": "",
-            "open_in_new_tab": true,
-            "use_custom_button": true,
-            "custom_text_color": "#ffffff",
-            "custom_bg_color": "#c32f26",
-            "custom_border_color": "#c32f26",
-            "custom_border_width": 2,
-            "custom_hover_text_color": "#121212",
-            "custom_hover_bg_color": "rgba(0,0,0,0)",
-            "custom_hover_border_color": "#c32f26"
-          }
-        },
-        "item_ArbgLt": {
-          "type": "item",
-          "settings": {
-            "image": "shopify://shop_images/DM_20250819055048_007.jpg",
-            "logo": "shopify://shop_images/DM_20250819055048_002.png",
-            "title": "标题文本",
-            "title_tag": "h3",
-            "title_size_desktop": 28,
-            "title_size_mobile": 22,
-            "description": "<p>描述文本内容，可以添加多行文本</p>",
-            "button_label": "查看更多",
-            "button_link": "/",
             "open_in_new_tab": true,
             "use_custom_button": true,
             "custom_text_color": "#ffffff",
@@ -315,10 +340,11 @@
         }
       },
       "block_order": [
+        "item_hfGNbh",
         "item_7aq8yF",
-        "item_dT7gkh",
-        "item_kFNXKC",
-        "item_ArbgLt"
+        "item_M4HcYj",
+        "item_3kmahy",
+        "item_dT7gkh"
       ],
       "name": "custom-particle-image",
       "settings": {
