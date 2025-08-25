@@ -95,7 +95,7 @@
       ],
       "custom_css": [
         "h4,h3 {text-align: center;}",
-        ".footer-social-icons,.footer-newsletter-form{justify-content: center;}"
+        ".footer-social-icons {justify-content: center;}"
       ],
       "name": "custom-footer",
       "settings": {
