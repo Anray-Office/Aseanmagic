@@ -61,12 +61,11 @@
           "type": "right_group",
           "settings": {
             "title": "2025年8月27-30日",
-            "subtitle": "",
+            "subtitle": "崇左市凭祥市322国道凭祥市文化体育中心内文化艺术中心",
             "title_size": 21,
             "title_weight": "800",
-            "subtitle_size": 22,
-            "subtitle_weight": "600",
-            "logo_1": "shopify://shop_images/QQ20250824-215205.png",
+            "subtitle_size": 15,
+            "subtitle_weight": "400",
             "logo_1_alt": "",
             "logo_2_alt": ""
           }
@@ -75,12 +74,11 @@
           "type": "right_group",
           "settings": {
             "title": "August 27-30, 2025",
-            "subtitle": "",
+            "subtitle": "Cultural and Art Center, Pingxiang Cultural and Sports Center, National Highway 322, Pingxiang City, Chongzuo City",
             "title_size": 21,
             "title_weight": "800",
-            "subtitle_size": 22,
-            "subtitle_weight": "600",
-            "logo_1": "shopify://shop_images/QQ20250824-215205.png",
+            "subtitle_size": 13,
+            "subtitle_weight": "400",
             "logo_1_alt": "",
             "logo_2_alt": ""
           }
