@@ -194,6 +194,78 @@
         "padding_bottom": 36
       }
     },
+    "multicolumn_DQaTKn": {
+      "type": "multicolumn",
+      "blocks": {
+        "column_pjH8WL": {
+          "type": "column",
+          "settings": {
+            "image": "shopify://shop_images/2025__page-0012.jpg",
+            "title": "",
+            "text": "",
+            "link_label": "",
+            "link": ""
+          }
+        },
+        "column_KV3UK9": {
+          "type": "column",
+          "settings": {
+            "image": "shopify://shop_images/2025__page-0010.jpg",
+            "title": "",
+            "text": "",
+            "link_label": "",
+            "link": ""
+          }
+        },
+        "column_JTHeLL": {
+          "type": "column",
+          "settings": {
+            "image": "shopify://shop_images/2025__page-0009.jpg",
+            "title": "",
+            "text": "",
+            "link_label": "",
+            "link": ""
+          }
+        },
+        "column_rKgYKt": {
+          "type": "column",
+          "name": "嘉宾阵容",
+          "settings": {
+            "image": "shopify://shop_images/2025__page-0011.jpg",
+            "title": "",
+            "text": "",
+            "link_label": "",
+            "link": ""
+          }
+        }
+      },
+      "block_order": [
+        "column_pjH8WL",
+        "column_KV3UK9",
+        "column_JTHeLL",
+        "column_rKgYKt"
+      ],
+      "custom_css": [
+        ".multicolumn-card-spacing {padding: 0; margin: 0;}"
+      ],
+      "name": "演员及安排",
+      "settings": {
+        "title": "嘉宾阵容",
+        "heading_size": "h1",
+        "image_width": "full",
+        "image_ratio": "adapt",
+        "button_label": "",
+        "button_link": "",
+        "columns_desktop": 2,
+        "column_alignment": "left",
+        "background_style": "primary",
+        "color_scheme": "",
+        "columns_mobile": "1",
+        "swipe_on_mobile": true,
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    },
     "aseanmagic_rich_text_nGFYyH": {
       "type": "Aseanmagic-rich-text",
       "blocks": {
@@ -208,6 +280,7 @@
       "block_order": [
         "heading_e84MDj"
       ],
+      "disabled": true,
       "name": "custom-rich-text",
       "settings": {
         "desktop_content_position": "left",
@@ -346,6 +419,7 @@
         "item_3kmahy",
         "item_dT7gkh"
       ],
+      "disabled": true,
       "name": "custom-particle-image",
       "settings": {
         "layout_style": "horizontal",
@@ -361,17 +435,7 @@
         "column_tBTygA": {
           "type": "column",
           "settings": {
-            "image": "shopify://shop_images/2025__page-0012.jpg",
-            "title": "",
-            "text": "",
-            "link_label": "",
-            "link": ""
-          }
-        },
-        "column_xwrHQU": {
-          "type": "column",
-          "settings": {
-            "image": "shopify://shop_images/2025__page-0012.jpg",
+            "image": "shopify://shop_images/2025__page-0005.jpg",
             "title": "",
             "text": "",
             "link_label": "",
@@ -381,7 +445,28 @@
         "column_FDtqkz": {
           "type": "column",
           "settings": {
-            "image": "shopify://shop_images/2025__page-0012.jpg",
+            "image": "shopify://shop_images/2025__page-0006.jpg",
+            "title": "",
+            "text": "",
+            "link_label": "",
+            "link": ""
+          }
+        },
+        "column_HMcrhW": {
+          "type": "column",
+          "name": "嘉宾阵容",
+          "settings": {
+            "image": "shopify://shop_images/2025__page-0007.jpg",
+            "title": "",
+            "text": "",
+            "link_label": "",
+            "link": ""
+          }
+        },
+        "column_xwrHQU": {
+          "type": "column",
+          "settings": {
+            "image": "shopify://shop_images/2025__page-0008.jpg",
             "title": "",
             "text": "",
             "link_label": "",
@@ -391,15 +476,16 @@
       },
       "block_order": [
         "column_tBTygA",
-        "column_xwrHQU",
-        "column_FDtqkz"
+        "column_FDtqkz",
+        "column_HMcrhW",
+        "column_xwrHQU"
       ],
       "custom_css": [
         ".multicolumn-card-spacing {padding: 0; margin: 0;}"
       ],
-      "name": "t:sections.multicolumn.presets.name",
+      "name": "嘉宾阵容",
       "settings": {
-        "title": "",
+        "title": "嘉宾阵容",
         "heading_size": "h1",
         "image_width": "full",
         "image_ratio": "adapt",
@@ -654,6 +740,7 @@
     "rich_text_3hbyjV",
     "aseanmagic_slideshow_wHHgaM",
     "aseanmagic_image_text_3WAfWq",
+    "multicolumn_DQaTKn",
     "aseanmagic_rich_text_nGFYyH",
     "aseanmagic_particle_image_zf8dGd",
     "multicolumn_pBcztM",
