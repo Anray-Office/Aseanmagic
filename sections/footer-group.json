@@ -248,6 +248,9 @@
         "image_hjcVwk"
       ],
       "disabled": true,
+      "custom_css": [
+        ".header__icon .svg-wrapper{display: none;}"
+      ],
       "settings": {
         "color_scheme": "scheme-5",
         "newsletter_enable": true,
